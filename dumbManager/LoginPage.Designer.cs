@@ -55,12 +55,10 @@ namespace dumbManager
             this.TxtFileIn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtFileIn.Location = new System.Drawing.Point(137, 143);
             this.TxtFileIn.Name = "TxtFileIn";
+            this.TxtFileIn.PlaceholderText = " enter username";
             this.TxtFileIn.Size = new System.Drawing.Size(350, 20);
             this.TxtFileIn.TabIndex = 1;
-            this.TxtFileIn.Text = " enter username";
             this.TxtFileIn.TextChanged += new System.EventHandler(this.TxtFileIn_TextChanged);
-            this.TxtFileIn.Enter += new System.EventHandler(this.TxtFileIn_Enter);
-            this.TxtFileIn.Leave += new System.EventHandler(this.TxtFileIn_Leave);
             // 
             // label1
             // 
@@ -77,11 +75,9 @@ namespace dumbManager
             this.TxtPwd.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtPwd.Location = new System.Drawing.Point(137, 184);
             this.TxtPwd.Name = "TxtPwd";
+            this.TxtPwd.PlaceholderText = " enter password";
             this.TxtPwd.Size = new System.Drawing.Size(350, 20);
-            this.TxtPwd.TabIndex = 4;
-            this.TxtPwd.Text = " enter password";
-            this.TxtPwd.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.TxtPwd.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.TxtPwd.TabIndex = 2;
             // 
             // TxtResponse
             // 

@@ -10,12 +10,10 @@ A dumb Password Manager using Windows Forms and C#
 - add icons
 
 Password Manager:
-- add to Github
-- add key arrow down (to login)
 - login when registering new account
-- fix ListView to only show rows
 - add search by ...
-- add Website Icon?
+- get Icon of website
+- change ErrorImage
 - copy pwd, see pwd, open url
 - export, import file
 - add file encryption/upload(enc link to local/online file)

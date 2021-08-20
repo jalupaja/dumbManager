@@ -49,12 +49,6 @@ namespace dumbManager
             }
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            FrmManager_Vrb.CloseCon();
-            Application.Exit();
-        }
-
         public void newManager(SQLite.SQLiteConnection c)
         {
             FrmManager_Vrb.newConnection(c);

@@ -16,6 +16,9 @@
     <Compile Update="FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="LoginPage.cs">
       <SubType>Form</SubType>
     </Compile>

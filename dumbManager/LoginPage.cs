@@ -24,6 +24,7 @@ namespace dumbManager
         public LoginPage()
         {
             InitializeComponent();
+            
             TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
             TxtResponse.ForeColor = Color.White;
             BtnLogin.BackColor = Properties.Settings.Default.AccentColor;
@@ -48,7 +49,12 @@ namespace dumbManager
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), HashIt(TxtFileIn.Text) + ".db");
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dumbManager");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string filepath = Path.Combine(path, HashIt(TxtFileIn.Text) + ".db");
 
             if (File.Exists(filepath))
             {
@@ -80,43 +86,13 @@ namespace dumbManager
             else
             {
                 //create new encrypted database
-
+                parent.loggedin = true;
                 parent.newManager(new SQLiteConnection(new SQLiteConnectionString(filepath, Flags, true, key: new Rfc2898DeriveBytes(TxtPwd.Text, Encoding.ASCII.GetBytes(HashIt(TxtFileIn.Text)), 100000, HashAlgorithmName.SHA512).ToString())));
-               
+                parent.BtnManager_Click(null, null);
 
                 TxtPwd.Text = "";
                 TxtResponse.Text = "Login successful!";
                 TxtResponse.ForeColor = Color.White;
-            }
-        }
-        private void TxtFileIn_Enter(object sender, EventArgs e)
-        {
-            if (TxtFileIn.Text == " enter username")
-            {
-                TxtFileIn.Text = "";
-            }
-        }
-        private void TxtFileIn_Leave(object sender, EventArgs e)
-        {
-            if (TxtFileIn.Text == "")
-            {
-                TxtFileIn.Text = " enter username";
-            }
-        }
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (TxtPwd.Text == " enter password")
-            {
-                TxtPwd.Text = "";
-                TxtPwd.UseSystemPasswordChar = true;
-            }
-        }
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (TxtPwd.Text == "")
-            {
-                TxtPwd.Text = " enter password";
-                TxtPwd.UseSystemPasswordChar = false;
             }
         }
         private void TxtFileIn_TextChanged(object sender, EventArgs e)

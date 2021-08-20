@@ -31,26 +31,21 @@ namespace dumbManager
             public string Url { get; set; }
             public string Note { get; set; }
         }
+        public int selectedId { get; set; }
 
         public FrmManager()
         {
             InitializeComponent();
-            ListManager.BackColor = Properties.Settings.Default.AccentColor;
             TxtSearch.BackColor = Properties.Settings.Default.AccentColor;
             BtnAddItem.BackColor = Properties.Settings.Default.AccentColor;
             BtnEditItem.BackColor = Properties.Settings.Default.AccentColor;
 
             EditItem_Vrb.parent = this;
             ViewItem_Vrb.parent = this;
+            selectedId = -1;
         }
 
-        public void CloseCon()
-        {
-            if (con != null)
-            {
-                con.Close();
-            }
-        }
+        
         public void newConnection(SQLiteConnection c)
         {
             con = c;
@@ -61,35 +56,29 @@ namespace dumbManager
         }
         public void TxtSearch_TextChanged(object sender, EventArgs e)//List stuff
         {
-            if (TxtSearch.Text == " search items" || TxtSearch.Text == "")
-            {
-                ListManager.Clear();
-                ListManager.BeginUpdate();
+            if (TxtSearch.Text == "")
+            {                
                 actualList = new List<dumbManager>();
+                PnlList.Controls.Clear();
                 //!!!
                 var result = con.Table<dumbManager>().ToList();
                 foreach (var item in result)
                 {
-                    actualList.Add(item);
-                    ListManager.Items.Add(new ListViewItem(item.Name + " --- " + item.Username));
+                    //actualList.Add(item);
+                    PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
                 }
-
-                ListManager.EndUpdate();
             }
             else
             {
-                ListManager.Clear();
-                ListManager.BeginUpdate();
                 actualList = new List<dumbManager>();
+                PnlList.Controls.Clear();
                 //!!!
-                var result = con.Table<dumbManager>().Where(x => x.Name == TxtSearch.Text).ToList();
+                var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())).ToList();
                 foreach (var item in result)
                 {
-                    actualList.Add(item);
-                    ListManager.Items.Add(new ListViewItem(item.Name + " --- " + item.Username));
+                    //actualList.Add(item);
+                    PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
                 }
-
-                ListManager.EndUpdate();
             }           
         }
 
@@ -152,22 +141,6 @@ namespace dumbManager
             EditItem_Vrb.Clear("", "", "", "", "");//!!! Insert from viewed Item
             EditItem_Vrb.Show();
             
-        }
-
-        private void TxtSearch_Enter(object sender, EventArgs e)
-        {
-            if (TxtSearch.Text == " search items")
-            {
-                TxtSearch.Text = "";
-            }
-        }
-
-        private void TxtSearch_Leave(object sender, EventArgs e)
-        {
-            if (TxtSearch.Text == "")
-            {
-                TxtSearch.Text = " search items";
-            }
         }
     }
 }
