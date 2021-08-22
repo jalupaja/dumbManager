@@ -25,7 +25,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DarkGreen")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DimGray")]
         public global::System.Drawing.Color AccentColor {
             get {
                 return ((global::System.Drawing.Color)(this["AccentColor"]));
@@ -37,7 +37,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("exepath")]
+        [global::System.Configuration.DefaultSettingValueAttribute("appdataLocal")]
         public string path {
             get {
                 return ((string)(this["path"]));

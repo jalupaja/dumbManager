@@ -39,6 +39,11 @@ namespace dumbManager
             TxtFilePath.ForeColor = Color.Gray;
             TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
             TxtResponse.ForeColor = Color.White;
+            ColorReload();
+        }
+
+        public void ColorReload()
+        {
             BtnLogin.BackColor = Properties.Settings.Default.AccentColor;
             TxtFileIn.BackColor = Properties.Settings.Default.AccentColor;
             TxtPwd.BackColor = Properties.Settings.Default.AccentColor;
@@ -140,6 +145,7 @@ namespace dumbManager
             if (browseFolder.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.path = browseFolder.SelectedPath.ToString();
+                Properties.Settings.Default.Save();
                 TxtFilePath.Text = Properties.Settings.Default.path;
             }
             else{}

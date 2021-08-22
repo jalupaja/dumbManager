@@ -37,7 +37,6 @@ namespace dumbManager
             this.button1 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.LblMain = new System.Windows.Forms.Label();
-            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.PnlFormLoader = new System.Windows.Forms.Panel();
             this.PnlSide.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +131,6 @@ namespace dumbManager
             // 
             // PnlFormLoader
             // 
-            this.PnlFormLoader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnlFormLoader.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PnlFormLoader.Location = new System.Drawing.Point(178, 50);
             this.PnlFormLoader.Name = "PnlFormLoader";
@@ -168,7 +166,6 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnSettings;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label LblMain;
-        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.Panel PnlFormLoader;
     }
 }

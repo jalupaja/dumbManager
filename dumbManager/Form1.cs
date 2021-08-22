@@ -26,6 +26,7 @@ namespace dumbManager
             BtnManager_Click(null, null);
             FrmLoginPage_Vrb.parent = this;
             FrmManager_Vrb.parent = this;
+            FrmSettings_Vrb.parent = this;
 
             if (Properties.Settings.Default.path == "exepath")
             {
@@ -35,7 +36,7 @@ namespace dumbManager
             {
                 Properties.Settings.Default.path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dumbManager");
             }
-
+            Properties.Settings.Default.Save();
             LblMain.ForeColor = Properties.Settings.Default.AccentColor;
             BtnManager.BackColor = Properties.Settings.Default.AccentColor;
             BtnPwdGen.BackColor = Properties.Settings.Default.AccentColor;
@@ -59,6 +60,17 @@ namespace dumbManager
             }
         }
 
+        public void ColorReload()
+        {
+            LblMain.ForeColor = Properties.Settings.Default.AccentColor;
+            BtnManager.BackColor = Properties.Settings.Default.AccentColor;
+            BtnPwdGen.BackColor = Properties.Settings.Default.AccentColor;
+            BtnSettings.BackColor = Properties.Settings.Default.AccentColor;
+            FrmPwdGen_Vrb.ColorReload();
+            FrmLoginPage_Vrb.ColorReload();
+            FrmManager_Vrb.ColorReload();
+            FrmSettings_Vrb.ColorReload();
+        }
         public void Logout()
         {
             FrmLoginPage_Vrb.Logout();

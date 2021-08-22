@@ -16,10 +16,7 @@ namespace dumbManager
         public FrmPwdGen()
         {
             InitializeComponent();
-            BtnPwdCopy.BackColor = Properties.Settings.Default.AccentColor;
-            TxtPwdOut.BackColor = Properties.Settings.Default.AccentColor;
-            TxtPwdLength.BackColor = Properties.Settings.Default.AccentColor;
-            BtnPwdCreate.BackColor = Properties.Settings.Default.AccentColor;
+            ColorReload();
 
             try
             {
@@ -30,6 +27,14 @@ namespace dumbManager
                 TxtPwdLength.Text = "20";
             }
             TxtPwdOut.Text = pwdCreate(TxtPwdLength.Text, checkLowercase.Checked, checkUppercase.Checked, checkNumbers.Checked, checkSpecialChar.Checked);
+        }
+
+        public void ColorReload()
+        {
+            BtnPwdCopy.BackColor = Properties.Settings.Default.AccentColor;
+            TxtPwdOut.BackColor = Properties.Settings.Default.AccentColor;
+            TxtPwdLength.BackColor = Properties.Settings.Default.AccentColor;
+            BtnPwdCreate.BackColor = Properties.Settings.Default.AccentColor;
         }
 
         private void BtnPwdCopy_Click(object sender, EventArgs e)

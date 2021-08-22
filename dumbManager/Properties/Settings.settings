@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DarkGreen</Value>
+      <Value Profile="(Default)">DimGray</Value>
     </Setting>
     <Setting Name="path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">exepath</Value>
+      <Value Profile="(Default)">appdataLocal</Value>
     </Setting>
   </Settings>
 </SettingsFile>

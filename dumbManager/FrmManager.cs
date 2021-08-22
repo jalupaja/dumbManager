@@ -34,14 +34,20 @@ namespace dumbManager
         public FrmManager()
         {
             InitializeComponent();
-            TxtSearch.BackColor = Properties.Settings.Default.AccentColor;
-            BtnAddItem.BackColor = Properties.Settings.Default.AccentColor;
-            BtnEditItem.BackColor = Properties.Settings.Default.AccentColor;
+            ColorReload();
 
             EditItem_Vrb.parent = this;
             ViewItem_Vrb.parent = this;
             selectedId = -1;
         }
+
+        public void ColorReload()
+        {
+            TxtSearch.BackColor = Properties.Settings.Default.AccentColor;
+            BtnAddItem.BackColor = Properties.Settings.Default.AccentColor;
+            BtnEditItem.BackColor = Properties.Settings.Default.AccentColor;
+        }
+
         public int selectedId { get; set; }
         public int maxId { get; set; }
 

@@ -7,8 +7,9 @@ A dumb Password Manager using Windows Forms and C#
 - Password Generator
 
 # ToDo:
-
 Password Manager:
+- change default filepath to exepath
+
 - add icons
 - add Password Gen Button to EditItem
 - add search by ...
@@ -21,7 +22,6 @@ Password Manager:
 - encrypted files attachments
 
 Settings:
-- Global color themes
 - Always on top
 - lock after 10/15min
 
