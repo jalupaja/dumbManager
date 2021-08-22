@@ -25,6 +25,7 @@ namespace dumbManager
         public void ColorReload()
         {
             BtnColor.BackColor = Properties.Settings.Default.AccentColor;
+            BtnAbout.BackColor = Properties.Settings.Default.AccentColor;
         }
 
         private void BtnColor_Click(object sender, EventArgs e)
@@ -35,10 +36,16 @@ namespace dumbManager
             cd.Color = Properties.Settings.Default.AccentColor;
             if (cd.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.AccentColor = cd.Color;//!!!
+                Properties.Settings.Default.AccentColor = cd.Color;
                 Properties.Settings.Default.Save();
             }
             parent.ColorReload();
+        }
+
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            //!!!
+
         }
     }
 }

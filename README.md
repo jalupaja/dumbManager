@@ -9,10 +9,10 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 Password Manager:
 - change default filepath to exepath
-
+- exception new user w/out username, pass
 - add icons
 - add Password Gen Button to EditItem
-- add search by ...
+- add search by same pwd, ...
 - change ErrorImage
 - export, import file
 - add file encryption/upload(enc link to local/online file)

@@ -54,15 +54,18 @@ namespace dumbManager
         public void newConnection(SQLiteConnection c)
         {
             con = c;
+        }
+        public void newFile()
+        {
+            con.CreateTable<dumbManager>();
+        }
+        public void loadMax()
+        {
             var result = con.Table<dumbManager>().ToList();
             foreach (var item in result)
             {
                 maxId = item.Id;
             }
-        }
-        public void newFile()
-        {
-            con.CreateTable<dumbManager>();
         }
         public void TxtSearch_TextChanged(object sender, EventArgs e)//List stuff
         {

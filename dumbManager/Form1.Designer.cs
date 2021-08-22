@@ -29,6 +29,7 @@ namespace dumbManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.PnlSide = new System.Windows.Forms.Panel();
             this.BtnSettings = new System.Windows.Forms.Button();
             this.BtnPwdGen = new System.Windows.Forms.Button();
@@ -148,6 +149,7 @@ namespace dumbManager
             this.Controls.Add(this.LblMain);
             this.Controls.Add(this.PnlSide);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "dumbManager";
             this.PnlSide.ResumeLayout(false);

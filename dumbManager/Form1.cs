@@ -81,11 +81,13 @@ namespace dumbManager
         {
             FrmManager_Vrb.newConnection(c);
             FrmManager_Vrb.newFile();
+            FrmManager_Vrb.loadMax();
         }
 
         public void oldManager(SQLite.SQLiteConnection c)
         {
             FrmManager_Vrb.newConnection(c);
+            FrmManager_Vrb.loadMax();
         }
 
         public void BtnManager_Click(object sender, EventArgs e)

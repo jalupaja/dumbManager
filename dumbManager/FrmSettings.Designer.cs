@@ -31,6 +31,7 @@ namespace dumbManager
         {
             this.BtnColor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnAbout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnColor
@@ -40,7 +41,7 @@ namespace dumbManager
             this.BtnColor.Name = "BtnColor";
             this.BtnColor.Size = new System.Drawing.Size(126, 25);
             this.BtnColor.TabIndex = 0;
-            this.BtnColor.Text = "change Color Theme";
+            this.BtnColor.Text = "Change Color Theme";
             this.BtnColor.UseVisualStyleBackColor = true;
             this.BtnColor.Click += new System.EventHandler(this.BtnColor_Click);
             // 
@@ -54,6 +55,18 @@ namespace dumbManager
             this.label1.TabIndex = 1;
             this.label1.Text = "General Settings";
             // 
+            // BtnAbout
+            // 
+            this.BtnAbout.AutoSize = true;
+            this.BtnAbout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnAbout.Location = new System.Drawing.Point(282, 363);
+            this.BtnAbout.Name = "BtnAbout";
+            this.BtnAbout.Size = new System.Drawing.Size(50, 25);
+            this.BtnAbout.TabIndex = 2;
+            this.BtnAbout.Text = "About";
+            this.BtnAbout.UseVisualStyleBackColor = true;
+            this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -62,6 +75,7 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(622, 400);
+            this.Controls.Add(this.BtnAbout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnColor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -76,5 +90,6 @@ namespace dumbManager
 
         private System.Windows.Forms.Button BtnColor;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnAbout;
     }
 }

@@ -37,7 +37,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("appdataLocal")]
+        [global::System.Configuration.DefaultSettingValueAttribute("exepath")]
         public string path {
             get {
                 return ((string)(this["path"]));

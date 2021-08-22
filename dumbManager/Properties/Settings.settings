@@ -6,7 +6,7 @@
       <Value Profile="(Default)">DimGray</Value>
     </Setting>
     <Setting Name="path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">appdataLocal</Value>
+      <Value Profile="(Default)">exepath</Value>
     </Setting>
   </Settings>
 </SettingsFile>
