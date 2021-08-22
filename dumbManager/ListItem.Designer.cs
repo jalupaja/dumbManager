@@ -37,11 +37,13 @@ namespace dumbManager
             // 
             // Pic
             // 
+            this.Pic.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.Pic.BackColor = System.Drawing.Color.Transparent;
             this.Pic.InitialImage = null;
             this.Pic.Location = new System.Drawing.Point(7, 7);
             this.Pic.Name = "Pic";
             this.Pic.Size = new System.Drawing.Size(51, 51);
+            this.Pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Pic.TabIndex = 0;
             this.Pic.TabStop = false;
             this.Pic.Click += new System.EventHandler(this.ListItem_Click);

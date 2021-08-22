@@ -152,7 +152,7 @@ namespace dumbManager
             this.TxtPassword.Location = new System.Drawing.Point(42, 153);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PlaceholderText = " enter a Password";
-            this.TxtPassword.Size = new System.Drawing.Size(250, 20);
+            this.TxtPassword.Size = new System.Drawing.Size(204, 20);
             this.TxtPassword.TabIndex = 9;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
@@ -177,7 +177,7 @@ namespace dumbManager
             this.TxtUrl.Location = new System.Drawing.Point(42, 212);
             this.TxtUrl.Name = "TxtUrl";
             this.TxtUrl.PlaceholderText = " enter a Url";
-            this.TxtUrl.Size = new System.Drawing.Size(250, 20);
+            this.TxtUrl.Size = new System.Drawing.Size(204, 20);
             this.TxtUrl.TabIndex = 11;
             // 
             // LblUrl

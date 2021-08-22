@@ -3,20 +3,16 @@ A dumb Password Manager using Windows Forms and C#
 
 
 # Features:
+- Offline Password Manger
 - Password Generator
 
 # ToDo:
 
-- add icons
-
 Password Manager:
-- change default filepath to exepath
+- add icons
 - add Password Gen Button to EditItem
-- add click action: id change
 - add search by ...
-- get Icon of website
 - change ErrorImage
-- copy pwd, see pwd, open url
 - export, import file
 - add file encryption/upload(enc link to local/online file)
 - online sync to e.g. personal Dropbox account
@@ -27,7 +23,7 @@ Password Manager:
 Settings:
 - Global color themes
 - Always on top
-- lock after 10min
+- lock after 10/15min
 
 
 Online: 

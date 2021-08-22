@@ -20,9 +20,17 @@ namespace dumbManager
             BackColor = Properties.Settings.Default.AccentColor;
             LblName.Text = name;
             LblUsername.Text = username;
-            Pic.ImageLocation = picUrl;
             this.id = id;
             this.parent = parent;
+
+            try
+            {
+                Pic.ImageLocation = ("https://" + new Uri(picUrl).Host + "/favicon.ico");
+            }
+            catch(Exception)
+            {
+                //Pic.ImageLocation = ""; //!!! Set to default web picture
+            }
         }
 
         private void ListItem_Click(object sender, EventArgs e)

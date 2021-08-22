@@ -129,7 +129,7 @@ namespace dumbManager
             this.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtNotes.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtNotes.ForeColor = System.Drawing.Color.Black;
-            this.TxtNotes.Location = new System.Drawing.Point(41, 269);
+            this.TxtNotes.Location = new System.Drawing.Point(42, 269);
             this.TxtNotes.Multiline = true;
             this.TxtNotes.Name = "TxtNotes";
             this.TxtNotes.ReadOnly = true;
@@ -154,10 +154,10 @@ namespace dumbManager
             this.TxtUrl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUrl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtUrl.ForeColor = System.Drawing.Color.Black;
-            this.TxtUrl.Location = new System.Drawing.Point(42, 214);
+            this.TxtUrl.Location = new System.Drawing.Point(42, 216);
             this.TxtUrl.Name = "TxtUrl";
             this.TxtUrl.ReadOnly = true;
-            this.TxtUrl.Size = new System.Drawing.Size(250, 20);
+            this.TxtUrl.Size = new System.Drawing.Size(163, 20);
             this.TxtUrl.TabIndex = 29;
             this.TxtUrl.DoubleClick += new System.EventHandler(this.TxtUrl_OPEN);
             // 
@@ -180,10 +180,10 @@ namespace dumbManager
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtPassword.ForeColor = System.Drawing.Color.Black;
-            this.TxtPassword.Location = new System.Drawing.Point(42, 155);
+            this.TxtPassword.Location = new System.Drawing.Point(42, 154);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.ReadOnly = true;
-            this.TxtPassword.Size = new System.Drawing.Size(250, 20);
+            this.TxtPassword.Size = new System.Drawing.Size(163, 20);
             this.TxtPassword.TabIndex = 27;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
@@ -208,7 +208,7 @@ namespace dumbManager
             this.TxtUsername.Location = new System.Drawing.Point(42, 97);
             this.TxtUsername.Name = "TxtUsername";
             this.TxtUsername.ReadOnly = true;
-            this.TxtUsername.Size = new System.Drawing.Size(250, 20);
+            this.TxtUsername.Size = new System.Drawing.Size(204, 20);
             this.TxtUsername.TabIndex = 25;
             // 
             // LblUsername
@@ -229,10 +229,10 @@ namespace dumbManager
             this.TxtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtName.ForeColor = System.Drawing.Color.Black;
-            this.TxtName.Location = new System.Drawing.Point(42, 40);
+            this.TxtName.Location = new System.Drawing.Point(42, 39);
             this.TxtName.Name = "TxtName";
             this.TxtName.ReadOnly = true;
-            this.TxtName.Size = new System.Drawing.Size(250, 20);
+            this.TxtName.Size = new System.Drawing.Size(204, 20);
             this.TxtName.TabIndex = 21;
             // 
             // LblName
