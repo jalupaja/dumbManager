@@ -34,5 +34,17 @@ namespace dumbManager.Properties {
                 this["AccentColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("appdataLocal")]
+        public string path {
+            get {
+                return ((string)(this["path"]));
+            }
+            set {
+                this["path"] = value;
+            }
+        }
     }
 }

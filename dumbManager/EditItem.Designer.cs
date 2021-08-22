@@ -42,6 +42,9 @@ namespace dumbManager
             this.LblUrl = new System.Windows.Forms.Label();
             this.TxtNotes = new System.Windows.Forms.TextBox();
             this.LblNotes = new System.Windows.Forms.Label();
+            this.BtnSeePass = new System.Windows.Forms.Button();
+            this.BtnOpenUrl = new System.Windows.Forms.Button();
+            this.BtnDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtHeader
@@ -52,7 +55,7 @@ namespace dumbManager
             this.TxtHeader.Enabled = false;
             this.TxtHeader.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtHeader.ForeColor = System.Drawing.Color.White;
-            this.TxtHeader.Location = new System.Drawing.Point(12, 12);
+            this.TxtHeader.Location = new System.Drawing.Point(12, -5);
             this.TxtHeader.Name = "TxtHeader";
             this.TxtHeader.ReadOnly = true;
             this.TxtHeader.Size = new System.Drawing.Size(311, 20);
@@ -112,6 +115,7 @@ namespace dumbManager
             this.TxtName.ForeColor = System.Drawing.Color.Black;
             this.TxtName.Location = new System.Drawing.Point(42, 38);
             this.TxtName.Name = "TxtName";
+            this.TxtName.PlaceholderText = " enter a Name";
             this.TxtName.Size = new System.Drawing.Size(250, 20);
             this.TxtName.TabIndex = 1;
             // 
@@ -123,6 +127,7 @@ namespace dumbManager
             this.TxtUsername.ForeColor = System.Drawing.Color.Black;
             this.TxtUsername.Location = new System.Drawing.Point(42, 95);
             this.TxtUsername.Name = "TxtUsername";
+            this.TxtUsername.PlaceholderText = " enter a Username";
             this.TxtUsername.Size = new System.Drawing.Size(250, 20);
             this.TxtUsername.TabIndex = 7;
             // 
@@ -134,9 +139,9 @@ namespace dumbManager
             this.LblUsername.ForeColor = System.Drawing.Color.White;
             this.LblUsername.Location = new System.Drawing.Point(30, 73);
             this.LblUsername.Name = "LblUsername";
-            this.LblUsername.Size = new System.Drawing.Size(62, 15);
+            this.LblUsername.Size = new System.Drawing.Size(66, 15);
             this.LblUsername.TabIndex = 8;
-            this.LblUsername.Text = "Usename";
+            this.LblUsername.Text = "Username";
             // 
             // TxtPassword
             // 
@@ -146,8 +151,10 @@ namespace dumbManager
             this.TxtPassword.ForeColor = System.Drawing.Color.Black;
             this.TxtPassword.Location = new System.Drawing.Point(42, 153);
             this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.PlaceholderText = " enter a Password";
             this.TxtPassword.Size = new System.Drawing.Size(250, 20);
             this.TxtPassword.TabIndex = 9;
+            this.TxtPassword.UseSystemPasswordChar = true;
             // 
             // LblPass
             // 
@@ -169,9 +176,9 @@ namespace dumbManager
             this.TxtUrl.ForeColor = System.Drawing.Color.Black;
             this.TxtUrl.Location = new System.Drawing.Point(42, 212);
             this.TxtUrl.Name = "TxtUrl";
+            this.TxtUrl.PlaceholderText = " enter a Url";
             this.TxtUrl.Size = new System.Drawing.Size(250, 20);
             this.TxtUrl.TabIndex = 11;
-            this.TxtUrl.DoubleClick += new System.EventHandler(this.TxtUrl_OPEN);
             // 
             // LblUrl
             // 
@@ -184,7 +191,6 @@ namespace dumbManager
             this.LblUrl.Size = new System.Drawing.Size(23, 15);
             this.LblUrl.TabIndex = 12;
             this.LblUrl.Text = "Url";
-            this.LblUrl.Click += new System.EventHandler(this.TxtUrl_OPEN);
             // 
             // TxtNotes
             // 
@@ -210,12 +216,61 @@ namespace dumbManager
             this.LblNotes.TabIndex = 14;
             this.LblNotes.Text = "Notes";
             // 
+            // BtnSeePass
+            // 
+            this.BtnSeePass.BackColor = System.Drawing.Color.Transparent;
+            this.BtnSeePass.FlatAppearance.BorderSize = 0;
+            this.BtnSeePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSeePass.ForeColor = System.Drawing.Color.White;
+            this.BtnSeePass.Location = new System.Drawing.Point(248, 151);
+            this.BtnSeePass.Name = "BtnSeePass";
+            this.BtnSeePass.Size = new System.Drawing.Size(44, 24);
+            this.BtnSeePass.TabIndex = 37;
+            this.BtnSeePass.Text = "see";
+            this.BtnSeePass.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnSeePass.UseVisualStyleBackColor = false;
+            this.BtnSeePass.Click += new System.EventHandler(this.BtnSeePass_Click);
+            // 
+            // BtnOpenUrl
+            // 
+            this.BtnOpenUrl.BackColor = System.Drawing.Color.Transparent;
+            this.BtnOpenUrl.FlatAppearance.BorderSize = 0;
+            this.BtnOpenUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnOpenUrl.ForeColor = System.Drawing.Color.White;
+            this.BtnOpenUrl.Location = new System.Drawing.Point(248, 210);
+            this.BtnOpenUrl.Name = "BtnOpenUrl";
+            this.BtnOpenUrl.Size = new System.Drawing.Size(44, 24);
+            this.BtnOpenUrl.TabIndex = 39;
+            this.BtnOpenUrl.Text = "Open";
+            this.BtnOpenUrl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnOpenUrl.UseVisualStyleBackColor = false;
+            this.BtnOpenUrl.Click += new System.EventHandler(this.BtnOpenUrl_Click);
+            // 
+            // BtnDel
+            // 
+            this.BtnDel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnDel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnDel.BackColor = System.Drawing.Color.Maroon;
+            this.BtnDel.FlatAppearance.BorderSize = 0;
+            this.BtnDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnDel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnDel.Location = new System.Drawing.Point(284, 2);
+            this.BtnDel.Name = "BtnDel";
+            this.BtnDel.Size = new System.Drawing.Size(39, 29);
+            this.BtnDel.TabIndex = 40;
+            this.BtnDel.Text = "Del";
+            this.BtnDel.UseVisualStyleBackColor = false;
+            this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click);
+            // 
             // EditItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(335, 400);
+            this.Controls.Add(this.BtnDel);
+            this.Controls.Add(this.BtnOpenUrl);
+            this.Controls.Add(this.BtnSeePass);
             this.Controls.Add(this.TxtNotes);
             this.Controls.Add(this.LblNotes);
             this.Controls.Add(this.TxtUrl);
@@ -252,5 +307,8 @@ namespace dumbManager
         private System.Windows.Forms.Label LblUrl;
         private System.Windows.Forms.TextBox TxtNotes;
         private System.Windows.Forms.Label LblNotes;
+        private System.Windows.Forms.Button BtnSeePass;
+        private System.Windows.Forms.Button BtnOpenUrl;
+        private System.Windows.Forms.Button BtnDel;
     }
 }

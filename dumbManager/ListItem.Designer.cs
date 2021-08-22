@@ -44,6 +44,7 @@ namespace dumbManager
             this.Pic.Size = new System.Drawing.Size(51, 51);
             this.Pic.TabIndex = 0;
             this.Pic.TabStop = false;
+            this.Pic.Click += new System.EventHandler(this.ListItem_Click);
             // 
             // LblName
             // 
@@ -54,6 +55,7 @@ namespace dumbManager
             this.LblName.Size = new System.Drawing.Size(53, 19);
             this.LblName.TabIndex = 1;
             this.LblName.Text = "Name";
+            this.LblName.Click += new System.EventHandler(this.ListItem_Click);
             // 
             // LblUsername
             // 
@@ -64,6 +66,7 @@ namespace dumbManager
             this.LblUsername.Size = new System.Drawing.Size(80, 18);
             this.LblUsername.TabIndex = 2;
             this.LblUsername.Text = "Username";
+            this.LblUsername.Click += new System.EventHandler(this.ListItem_Click);
             // 
             // ListItem
             // 
@@ -76,7 +79,7 @@ namespace dumbManager
             this.Controls.Add(this.Pic);
             this.Name = "ListItem";
             this.Size = new System.Drawing.Size(270, 65);
-            this.Click += new System.EventHandler(this.Action_Click);
+            this.Click += new System.EventHandler(this.ListItem_Click);
             ((System.ComponentModel.ISupportInitialize)(this.Pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

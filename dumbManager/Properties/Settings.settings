@@ -5,5 +5,8 @@
     <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkGreen</Value>
     </Setting>
+    <Setting Name="path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">appdataLocal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -34,6 +34,7 @@ namespace dumbManager
             this.label1 = new System.Windows.Forms.Label();
             this.TxtPwd = new System.Windows.Forms.TextBox();
             this.TxtResponse = new System.Windows.Forms.TextBox();
+            this.TxtFilePath = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnLogin
@@ -78,6 +79,7 @@ namespace dumbManager
             this.TxtPwd.PlaceholderText = " enter password";
             this.TxtPwd.Size = new System.Drawing.Size(350, 20);
             this.TxtPwd.TabIndex = 2;
+            this.TxtPwd.UseSystemPasswordChar = true;
             // 
             // TxtResponse
             // 
@@ -96,6 +98,23 @@ namespace dumbManager
             this.TxtResponse.TabStop = false;
             this.TxtResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // TxtFilePath
+            // 
+            this.TxtFilePath.BackColor = System.Drawing.Color.Black;
+            this.TxtFilePath.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtFilePath.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.TxtFilePath.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtFilePath.Location = new System.Drawing.Point(137, 336);
+            this.TxtFilePath.Multiline = true;
+            this.TxtFilePath.Name = "TxtFilePath";
+            this.TxtFilePath.ReadOnly = true;
+            this.TxtFilePath.Size = new System.Drawing.Size(359, 47);
+            this.TxtFilePath.TabIndex = 6;
+            this.TxtFilePath.TabStop = false;
+            this.TxtFilePath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtFilePath.Click += new System.EventHandler(this.TxtFilePath_Click);
+            this.TxtFilePath.DoubleClick += new System.EventHandler(this.TxtFilePath_Click);
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -104,6 +123,7 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(624, 400);
+            this.Controls.Add(this.TxtFilePath);
             this.Controls.Add(this.TxtResponse);
             this.Controls.Add(this.TxtPwd);
             this.Controls.Add(this.label1);
@@ -124,5 +144,6 @@ namespace dumbManager
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtPwd;
         private System.Windows.Forms.TextBox TxtResponse;
+        private System.Windows.Forms.TextBox TxtFilePath;
     }
 }

@@ -35,6 +35,7 @@ namespace dumbManager
             this.BtnAddItem = new System.Windows.Forms.Button();
             this.BtnEditItem = new System.Windows.Forms.Button();
             this.PnlList = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PnlViewEditLoader
@@ -112,12 +113,30 @@ namespace dumbManager
             this.PnlList.Size = new System.Drawing.Size(292, 330);
             this.PnlList.TabIndex = 0;
             // 
+            // BtnLogout
+            // 
+            this.BtnLogout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BtnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnLogout.FlatAppearance.BorderSize = 0;
+            this.BtnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLogout.ForeColor = System.Drawing.Color.White;
+            this.BtnLogout.Location = new System.Drawing.Point(0, 370);
+            this.BtnLogout.Name = "BtnLogout";
+            this.BtnLogout.Size = new System.Drawing.Size(310, 30);
+            this.BtnLogout.TabIndex = 2;
+            this.BtnLogout.TabStop = false;
+            this.BtnLogout.Text = "Logout";
+            this.BtnLogout.UseVisualStyleBackColor = true;
+            this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            // 
             // FrmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(624, 400);
+            this.Controls.Add(this.BtnLogout);
             this.Controls.Add(this.PnlList);
             this.Controls.Add(this.BtnEditItem);
             this.Controls.Add(this.BtnAddItem);
@@ -139,5 +158,6 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnAddItem;
         private System.Windows.Forms.Button BtnEditItem;
         private System.Windows.Forms.FlowLayoutPanel PnlList;
+        private System.Windows.Forms.Button BtnLogout;
     }
 }

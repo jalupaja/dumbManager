@@ -10,7 +10,9 @@ A dumb Password Manager using Windows Forms and C#
 - add icons
 
 Password Manager:
-- login when registering new account
+- change default filepath to exepath
+- add Password Gen Button to EditItem
+- add click action: id change
 - add search by ...
 - get Icon of website
 - change ErrorImage

@@ -24,12 +24,30 @@ namespace dumbManager
         public LoginPage()
         {
             InitializeComponent();
-            
+            if (Properties.Settings.Default.path == "exepath")
+            {
+                TxtFilePath.Text = Path.Combine(Application.StartupPath, "dumbManager");
+            }
+            else if (Properties.Settings.Default.path == "appdataLocal")
+            {
+                TxtFilePath.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dumbManager");
+            }
+            else
+            {
+                TxtFilePath.Text = Properties.Settings.Default.path;
+            }
+            TxtFilePath.ForeColor = Color.Gray;
             TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
             TxtResponse.ForeColor = Color.White;
             BtnLogin.BackColor = Properties.Settings.Default.AccentColor;
             TxtFileIn.BackColor = Properties.Settings.Default.AccentColor;
             TxtPwd.BackColor = Properties.Settings.Default.AccentColor;
+        }
+
+        public void Logout()
+        {
+            TxtFileIn_TextChanged(null, null);
+            TxtPwd.Text = "";
         }
 
         private string HashIt(String input)
@@ -49,12 +67,12 @@ namespace dumbManager
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dumbManager");
-            if (!Directory.Exists(path))
+            
+            if (!Directory.Exists(Properties.Settings.Default.path))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(Properties.Settings.Default.path);
             }
-            string filepath = Path.Combine(path, HashIt(TxtFileIn.Text) + ".db");
+            string filepath = Path.Combine(Properties.Settings.Default.path, HashIt(TxtFileIn.Text) + ".db");
 
             if (File.Exists(filepath))
             {
@@ -97,7 +115,7 @@ namespace dumbManager
         }
         private void TxtFileIn_TextChanged(object sender, EventArgs e)
         {
-            string filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), HashIt(TxtFileIn.Text) + ".db");
+            string filepath = Path.Combine(Properties.Settings.Default.path, HashIt(TxtFileIn.Text) + ".db");
 
             if (File.Exists(filepath))
             {
@@ -111,6 +129,21 @@ namespace dumbManager
                 TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
                 TxtResponse.ForeColor = Color.White;
             }
+        }
+
+        private void TxtFilePath_Click(object sender, EventArgs e)
+        {
+            //!!! open folder dialogue
+            FolderBrowserDialog browseFolder = new FolderBrowserDialog();
+            browseFolder.SelectedPath = Properties.Settings.Default.path;
+
+            if (browseFolder.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.path = browseFolder.SelectedPath.ToString();
+                TxtFilePath.Text = Properties.Settings.Default.path;
+            }
+            else{}
+            TxtFileIn_TextChanged(null, null);
         }
     }
 }

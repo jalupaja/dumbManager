@@ -25,9 +25,10 @@ namespace dumbManager
             this.parent = parent;
         }
 
-        private void Action_Click(object sender, EventArgs e)
+        private void ListItem_Click(object sender, EventArgs e)
         {
             parent.selectedId = id;
+            parent.Clear();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,15 @@ namespace dumbManager
             BtnManager_Click(null, null);
             FrmLoginPage_Vrb.parent = this;
             FrmManager_Vrb.parent = this;
+
+            if (Properties.Settings.Default.path == "exepath")
+            {
+                Properties.Settings.Default.path = Path.Combine(Application.StartupPath, "dumbManager");
+            }
+            else if (Properties.Settings.Default.path == "appdataLocal")
+            {
+                Properties.Settings.Default.path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dumbManager");
+            }
 
             LblMain.ForeColor = Properties.Settings.Default.AccentColor;
             BtnManager.BackColor = Properties.Settings.Default.AccentColor;
@@ -49,6 +59,12 @@ namespace dumbManager
             }
         }
 
+        public void Logout()
+        {
+            FrmLoginPage_Vrb.Logout();
+            loggedin = false;
+            BtnManager_Click(null, null);
+        }
         public void newManager(SQLite.SQLiteConnection c)
         {
             FrmManager_Vrb.newConnection(c);

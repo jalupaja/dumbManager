@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OKPz7m/F+u/kVulBU9WwuT3trFcxMQXyc+8k4DLcD5k+D6kPRTcRaxcUUs2LKQa4wyk9YxR/vObyEFi5XHXT4Q==",
+  "dgSpecHash": "a9PIAQTp2OQAJPLvaVpdeviwTfG8OxWXRH2kP0k5EDhv39VyBza6lt3mMEWSDvzHoFfNalCmKiEBMbG095ZVsg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj",
+  "projectFilePath": "C:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jalupa\\.nuget\\packages\\sqlite-net-sqlcipher\\1.7.335\\sqlite-net-sqlcipher.1.7.335.nupkg.sha512",
     "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlcipher\\2.0.3\\sqlitepclraw.bundle_e_sqlcipher.2.0.3.nupkg.sha512",

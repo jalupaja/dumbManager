@@ -17,7 +17,6 @@ namespace dumbManager
         LookAtItem ViewItem_Vrb = new LookAtItem() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
 
         protected SQLiteConnection con = null;
-        protected List<dumbManager> actualList = new List<dumbManager>();
 
         public Form1 parent = null;
 
@@ -31,7 +30,6 @@ namespace dumbManager
             public string Url { get; set; }
             public string Note { get; set; }
         }
-        public int selectedId { get; set; }
 
         public FrmManager()
         {
@@ -44,11 +42,17 @@ namespace dumbManager
             ViewItem_Vrb.parent = this;
             selectedId = -1;
         }
+        public int selectedId { get; set; }
+        public int maxId { get; set; }
 
-        
         public void newConnection(SQLiteConnection c)
         {
             con = c;
+            var result = con.Table<dumbManager>().ToList();
+            foreach (var item in result)
+            {
+                maxId = item.Id;
+            }
         }
         public void newFile()
         {
@@ -57,29 +61,23 @@ namespace dumbManager
         public void TxtSearch_TextChanged(object sender, EventArgs e)//List stuff
         {
             if (TxtSearch.Text == "")
-            {                
-                actualList = new List<dumbManager>();
+            {
                 PnlList.Controls.Clear();
-                //!!!
                 var result = con.Table<dumbManager>().ToList();
                 foreach (var item in result)
                 {
-                    //actualList.Add(item);
                     PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
                 }
             }
             else
             {
-                actualList = new List<dumbManager>();
                 PnlList.Controls.Clear();
-                //!!!
                 var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())).ToList();
                 foreach (var item in result)
                 {
-                    //actualList.Add(item);
                     PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
                 }
-            }           
+            }
         }
 
         private void BtnAddItem_Click(object sender, EventArgs e)
@@ -91,7 +89,7 @@ namespace dumbManager
             EditItem_Vrb.Show();
         }
         public void Add(string name, string username, string password, string url, string note)
-        {
+        {//!!! update SQL file
             var n = new dumbManager
             {
                 Name = name,
@@ -107,40 +105,82 @@ namespace dumbManager
             n.Url = "";
             n.Note = "";
             Clear();
+            TxtSearch_TextChanged(null, null);
+        }
+        public void Change(int id, string name, string username, string password, string url, string note)
+        {//!!! update SQL file
+            var n = new dumbManager();
+            n.Id = id;
+            n.Name = name;
+            n.Username = username;
+            n.Password = password;
+            n.Url = url;
+            n.Note = note;
+            con.Update(n);
+            Clear();
+            TxtSearch_TextChanged(null, null);
+        }
+        public void Del(int id)
+        {//!!! update SQL file
+            var n = new dumbManager();
+            n.Id = id;
+            con.Delete(n);
+            Clear();
+            TxtSearch_TextChanged(null, null);
+
         }
         public void Clear()
         {
-            /*
-            if () //!!! if not clicked on any item
+            this.PnlViewEditLoader.Controls.Clear();
+            if (selectedId == -1)
             {
-                this.PnlViewEditLoader.Controls.Clear();
+                ViewItem_Vrb.Clear("", "", "", "", "");
+                EditItem_Vrb.Clear("", "", "", "", "");
             }
             else
             {
-                this.PnlViewEditLoader.Controls.Clear();
                 ViewItem_Vrb.FormBorderStyle = FormBorderStyle.None;
                 this.PnlViewEditLoader.Controls.Add(ViewItem_Vrb);
-                ViewItem_Vrb.Clear("", "", "", "", "");//!!! Insert selected Items
+                var result = con.Table<dumbManager>().ToList();
+                foreach (var item in result)
+                { 
+                    if(item.Id == selectedId)
+                    {
+                        ViewItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.Note);//!!! Insert selected Items
+                    }
+                }
                 ViewItem_Vrb.Show();
             }
-            */
-            this.PnlViewEditLoader.Controls.Clear(); //!!! del this
         }
         private void BtnEditItem_Click(object sender, EventArgs e)
         {
-            /* 
-            if () //!!! if not clicked on any item
-            {
-                BtnAddItem_Click(null, null);
-                return;
-            }
-            */
             this.PnlViewEditLoader.Controls.Clear();
-            EditItem_Vrb.FormBorderStyle = FormBorderStyle.None;
-            this.PnlViewEditLoader.Controls.Add(EditItem_Vrb);
-            EditItem_Vrb.Clear("", "", "", "", "");//!!! Insert from viewed Item
-            EditItem_Vrb.Show();
-            
+            if (selectedId == -1)
+            {
+                ViewItem_Vrb.Clear("", "", "", "", "");
+                EditItem_Vrb.Clear("", "", "", "", "");
+            }
+            else
+            {
+                EditItem_Vrb.FormBorderStyle = FormBorderStyle.None;
+                this.PnlViewEditLoader.Controls.Add(EditItem_Vrb);
+                var result = con.Table<dumbManager>().ToList();
+                foreach (var item in result)
+                {
+                    if (item.Id == selectedId)
+                    {
+                        EditItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.Note);
+                    }
+                }
+                EditItem_Vrb.Show();
+            }           
+        }
+        private void BtnLogout_Click(object sender, EventArgs e)
+        {
+            selectedId = -1;
+            Clear();
+            con.Close();
+            parent.Logout();
         }
     }
 }
