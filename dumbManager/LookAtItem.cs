@@ -18,6 +18,12 @@ namespace dumbManager
         public LookAtItem()
         {
             InitializeComponent();
+            this.ActiveControl = LblName;
+            ColorReload();
+        }
+
+        public void ColorReload()
+        {
             TxtName.BackColor = Properties.Settings.Default.AccentColor;
             TxtUsername.BackColor = Properties.Settings.Default.AccentColor;
             TxtPassword.BackColor = Properties.Settings.Default.AccentColor;
@@ -37,14 +43,6 @@ namespace dumbManager
             //set TxtHeader
             TxtHeader.Text = "VIEW ITEM";
             TxtHeader.ForeColor = Color.White;
-        }
-        private void BtnSafe_Click(object sender, EventArgs e)
-        {
-            parent.Add(TxtName.Text, TxtUsername.Text, TxtPassword.Text, TxtUrl.Text, TxtNotes.Text);
-        }
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            parent.Clear();
         }
         private void TxtUrl_OPEN(object sender, EventArgs e)
         {

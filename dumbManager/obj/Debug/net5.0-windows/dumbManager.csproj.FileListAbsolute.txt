@@ -42,3 +42,4 @@ C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.FrmManager.resources
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.LookAtItem.resources
 c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.ListItem.resources
+c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.FrmAbout.resources

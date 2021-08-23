@@ -24,6 +24,7 @@ namespace dumbManager
         public LoginPage()
         {
             InitializeComponent();
+            this.ActiveControl = TxtFileIn;
             if (Properties.Settings.Default.path == "exepath")
             {
                 TxtFilePath.Text = Path.Combine(Application.StartupPath, "dumbManager");
@@ -150,6 +151,32 @@ namespace dumbManager
             }
             else{}
             TxtFileIn_TextChanged(null, null);
+        }
+
+        private void LoginPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.ActiveControl == TxtFileIn)
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+                {
+                    this.ActiveControl = TxtPwd;
+                }
+            }
+            else if (this.ActiveControl == TxtPwd)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnLogin_Click(null, null);
+                }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    this.ActiveControl = BtnLogin;
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    this.ActiveControl = TxtFileIn;
+                }
+            }
         }
     }
 }

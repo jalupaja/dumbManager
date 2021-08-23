@@ -128,5 +128,17 @@ namespace dumbManager
             this.PnlFormLoader.Controls.Add(FrmSettings_Vrb);
             FrmSettings_Vrb.Show();
         }
+        public void Lock()
+        {
+            if (this.Enabled)
+            {
+                this.Enabled = false;
+            }
+            else
+            {
+                this.Enabled = true;
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
     }
 }

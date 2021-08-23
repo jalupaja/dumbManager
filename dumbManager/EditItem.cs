@@ -14,10 +14,16 @@ namespace dumbManager
     public partial class EditItem : Form
     {
         public FrmManager parent = null;
-
+        private bool newAcc = false;
         public EditItem()
         {
             InitializeComponent();
+            this.ActiveControl = TxtName;
+            ColorReload();
+        }
+
+        public void ColorReload()
+        {
             TxtName.BackColor = Properties.Settings.Default.AccentColor;
             TxtUsername.BackColor = Properties.Settings.Default.AccentColor;
             TxtPassword.BackColor = Properties.Settings.Default.AccentColor;
@@ -26,8 +32,6 @@ namespace dumbManager
             BtnCancel.BackColor = Properties.Settings.Default.AccentColor;
             BtnSafe.BackColor = Properties.Settings.Default.AccentColor;
         }
-
-        private bool newAcc = false;
 
         public void Clear(string name, string username, string password, string url, string notes)
         {

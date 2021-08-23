@@ -36,6 +36,7 @@ namespace dumbManager
             InitializeComponent();
             ColorReload();
 
+            this.ActiveControl = TxtSearch;
             EditItem_Vrb.parent = this;
             ViewItem_Vrb.parent = this;
             selectedId = -1;
@@ -43,6 +44,8 @@ namespace dumbManager
 
         public void ColorReload()
         {
+            EditItem_Vrb.ColorReload();
+            ViewItem_Vrb.ColorReload();
             TxtSearch.BackColor = Properties.Settings.Default.AccentColor;
             BtnAddItem.BackColor = Properties.Settings.Default.AccentColor;
             BtnEditItem.BackColor = Properties.Settings.Default.AccentColor;

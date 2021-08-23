@@ -32,6 +32,7 @@ namespace dumbManager
             this.BtnColor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAbout = new System.Windows.Forms.Button();
+            this.BtnAlways = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnColor
@@ -67,6 +68,17 @@ namespace dumbManager
             this.BtnAbout.UseVisualStyleBackColor = true;
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
+            // BtnAlways
+            // 
+            this.BtnAlways.ForeColor = System.Drawing.Color.Black;
+            this.BtnAlways.Location = new System.Drawing.Point(35, 84);
+            this.BtnAlways.Name = "BtnAlways";
+            this.BtnAlways.Size = new System.Drawing.Size(126, 25);
+            this.BtnAlways.TabIndex = 3;
+            this.BtnAlways.Text = "Always On Top: off";
+            this.BtnAlways.UseVisualStyleBackColor = true;
+            this.BtnAlways.Click += new System.EventHandler(this.BtnAlways_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -75,6 +87,7 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(622, 400);
+            this.Controls.Add(this.BtnAlways);
             this.Controls.Add(this.BtnAbout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnColor);
@@ -91,5 +104,6 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnColor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnAbout;
+        private System.Windows.Forms.Button BtnAlways;
     }
 }

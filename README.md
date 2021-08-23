@@ -7,23 +7,23 @@ A dumb Password Manager using Windows Forms and C#
 - Password Generator
 
 # ToDo:
+
 Password Manager:
-- change default filepath to exepath
-- exception new user w/out username, pass
-- add icons
+- add tray Icon
+- fix update check
 - add Password Gen Button to EditItem
-- add search by same pwd, ...
+- add search by (Dropdown menu/button)
 - change ErrorImage
 - export, import file
 - add file encryption/upload(enc link to local/online file)
 - online sync to e.g. personal Dropbox account
 - change password (https://github.com/sqlcipher/sqlcipher)
-- enter 2FA codes
+- enter TOTP codes (https://gist.github.com/BravoTango86/9ebb578fa4df3a0ffed28bd634f8f3c0)
 - encrypted files attachments
 
 Settings:
-- Always on top
-- lock after 10/15min
+- Always on top(https://stackoverflow.com/questions/683330/how-to-make-a-window-always-stay-on-top-in-net)
+- lock after 10/15min (Close after inactivity)
 
 
 Online: 
@@ -42,9 +42,4 @@ Mobile: (in the future)
 
 
 firefox addon: (in the far future if everything else goes right)
-
-
-
-
-  
 

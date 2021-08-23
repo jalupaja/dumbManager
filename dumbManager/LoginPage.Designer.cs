@@ -60,6 +60,7 @@ namespace dumbManager
             this.TxtFileIn.Size = new System.Drawing.Size(350, 20);
             this.TxtFileIn.TabIndex = 1;
             this.TxtFileIn.TextChanged += new System.EventHandler(this.TxtFileIn_TextChanged);
+            this.TxtFileIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
             // 
             // label1
             // 
@@ -80,6 +81,7 @@ namespace dumbManager
             this.TxtPwd.Size = new System.Drawing.Size(350, 20);
             this.TxtPwd.TabIndex = 2;
             this.TxtPwd.UseSystemPasswordChar = true;
+            this.TxtPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
             // 
             // TxtResponse
             // 
@@ -97,6 +99,7 @@ namespace dumbManager
             this.TxtResponse.TabIndex = 5;
             this.TxtResponse.TabStop = false;
             this.TxtResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtResponse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
             // 
             // TxtFilePath
             // 
@@ -132,6 +135,7 @@ namespace dumbManager
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginPage";
             this.Text = "LoginPage";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

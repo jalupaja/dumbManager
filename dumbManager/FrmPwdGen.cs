@@ -16,6 +16,7 @@ namespace dumbManager
         public FrmPwdGen()
         {
             InitializeComponent();
+            this.ActiveControl = BtnPwdCreate;
             ColorReload();
 
             try
