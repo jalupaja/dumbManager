@@ -33,6 +33,9 @@ namespace dumbManager
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAbout = new System.Windows.Forms.Button();
             this.BtnAlways = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BtnLogoutAfter = new System.Windows.Forms.Button();
+            this.BtnCloseToTray = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnColor
@@ -79,6 +82,37 @@ namespace dumbManager
             this.BtnAlways.UseVisualStyleBackColor = true;
             this.BtnAlways.Click += new System.EventHandler(this.BtnAlways_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(336, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Password Manager Settings";
+            // 
+            // BtnLogoutAfter
+            // 
+            this.BtnLogoutAfter.ForeColor = System.Drawing.Color.Black;
+            this.BtnLogoutAfter.Location = new System.Drawing.Point(364, 42);
+            this.BtnLogoutAfter.Name = "BtnLogoutAfter";
+            this.BtnLogoutAfter.Size = new System.Drawing.Size(213, 25);
+            this.BtnLogoutAfter.TabIndex = 5;
+            this.BtnLogoutAfter.Text = "Logout automatically after:";
+            this.BtnLogoutAfter.UseVisualStyleBackColor = true;
+            this.BtnLogoutAfter.Click += new System.EventHandler(this.BtnLogoutAfter_Click);
+            // 
+            // BtnCloseToTray
+            // 
+            this.BtnCloseToTray.Location = new System.Drawing.Point(35, 128);
+            this.BtnCloseToTray.Name = "BtnCloseToTray";
+            this.BtnCloseToTray.Size = new System.Drawing.Size(126, 23);
+            this.BtnCloseToTray.TabIndex = 6;
+            this.BtnCloseToTray.Text = "Close To Tray: on";
+            this.BtnCloseToTray.UseVisualStyleBackColor = true;
+            this.BtnCloseToTray.Click += new System.EventHandler(this.BtnCloseToTray_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -87,6 +121,9 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(622, 400);
+            this.Controls.Add(this.BtnCloseToTray);
+            this.Controls.Add(this.BtnLogoutAfter);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnAlways);
             this.Controls.Add(this.BtnAbout);
             this.Controls.Add(this.label1);
@@ -105,5 +142,8 @@ namespace dumbManager
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnAbout;
         private System.Windows.Forms.Button BtnAlways;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BtnLogoutAfter;
+        private System.Windows.Forms.Button BtnCloseToTray;
     }
 }

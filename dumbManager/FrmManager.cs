@@ -34,9 +34,9 @@ namespace dumbManager
         public FrmManager()
         {
             InitializeComponent();
+            this.ActiveControl = TxtSearch;
             ColorReload();
 
-            this.ActiveControl = TxtSearch;
             EditItem_Vrb.parent = this;
             ViewItem_Vrb.parent = this;
             selectedId = -1;
@@ -187,7 +187,7 @@ namespace dumbManager
                 EditItem_Vrb.Show();
             }           
         }
-        private void BtnLogout_Click(object sender, EventArgs e)
+        public void BtnLogout_Click(object sender, EventArgs e)
         {
             selectedId = -1;
             Clear();

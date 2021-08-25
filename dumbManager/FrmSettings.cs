@@ -17,6 +17,8 @@ namespace dumbManager
 
         private bool isOnTop = false;
 
+        public int minToLogout = -1;
+
         public Form1 parent { get; set; }
 
         FrmAbout FrmAbout_Vrb = new FrmAbout() {TopLevel = true, TopMost = true};
@@ -26,6 +28,45 @@ namespace dumbManager
             InitializeComponent();
             ColorReload();
             FrmAbout_Vrb.parent = this;
+
+
+            if (Properties.Settings.Default.CloseToTray)
+            {
+                BtnCloseToTray.Text = "Close To Tray: on";
+            }
+            else
+            {
+                BtnCloseToTray.Text = "Close To Tray: off";
+            }
+
+            if (Properties.Settings.Default.LogoutAfter == 0)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: never";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 1)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 1min";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 5)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 5min";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 10)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 10min";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 15)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 15min";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 30)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 30min";
+            }
+            else if (Properties.Settings.Default.LogoutAfter == 60)
+            {
+                BtnLogoutAfter.Text = "Logout automatically after: 1h";
+            }
         }
 
         public void ColorReload()
@@ -33,6 +74,8 @@ namespace dumbManager
             BtnColor.BackColor = Properties.Settings.Default.AccentColor;
             BtnAbout.BackColor = Properties.Settings.Default.AccentColor;
             BtnAlways.BackColor = Properties.Settings.Default.AccentColor;
+            BtnLogoutAfter.BackColor = Properties.Settings.Default.AccentColor;
+            BtnCloseToTray.BackColor = Properties.Settings.Default.AccentColor;
 
             FrmAbout_Vrb.ColorReload();
         }
@@ -53,8 +96,7 @@ namespace dumbManager
 
         private void BtnAbout_Click(object sender, EventArgs e)
         {
-            //!!!
-            FrmAbout_Vrb.Show();
+            FrmAbout_Vrb.ShowDialog();
             parent.Lock();
         }
 
@@ -66,7 +108,7 @@ namespace dumbManager
 
         private void BtnAlways_Click(object sender, EventArgs e)
         {
-            if (isOnTop)
+            if (isOnTop)//!!! 
             {
                 try
                 {
@@ -95,6 +137,75 @@ namespace dumbManager
                 }
             }
             
+        }
+
+        private void BtnLogoutAfter_Click(object sender, EventArgs e)
+        {
+            if (BtnLogoutAfter.Text == "Logout automatically after: never")
+            {
+                Properties.Settings.Default.LogoutAfter = 1;
+                BtnLogoutAfter.Text = "Logout automatically after: 1min";
+            }
+            else if (BtnLogoutAfter.Text == "Logout automatically after: 1min")
+            {
+                Properties.Settings.Default.LogoutAfter = 5;
+                BtnLogoutAfter.Text = "Logout automatically after: 5min";
+            }
+            else if (BtnLogoutAfter.Text == "Logout automatically after: 5min")
+            {
+                Properties.Settings.Default.LogoutAfter = 10;
+                BtnLogoutAfter.Text = "Logout automatically after: 10min";
+            }
+            else if (BtnLogoutAfter.Text == "Logout automatically after: 10min")
+            {
+                Properties.Settings.Default.LogoutAfter = 15;
+                BtnLogoutAfter.Text = "Logout automatically after: 15min";
+            }
+            else if (BtnLogoutAfter.Text == "Logout automatically after: 15min")
+            {
+                Properties.Settings.Default.LogoutAfter = 30;
+                BtnLogoutAfter.Text = "Logout automatically after: 30min";
+            }
+            else if (BtnLogoutAfter.Text == "Logout automatically after: 30min")
+            {
+                Properties.Settings.Default.LogoutAfter = 60;
+                BtnLogoutAfter.Text = "Logout automatically after: 1h";
+            }
+            else
+            {
+                Properties.Settings.Default.LogoutAfter = 0;
+                BtnLogoutAfter.Text = "Logout automatically after: never";
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        public void NLoad(object sender, EventArgs e)
+        {
+            if (parent.loggedin)
+            {
+                label2.Visible = true;
+                BtnLogoutAfter.Visible = true;
+            }
+            else
+            {
+                label2.Visible = false;
+                BtnLogoutAfter.Visible = false;
+            }
+        }
+
+        private void BtnCloseToTray_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.CloseToTray)
+            {
+                BtnCloseToTray.Text = "Close To Tray: off";
+                Properties.Settings.Default.CloseToTray = false;
+            }
+            else
+            {
+                BtnCloseToTray.Text = "Close To Tray: on";
+                Properties.Settings.Default.CloseToTray = true;
+            }
+            Properties.Settings.Default.Save();
         }
     }
 }

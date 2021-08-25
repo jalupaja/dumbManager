@@ -13,15 +13,78 @@ namespace dumbManager
 {
     public partial class Form1 : Form
     {
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                if (loggedin)
+                {
+                    FrmManager_Vrb.BtnLogout_Click(null, null);
+                }
+                return;
+            }
+            e.Cancel = true;
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            if (Properties.Settings.Default.CloseToTray == false)
+            {
+                TrayExit(null, null);
+            }
+        }
+
         FrmPwdGen FrmPwdGen_Vrb = new FrmPwdGen() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
         LoginPage FrmLoginPage_Vrb = new LoginPage() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
         FrmSettings FrmSettings_Vrb = new FrmSettings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
         FrmManager FrmManager_Vrb = new FrmManager() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
 
+        NotifyIcon TrayIcon = new NotifyIcon();
+        ContextMenuStrip TrayIconContextMenu = new ContextMenuStrip();
+        ToolStripMenuItem MenuItemExit = new ToolStripMenuItem();
+        ToolStripMenuItem MenuItemLock = new ToolStripMenuItem();
+
         public bool loggedin = false;
 
         public Form1()
         {
+            //Tray Icon Stuff: https://www.codeproject.com/tips/627796/doing-a-notifyicon-program-the-right-way
+            TrayIcon.Text = "dumbManager";
+            TrayIcon.Icon = Properties.Resources.dumbManager;
+            TrayIcon.MouseDown += TrayIcon_Click;
+
+            TrayIconContextMenu.SuspendLayout();
+            TrayIconContextMenu.ShowImageMargin = false;
+
+            TrayIconContextMenu.Name = "dumbManager";
+            TrayIconContextMenu.Size = new Size(153, 70);
+            TrayIconContextMenu.BackColor = Color.Black;
+            TrayIconContextMenu.ForeColor = Color.White;
+
+            MenuItemExit.Name = "Exit";
+            MenuItemExit.Size = new Size(153, 22);
+            
+            MenuItemExit.Text = "Exit";
+            MenuItemExit.ForeColor = Color.White;
+            MenuItemExit.Click += new EventHandler(TrayExit);
+
+            MenuItemLock.Name = "Lock";
+            MenuItemLock.Size = new Size(153, 22);
+            MenuItemLock.Text = "Logout";
+            MenuItemLock.ForeColor = Color.White;
+            MenuItemLock.Click += new EventHandler(TrayLogout);
+
+
+            TrayIconContextMenu.Items.AddRange(new ToolStripItem[]
+            {
+                MenuItemLock, MenuItemExit, 
+            });
+
+            TrayIconContextMenu.ResumeLayout(false);
+            TrayIcon.ContextMenuStrip = TrayIconContextMenu;
+            TrayIcon.Visible = true;
+
             InitializeComponent();
             BtnManager_Click(null, null);
             FrmLoginPage_Vrb.parent = this;
@@ -66,11 +129,39 @@ namespace dumbManager
             BtnManager.BackColor = Properties.Settings.Default.AccentColor;
             BtnPwdGen.BackColor = Properties.Settings.Default.AccentColor;
             BtnSettings.BackColor = Properties.Settings.Default.AccentColor;
+
             FrmPwdGen_Vrb.ColorReload();
             FrmLoginPage_Vrb.ColorReload();
             FrmManager_Vrb.ColorReload();
             FrmSettings_Vrb.ColorReload();
         }
+
+        private void TrayLogout(object sender, EventArgs e)
+        {
+            if (loggedin)
+            {
+                FrmManager_Vrb.BtnLogout_Click(null, null);
+            }
+        }
+
+        private void TrayIcon_Click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.ShowInTaskbar = true;
+                this.Show();
+            }
+        }
+
+        private void TrayExit(object sender, EventArgs e)
+        {
+            TrayLogout(null, null);
+            TrayIconContextMenu.Visible = false;
+            TrayIcon.Visible = false;
+            Application.Exit();
+        }
+
         public void Logout()
         {
             FrmLoginPage_Vrb.Logout();
@@ -126,6 +217,7 @@ namespace dumbManager
             this.PnlFormLoader.Controls.Clear();
             FrmSettings_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.PnlFormLoader.Controls.Add(FrmSettings_Vrb);
+            FrmSettings_Vrb.NLoad(null, null);
             FrmSettings_Vrb.Show();
         }
         public void Lock()
@@ -137,7 +229,7 @@ namespace dumbManager
             else
             {
                 this.Enabled = true;
-                this.WindowState = FormWindowState.Normal;
+                this.Activate();
             }
         }
     }
