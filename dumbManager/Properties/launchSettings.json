@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dumbManager": {
+      "commandName": "Project",
+      "commandLineArgs": "silent"
+    }
+  }
+}

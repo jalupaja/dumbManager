@@ -48,7 +48,7 @@ namespace dumbManager
                 TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "There is a new update available!";
                 try
                 {
-                    Process.Start("https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip") { CreateNoWindow = true });
                 }
                 catch(Exception){}
             }

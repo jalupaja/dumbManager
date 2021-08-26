@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "dumbManager/1.0.1": {
+      "dumbManager/1.0.2": {
         "dependencies": {
           "sqlite-net-sqlcipher": "1.7.335"
         },
@@ -132,7 +132,7 @@
     }
   },
   "libraries": {
-    "dumbManager/1.0.1": {
+    "dumbManager/1.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

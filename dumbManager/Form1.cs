@@ -13,10 +13,17 @@ namespace dumbManager
 {
     public partial class Form1 : Form
     {
+        public bool onlyTray = false;
+
+        protected override void SetVisibleCore(bool value)
+        {
+            if (!this.IsHandleCreated) CreateHandle();
+            base.SetVisibleCore(!onlyTray);
+        }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            base.OnFormClosing(e);
+            //
 
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
@@ -28,7 +35,10 @@ namespace dumbManager
             }
             e.Cancel = true;
             this.WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = false; //use only if you dont need Hotkeys - user on Stackoverflow
+            onlyTray = true;
+            base.OnFormClosing(e);
+            MenuItemShow.Text = "Show";
             if (Properties.Settings.Default.CloseToTray == false)
             {
                 TrayExit(null, null);
@@ -44,6 +54,7 @@ namespace dumbManager
         ContextMenuStrip TrayIconContextMenu = new ContextMenuStrip();
         ToolStripMenuItem MenuItemExit = new ToolStripMenuItem();
         ToolStripMenuItem MenuItemLock = new ToolStripMenuItem();
+        ToolStripMenuItem MenuItemShow = new ToolStripMenuItem();
 
         public bool loggedin = false;
 
@@ -64,7 +75,6 @@ namespace dumbManager
 
             MenuItemExit.Name = "Exit";
             MenuItemExit.Size = new Size(153, 22);
-            
             MenuItemExit.Text = "Exit";
             MenuItemExit.ForeColor = Color.White;
             MenuItemExit.Click += new EventHandler(TrayExit);
@@ -75,10 +85,23 @@ namespace dumbManager
             MenuItemLock.ForeColor = Color.White;
             MenuItemLock.Click += new EventHandler(TrayLogout);
 
+            MenuItemShow.Name = "Show";
+            MenuItemShow.Size = new Size(153, 22);
+            if (this.ShowInTaskbar)
+            {
+                MenuItemShow.Text = "Show";
+            }
+            else
+            {
+                MenuItemShow.Text = "Hide";
+            }
+            MenuItemShow.ForeColor = Color.White;
+            MenuItemShow.Click += new EventHandler(TrayShow);
+
 
             TrayIconContextMenu.Items.AddRange(new ToolStripItem[]
             {
-                MenuItemLock, MenuItemExit, 
+                MenuItemShow, MenuItemLock, MenuItemExit, 
             });
 
             TrayIconContextMenu.ResumeLayout(false);
@@ -136,6 +159,23 @@ namespace dumbManager
             FrmSettings_Vrb.ColorReload();
         }
 
+        private void TrayShow(object sender, EventArgs e)
+        {
+            if (onlyTray)
+            {
+                onlyTray = false;
+                base.SetVisibleCore(true);
+                this.WindowState = FormWindowState.Normal;
+                this.ShowInTaskbar = true;
+                this.Activate();
+                MenuItemShow.Text = "Hide";
+            }
+            else
+            {
+                OnFormClosing(new FormClosingEventArgs(CloseReason.None, true));
+            }  
+        }
+
         private void TrayLogout(object sender, EventArgs e)
         {
             if (loggedin)
@@ -148,9 +188,7 @@ namespace dumbManager
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.WindowState = FormWindowState.Normal;
-                this.ShowInTaskbar = true;
-                this.Show();
+                TrayShow(null, null);
             }
         }
 
@@ -159,7 +197,9 @@ namespace dumbManager
             TrayLogout(null, null);
             TrayIconContextMenu.Visible = false;
             TrayIcon.Visible = false;
+            Application.ExitThread();
             Application.Exit();
+            
         }
 
         public void Logout()

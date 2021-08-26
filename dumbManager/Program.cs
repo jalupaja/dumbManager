@@ -16,6 +16,21 @@ namespace dumbManager
         [STAThread]
         static void Main()
         {
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                if (args[1] == "silent")
+                {
+                    Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+
+                    var app = new Form1();
+                    app.onlyTray = true;
+                    Application.Run(app);
+                    return;
+                }
+            }
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
