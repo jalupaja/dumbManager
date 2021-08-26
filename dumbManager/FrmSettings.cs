@@ -15,8 +15,6 @@ namespace dumbManager
     public partial class FrmSettings : Form
     {
 
-        private bool isOnTop = false;
-
         public int minToLogout = -1;
 
         public Form1 parent { get; set; }
@@ -28,7 +26,6 @@ namespace dumbManager
             InitializeComponent();
             ColorReload();
             FrmAbout_Vrb.parent = this;
-
 
             if (Properties.Settings.Default.CloseToTray)
             {
@@ -108,17 +105,16 @@ namespace dumbManager
 
         private void BtnAlways_Click(object sender, EventArgs e)
         {
-            if (isOnTop)//!!! 
+            if (parent.TopMost)
             {
                 try
                 {
-
-                    isOnTop = false;
+                    parent.TopMost = false;
                     BtnAlways.Text = "Always On Top: off";
                 }
                 catch (Exception)
                 {
-                    isOnTop = true;
+                    parent.TopMost = true;
                     BtnAlways.Text = "Always On Top: on";
                 }
             }
@@ -126,13 +122,12 @@ namespace dumbManager
             {
                 try
                 {
-
-                    isOnTop = true;
+                    parent.TopMost = true;
                     BtnAlways.Text = "Always On Top: on";
                 }
                 catch (Exception)
                 {
-                    isOnTop = false;
+                    parent.TopMost = false;
                     BtnAlways.Text = "Always On Top: off";
                 }
             }

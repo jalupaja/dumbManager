@@ -9,6 +9,7 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 
 Password Manager:
+- start on logon
 - create Updater exe
 - add Password Gen Button to EditItem
 - add search by (Dropdown menu/button)

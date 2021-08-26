@@ -105,6 +105,7 @@ namespace dumbManager
             });
 
             TrayIconContextMenu.ResumeLayout(false);
+
             TrayIcon.ContextMenuStrip = TrayIconContextMenu;
             TrayIcon.Visible = true;
 
