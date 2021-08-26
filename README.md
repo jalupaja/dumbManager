@@ -9,6 +9,7 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 
 Password Manager:
+- fix Close After Inactivity
 - start on logon
 - create Updater exe
 - add Password Gen Button to EditItem
@@ -23,7 +24,6 @@ Password Manager:
 - PGP messaging + automatic Singning
 
 Settings:
-- Always on top(https://stackoverflow.com/questions/683330/how-to-make-a-window-always-stay-on-top-in-net)
 - lock after 10/15min (https://stackoverflow.com/questions/45146043/c-sharp-automatically-close-a-form-after-x-minutes)
 
 

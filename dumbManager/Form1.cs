@@ -45,6 +45,7 @@ namespace dumbManager
             }
         }
 
+
         FrmPwdGen FrmPwdGen_Vrb = new FrmPwdGen() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
         LoginPage FrmLoginPage_Vrb = new LoginPage() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
         FrmSettings FrmSettings_Vrb = new FrmSettings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -177,7 +178,7 @@ namespace dumbManager
             }  
         }
 
-        private void TrayLogout(object sender, EventArgs e)
+        public void TrayLogout(object sender, EventArgs e)
         {
             if (loggedin)
             {
@@ -258,7 +259,6 @@ namespace dumbManager
             this.PnlFormLoader.Controls.Clear();
             FrmSettings_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.PnlFormLoader.Controls.Add(FrmSettings_Vrb);
-            FrmSettings_Vrb.NLoad(null, null);
             FrmSettings_Vrb.Show();
         }
         public void Lock()

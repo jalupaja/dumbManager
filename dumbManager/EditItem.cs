@@ -14,6 +14,7 @@ namespace dumbManager
     public partial class EditItem : Form
     {
         public FrmManager parent = null;
+
         private bool newAcc = false;
         public EditItem()
         {
@@ -51,6 +52,7 @@ namespace dumbManager
             }
             else
             {
+                newAcc = false;
                 if (name == "")
                 {
                     TxtHeader.Text = "EDIT " + name;

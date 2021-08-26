@@ -41,7 +41,14 @@ namespace dumbManager
             TxtNotes.Text = notes;
 
             //set TxtHeader
-            TxtHeader.Text = "VIEW ITEM";
+            if (name == "")
+            {
+                TxtHeader.Text = "EDIT " + name;
+            }
+            else
+            {
+                TxtHeader.Text = "EDIT ITEM";
+            }
             TxtHeader.ForeColor = Color.White;
         }
         private void TxtUrl_OPEN(object sender, EventArgs e)

@@ -40,27 +40,27 @@ namespace dumbManager
             {
                 BtnLogoutAfter.Text = "Logout automatically after: never";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 1)
+            else if (Properties.Settings.Default.LogoutAfter == 60000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 1min";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 5)
+            else if (Properties.Settings.Default.LogoutAfter == 300000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 5min";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 10)
+            else if (Properties.Settings.Default.LogoutAfter == 600000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 10min";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 15)
+            else if (Properties.Settings.Default.LogoutAfter == 900000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 15min";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 30)
+            else if (Properties.Settings.Default.LogoutAfter == 1800000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 30min";
             }
-            else if (Properties.Settings.Default.LogoutAfter == 60)
+            else if (Properties.Settings.Default.LogoutAfter == 6000000)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 1h";
             }
@@ -138,32 +138,32 @@ namespace dumbManager
         {
             if (BtnLogoutAfter.Text == "Logout automatically after: never")
             {
-                Properties.Settings.Default.LogoutAfter = 1;
+                Properties.Settings.Default.LogoutAfter = 60000;
                 BtnLogoutAfter.Text = "Logout automatically after: 1min";
             }
             else if (BtnLogoutAfter.Text == "Logout automatically after: 1min")
             {
-                Properties.Settings.Default.LogoutAfter = 5;
+                Properties.Settings.Default.LogoutAfter = 300000;
                 BtnLogoutAfter.Text = "Logout automatically after: 5min";
             }
             else if (BtnLogoutAfter.Text == "Logout automatically after: 5min")
             {
-                Properties.Settings.Default.LogoutAfter = 10;
+                Properties.Settings.Default.LogoutAfter = 600000;
                 BtnLogoutAfter.Text = "Logout automatically after: 10min";
             }
             else if (BtnLogoutAfter.Text == "Logout automatically after: 10min")
             {
-                Properties.Settings.Default.LogoutAfter = 15;
+                Properties.Settings.Default.LogoutAfter = 900000;
                 BtnLogoutAfter.Text = "Logout automatically after: 15min";
             }
             else if (BtnLogoutAfter.Text == "Logout automatically after: 15min")
             {
-                Properties.Settings.Default.LogoutAfter = 30;
+                Properties.Settings.Default.LogoutAfter = 1800000;
                 BtnLogoutAfter.Text = "Logout automatically after: 30min";
             }
             else if (BtnLogoutAfter.Text == "Logout automatically after: 30min")
             {
-                Properties.Settings.Default.LogoutAfter = 60;
+                Properties.Settings.Default.LogoutAfter = 6000000;
                 BtnLogoutAfter.Text = "Logout automatically after: 1h";
             }
             else
@@ -172,20 +172,6 @@ namespace dumbManager
                 BtnLogoutAfter.Text = "Logout automatically after: never";
             }
             Properties.Settings.Default.Save();
-        }
-
-        public void NLoad(object sender, EventArgs e)
-        {
-            if (parent.loggedin)
-            {
-                label2.Visible = true;
-                BtnLogoutAfter.Visible = true;
-            }
-            else
-            {
-                label2.Visible = false;
-                BtnLogoutAfter.Visible = false;
-            }
         }
 
         private void BtnCloseToTray_Click(object sender, EventArgs e)
