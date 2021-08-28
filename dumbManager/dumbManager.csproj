@@ -11,7 +11,7 @@
     <PackageIconUrl />
     <Authors>jalupa</Authors>
     <Description>A Password Manager</Description>
-    <Copyright>(c) jalupa</Copyright>
+    <Copyright>Copyright © jalupa 2021</Copyright>
     <PackageProjectUrl>https://github.com/jalupaja/dumbManager</PackageProjectUrl>
     <SignAssembly>false</SignAssembly>
     <Version>1.0.2</Version>
