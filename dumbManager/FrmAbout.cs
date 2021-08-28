@@ -58,7 +58,7 @@ namespace dumbManager
             }
             else
             {
-                TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You have a newer Version I!";
+                TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You have a newer Version then I!";
             }
         }
     }

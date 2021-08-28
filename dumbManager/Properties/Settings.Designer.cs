@@ -25,7 +25,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DimGray")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkOrange")]
         public global::System.Drawing.Color AccentColor {
             get {
                 return ((global::System.Drawing.Color)(this["AccentColor"]));
@@ -68,6 +68,30 @@ namespace dumbManager.Properties {
             }
             set {
                 this["CloseToTray"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StartMenu {
+            get {
+                return ((bool)(this["StartMenu"]));
+            }
+            set {
+                this["StartMenu"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tray")]
+        public string Startup {
+            get {
+                return ((string)(this["Startup"]));
+            }
+            set {
+                this["Startup"] = value;
             }
         }
     }

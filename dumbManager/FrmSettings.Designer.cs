@@ -36,6 +36,8 @@ namespace dumbManager
             this.label2 = new System.Windows.Forms.Label();
             this.BtnLogoutAfter = new System.Windows.Forms.Button();
             this.BtnCloseToTray = new System.Windows.Forms.Button();
+            this.BtnStartMenu = new System.Windows.Forms.Button();
+            this.BtnStartup = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnColor
@@ -113,6 +115,26 @@ namespace dumbManager
             this.BtnCloseToTray.UseVisualStyleBackColor = true;
             this.BtnCloseToTray.Click += new System.EventHandler(this.BtnCloseToTray_Click);
             // 
+            // BtnStartMenu
+            // 
+            this.BtnStartMenu.Location = new System.Drawing.Point(35, 170);
+            this.BtnStartMenu.Name = "BtnStartMenu";
+            this.BtnStartMenu.Size = new System.Drawing.Size(126, 23);
+            this.BtnStartMenu.TabIndex = 7;
+            this.BtnStartMenu.Text = "Delete Start Menu";
+            this.BtnStartMenu.UseVisualStyleBackColor = true;
+            this.BtnStartMenu.Click += new System.EventHandler(this.BtnStartMenu_Click);
+            // 
+            // BtnStartup
+            // 
+            this.BtnStartup.Location = new System.Drawing.Point(35, 214);
+            this.BtnStartup.Name = "BtnStartup";
+            this.BtnStartup.Size = new System.Drawing.Size(126, 23);
+            this.BtnStartup.TabIndex = 8;
+            this.BtnStartup.Text = "Startup: Tray";
+            this.BtnStartup.UseVisualStyleBackColor = true;
+            this.BtnStartup.Click += new System.EventHandler(this.BtnStartup_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -121,6 +143,8 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(622, 400);
+            this.Controls.Add(this.BtnStartup);
+            this.Controls.Add(this.BtnStartMenu);
             this.Controls.Add(this.BtnCloseToTray);
             this.Controls.Add(this.BtnLogoutAfter);
             this.Controls.Add(this.label2);
@@ -145,5 +169,7 @@ namespace dumbManager
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnLogoutAfter;
         private System.Windows.Forms.Button BtnCloseToTray;
+        private System.Windows.Forms.Button BtnStartMenu;
+        private System.Windows.Forms.Button BtnStartup;
     }
 }

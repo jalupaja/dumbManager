@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AccentColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DimGray</Value>
+      <Value Profile="(Default)">DarkOrange</Value>
     </Setting>
     <Setting Name="path" Type="System.String" Scope="User">
       <Value Profile="(Default)">exepath</Value>
@@ -13,6 +13,12 @@
     </Setting>
     <Setting Name="CloseToTray" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="StartMenu" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Startup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tray</Value>
     </Setting>
   </Settings>
 </SettingsFile>

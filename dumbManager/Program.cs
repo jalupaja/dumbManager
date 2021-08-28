@@ -24,7 +24,7 @@ namespace dumbManager
             Application.SetCompatibleTextRenderingDefault(false);
             app = new Form1();
             string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1 && args[1] == "silent")
+            if (args.Length > 1 && args[1] == " silent")
             {
                 app.onlyTray = true;
             }
@@ -56,6 +56,7 @@ namespace dumbManager
 
         static private void TimeDone(object sender, EventArgs e)
         {
+            MessageBox.Show(DateTime.Now.ToString());
             app.TrayLogout(null, null);
         }
 

@@ -5,12 +5,14 @@ A dumb Password Manager using Windows Forms and C#
 # Features:
 - Offline Password Manger
 - Password Generator
+- Start On Startup 
+- Create Start Menu Entry (Start as Admin to be able to activate it in the Settings)
+
 
 # ToDo:
 
 Password Manager:
-- fix Close After Inactivity
-- start on logon
+- add higher res icon
 - create Updater exe
 - add Password Gen Button to EditItem
 - add search by (Dropdown menu/button)
@@ -22,10 +24,6 @@ Password Manager:
 - enter TOTP codes (https://gist.github.com/BravoTango86/9ebb578fa4df3a0ffed28bd634f8f3c0)
 - encrypted files attachments
 - PGP messaging + automatic Singning
-
-Settings:
-- lock after 10/15min (https://stackoverflow.com/questions/45146043/c-sharp-automatically-close-a-form-after-x-minutes)
-
 
 Online: 
 - first sync function

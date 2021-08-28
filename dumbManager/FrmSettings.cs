@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Design;
+using Microsoft.Win32;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using System.IO;
+using IWshRuntimeLibrary;
 
 namespace dumbManager
 {
@@ -27,6 +30,7 @@ namespace dumbManager
             ColorReload();
             FrmAbout_Vrb.parent = this;
 
+            #region Close to tray
             if (Properties.Settings.Default.CloseToTray)
             {
                 BtnCloseToTray.Text = "Close To Tray: on";
@@ -35,7 +39,10 @@ namespace dumbManager
             {
                 BtnCloseToTray.Text = "Close To Tray: off";
             }
+            #endregion Close to tray
 
+            
+            #region Logout after inactivity
             if (Properties.Settings.Default.LogoutAfter == 0)
             {
                 BtnLogoutAfter.Text = "Logout automatically after: never";
@@ -64,6 +71,95 @@ namespace dumbManager
             {
                 BtnLogoutAfter.Text = "Logout automatically after: 1h";
             }
+            #endregion Logout after inactivity
+
+            #region Start Menu
+            //https://stackoverflow.com/questions/25024785/how-to-create-start-menu-shortcut
+            string appStartMenuPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs", "dumbManager");
+            string shortcutLocation = Path.Combine(appStartMenuPath, "dumbManager" + ".lnk");
+
+            if (Properties.Settings.Default.StartMenu)
+            {
+                if (System.IO.File.Exists(shortcutLocation) == false)
+                {
+                    WshShell shell = new WshShell();
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+                    try
+                    {
+                        if (!Directory.Exists(appStartMenuPath))
+                            Directory.CreateDirectory(appStartMenuPath);
+                        shortcut.Description = "A dumb Password Manager";
+                        shortcut.IconLocation = System.Windows.Forms.Application.ExecutablePath;
+                        shortcut.TargetPath = System.Windows.Forms.Application.ExecutablePath;
+                        shortcut.Save();
+                        BtnStartMenu.Text = "Delete Start Menu";
+                    }
+                    catch (Exception)
+                    {
+                        Properties.Settings.Default.StartMenu = false;
+                        BtnStartMenu.Text = "Create Start Menu";
+                        Properties.Settings.Default.Save();
+                    }
+                }
+            }
+            else
+            {
+                if (System.IO.File.Exists(shortcutLocation))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(shortcutLocation);
+                    }
+                    catch (Exception)
+                    { }
+                }
+                BtnStartMenu.Text = "Create Start Menu";
+            }
+            #endregion Start Menu
+
+            #region Startup
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (Properties.Settings.Default.Startup == "off")
+            {
+                try
+                {
+                    rk.DeleteValue("dumbManager", false);
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.Startup = "off";
+                    MessageBox.Show("Insufficient Permissions!"); 
+                }
+            }
+            else if (Properties.Settings.Default.Startup == "tray")
+            {
+                try
+                {
+                    rk.SetValue("dumbManager", Application.ExecutablePath + "silent");
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.Startup = "off";
+                    MessageBox.Show("Insufficient Permissions!");
+                }
+            }
+            else if (Properties.Settings.Default.Startup == "on")
+            {
+                try
+                {
+                    rk.SetValue("dumbManager", Application.ExecutablePath);
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.Startup = "off";
+                    MessageBox.Show("Insufficient Permissions!");
+                }
+            }
+            Properties.Settings.Default.Save();
+            BtnStartup.Text = "Startup: " + Properties.Settings.Default.Startup;
+            #endregion Startup
         }
 
         public void ColorReload()
@@ -71,8 +167,11 @@ namespace dumbManager
             BtnColor.BackColor = Properties.Settings.Default.AccentColor;
             BtnAbout.BackColor = Properties.Settings.Default.AccentColor;
             BtnAlways.BackColor = Properties.Settings.Default.AccentColor;
-            BtnLogoutAfter.BackColor = Properties.Settings.Default.AccentColor;
             BtnCloseToTray.BackColor = Properties.Settings.Default.AccentColor;
+            BtnStartMenu.BackColor = Properties.Settings.Default.AccentColor;
+            BtnStartup.BackColor = Properties.Settings.Default.AccentColor;
+
+            BtnLogoutAfter.BackColor = Properties.Settings.Default.AccentColor;
 
             FrmAbout_Vrb.ColorReload();
         }
@@ -187,6 +286,94 @@ namespace dumbManager
                 Properties.Settings.Default.CloseToTray = true;
             }
             Properties.Settings.Default.Save();
+        }
+
+        private void BtnStartMenu_Click(object sender, EventArgs e)
+        {
+            string appStartMenuPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs", "dumbManager");
+            string shortcutLocation = Path.Combine(appStartMenuPath, "dumbManager" + ".lnk");
+
+            if (Properties.Settings.Default.StartMenu)
+            {
+                try
+                {
+                    System.IO.File.Delete(shortcutLocation);
+                }
+                catch (Exception)
+                { }
+                BtnStartMenu.Text = "Create Start Menu";
+                Properties.Settings.Default.StartMenu = false;
+            }
+            else
+            {
+                WshShell shell = new WshShell();
+                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+                try
+                {
+                    if (!Directory.Exists(appStartMenuPath))
+                        Directory.CreateDirectory(appStartMenuPath);
+                    shortcut.Description = "A dumb Password Manager";
+                    shortcut.IconLocation = System.Windows.Forms.Application.ExecutablePath;
+                    shortcut.TargetPath = System.Windows.Forms.Application.ExecutablePath;
+                    shortcut.Save();
+                    BtnStartMenu.Text = "Delete Start Menu";
+                    Properties.Settings.Default.StartMenu = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Insufficient Permissions!");
+                    BtnStartMenu.Text = "Create Start Menu";
+                    Properties.Settings.Default.StartMenu = false;
+                }
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        private void BtnStartup_Click(object sender, EventArgs e)
+        {
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (Properties.Settings.Default.Startup == "off")
+            {
+                try
+                {
+                    Properties.Settings.Default.Startup = "tray";
+                    rk.SetValue("dumbManager", Application.ExecutablePath + " silent");
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.Startup = "off";
+                    MessageBox.Show("Insufficient Permissions!");
+                }
+            }
+            else if (Properties.Settings.Default.Startup == "tray")
+            {
+                try
+                {
+                    Properties.Settings.Default.Startup = "on";
+                    rk.SetValue("dumbManager", Application.ExecutablePath);
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.Startup = "off";
+                    MessageBox.Show("Insufficient Permissions!");
+                }
+            }
+            else
+            {
+                Properties.Settings.Default.Startup = "off";
+                try
+                {
+                    rk.DeleteValue("dumbManager", false);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Insufficient Permissions!");
+                }
+            }
+            Properties.Settings.Default.Save();
+            BtnStartup.Text = "Startup: " + Properties.Settings.Default.Startup;
         }
     }
 }
