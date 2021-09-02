@@ -44,3 +44,4 @@ c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\
 c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.FrmAbout.resources
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\Interop.IWshRuntimeLibrary.dll
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.ResolveComReference.cache
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.AssemblyReference.cache
