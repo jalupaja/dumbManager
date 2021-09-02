@@ -212,13 +212,6 @@ namespace dumbManager
         public void newManager(SQLite.SQLiteConnection c)
         {
             FrmManager_Vrb.newConnection(c);
-            FrmManager_Vrb.newFile();
-            FrmManager_Vrb.loadMax();
-        }
-
-        public void oldManager(SQLite.SQLiteConnection c)
-        {
-            FrmManager_Vrb.newConnection(c);
             FrmManager_Vrb.loadMax();
         }
 

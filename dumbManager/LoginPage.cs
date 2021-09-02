@@ -18,7 +18,7 @@ namespace dumbManager
 
         public Form1 parent = null;
 
-        SQLite.SQLiteOpenFlags Flags = SQLite.SQLiteOpenFlags.ReadWrite | SQLite.SQLiteOpenFlags.Create | SQLite.SQLiteOpenFlags.SharedCache;
+        SQLite.SQLiteOpenFlags Flags = SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite;
         protected SQLiteConnection con = null;
 
         public LoginPage()
@@ -103,7 +103,7 @@ namespace dumbManager
                 }
                 if (parent.loggedin)
                 {
-                    parent.oldManager(new SQLiteConnection(new SQLiteConnectionString(filepath, Flags, true, key: new Rfc2898DeriveBytes(TxtPwd.Text, Encoding.ASCII.GetBytes(HashIt(TxtFileIn.Text)), 100000, HashAlgorithmName.SHA512).ToString())));
+                    parent.newManager(new SQLiteConnection(new SQLiteConnectionString(filepath, Flags, true, key: new Rfc2898DeriveBytes(TxtPwd.Text, Encoding.ASCII.GetBytes(HashIt(TxtFileIn.Text)), 100000, HashAlgorithmName.SHA512).ToString())));
                     parent.BtnManager_Click(null, null);
                 }
             }

@@ -45,6 +45,9 @@ namespace dumbManager
             this.BtnSeePass = new System.Windows.Forms.Button();
             this.BtnOpenUrl = new System.Windows.Forms.Button();
             this.BtnDel = new System.Windows.Forms.Button();
+            this.BtnSee2FA = new System.Windows.Forms.Button();
+            this.Txt2FA = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TxtHeader
@@ -113,7 +116,7 @@ namespace dumbManager
             this.TxtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtName.ForeColor = System.Drawing.Color.Black;
-            this.TxtName.Location = new System.Drawing.Point(42, 38);
+            this.TxtName.Location = new System.Drawing.Point(41, 37);
             this.TxtName.Name = "TxtName";
             this.TxtName.PlaceholderText = " enter a Name";
             this.TxtName.Size = new System.Drawing.Size(250, 20);
@@ -125,7 +128,7 @@ namespace dumbManager
             this.TxtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsername.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtUsername.ForeColor = System.Drawing.Color.Black;
-            this.TxtUsername.Location = new System.Drawing.Point(42, 95);
+            this.TxtUsername.Location = new System.Drawing.Point(41, 82);
             this.TxtUsername.Name = "TxtUsername";
             this.TxtUsername.PlaceholderText = " enter a Username";
             this.TxtUsername.Size = new System.Drawing.Size(250, 20);
@@ -137,7 +140,7 @@ namespace dumbManager
             this.LblUsername.BackColor = System.Drawing.Color.Transparent;
             this.LblUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblUsername.ForeColor = System.Drawing.Color.White;
-            this.LblUsername.Location = new System.Drawing.Point(30, 73);
+            this.LblUsername.Location = new System.Drawing.Point(30, 60);
             this.LblUsername.Name = "LblUsername";
             this.LblUsername.Size = new System.Drawing.Size(66, 15);
             this.LblUsername.TabIndex = 8;
@@ -149,7 +152,7 @@ namespace dumbManager
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtPassword.ForeColor = System.Drawing.Color.Black;
-            this.TxtPassword.Location = new System.Drawing.Point(42, 153);
+            this.TxtPassword.Location = new System.Drawing.Point(41, 129);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PlaceholderText = " enter a Password";
             this.TxtPassword.Size = new System.Drawing.Size(204, 20);
@@ -162,7 +165,7 @@ namespace dumbManager
             this.LblPass.BackColor = System.Drawing.Color.Transparent;
             this.LblPass.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblPass.ForeColor = System.Drawing.Color.White;
-            this.LblPass.Location = new System.Drawing.Point(30, 131);
+            this.LblPass.Location = new System.Drawing.Point(29, 107);
             this.LblPass.Name = "LblPass";
             this.LblPass.Size = new System.Drawing.Size(63, 15);
             this.LblPass.TabIndex = 10;
@@ -174,7 +177,7 @@ namespace dumbManager
             this.TxtUrl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUrl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtUrl.ForeColor = System.Drawing.Color.Black;
-            this.TxtUrl.Location = new System.Drawing.Point(42, 212);
+            this.TxtUrl.Location = new System.Drawing.Point(42, 180);
             this.TxtUrl.Name = "TxtUrl";
             this.TxtUrl.PlaceholderText = " enter a Url";
             this.TxtUrl.Size = new System.Drawing.Size(204, 20);
@@ -186,7 +189,7 @@ namespace dumbManager
             this.LblUrl.BackColor = System.Drawing.Color.Transparent;
             this.LblUrl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblUrl.ForeColor = System.Drawing.Color.White;
-            this.LblUrl.Location = new System.Drawing.Point(30, 190);
+            this.LblUrl.Location = new System.Drawing.Point(30, 158);
             this.LblUrl.Name = "LblUrl";
             this.LblUrl.Size = new System.Drawing.Size(23, 15);
             this.LblUrl.TabIndex = 12;
@@ -198,10 +201,10 @@ namespace dumbManager
             this.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtNotes.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtNotes.ForeColor = System.Drawing.Color.Black;
-            this.TxtNotes.Location = new System.Drawing.Point(41, 267);
+            this.TxtNotes.Location = new System.Drawing.Point(42, 284);
             this.TxtNotes.Multiline = true;
             this.TxtNotes.Name = "TxtNotes";
-            this.TxtNotes.Size = new System.Drawing.Size(250, 55);
+            this.TxtNotes.Size = new System.Drawing.Size(250, 44);
             this.TxtNotes.TabIndex = 13;
             // 
             // LblNotes
@@ -210,7 +213,7 @@ namespace dumbManager
             this.LblNotes.BackColor = System.Drawing.Color.Transparent;
             this.LblNotes.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblNotes.ForeColor = System.Drawing.Color.White;
-            this.LblNotes.Location = new System.Drawing.Point(29, 245);
+            this.LblNotes.Location = new System.Drawing.Point(30, 262);
             this.LblNotes.Name = "LblNotes";
             this.LblNotes.Size = new System.Drawing.Size(40, 15);
             this.LblNotes.TabIndex = 14;
@@ -222,7 +225,7 @@ namespace dumbManager
             this.BtnSeePass.FlatAppearance.BorderSize = 0;
             this.BtnSeePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSeePass.ForeColor = System.Drawing.Color.White;
-            this.BtnSeePass.Location = new System.Drawing.Point(248, 151);
+            this.BtnSeePass.Location = new System.Drawing.Point(247, 127);
             this.BtnSeePass.Name = "BtnSeePass";
             this.BtnSeePass.Size = new System.Drawing.Size(44, 24);
             this.BtnSeePass.TabIndex = 37;
@@ -237,7 +240,7 @@ namespace dumbManager
             this.BtnOpenUrl.FlatAppearance.BorderSize = 0;
             this.BtnOpenUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnOpenUrl.ForeColor = System.Drawing.Color.White;
-            this.BtnOpenUrl.Location = new System.Drawing.Point(248, 210);
+            this.BtnOpenUrl.Location = new System.Drawing.Point(248, 178);
             this.BtnOpenUrl.Name = "BtnOpenUrl";
             this.BtnOpenUrl.Size = new System.Drawing.Size(44, 24);
             this.BtnOpenUrl.TabIndex = 39;
@@ -262,12 +265,55 @@ namespace dumbManager
             this.BtnDel.UseVisualStyleBackColor = false;
             this.BtnDel.Click += new System.EventHandler(this.BtnDel_Click);
             // 
+            // BtnSee2FA
+            // 
+            this.BtnSee2FA.BackColor = System.Drawing.Color.Transparent;
+            this.BtnSee2FA.FlatAppearance.BorderSize = 0;
+            this.BtnSee2FA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSee2FA.ForeColor = System.Drawing.Color.White;
+            this.BtnSee2FA.Location = new System.Drawing.Point(247, 228);
+            this.BtnSee2FA.Name = "BtnSee2FA";
+            this.BtnSee2FA.Size = new System.Drawing.Size(44, 24);
+            this.BtnSee2FA.TabIndex = 43;
+            this.BtnSee2FA.Text = "see";
+            this.BtnSee2FA.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnSee2FA.UseVisualStyleBackColor = false;
+            this.BtnSee2FA.Click += new System.EventHandler(this.BtnSee2FA_Click);
+            // 
+            // Txt2FA
+            // 
+            this.Txt2FA.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.Txt2FA.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Txt2FA.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Txt2FA.ForeColor = System.Drawing.Color.Black;
+            this.Txt2FA.Location = new System.Drawing.Point(41, 230);
+            this.Txt2FA.Name = "Txt2FA";
+            this.Txt2FA.PlaceholderText = " enter TOTP Seed";
+            this.Txt2FA.Size = new System.Drawing.Size(204, 20);
+            this.Txt2FA.TabIndex = 41;
+            this.Txt2FA.UseSystemPasswordChar = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(29, 208);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 15);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "2FA Seed";
+            // 
             // EditItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(335, 400);
+            this.Controls.Add(this.BtnSee2FA);
+            this.Controls.Add(this.Txt2FA);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnDel);
             this.Controls.Add(this.BtnOpenUrl);
             this.Controls.Add(this.BtnSeePass);
@@ -310,5 +356,8 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnSeePass;
         private System.Windows.Forms.Button BtnOpenUrl;
         private System.Windows.Forms.Button BtnDel;
+        private System.Windows.Forms.Button BtnSee2FA;
+        private System.Windows.Forms.TextBox Txt2FA;
+        private System.Windows.Forms.Label label1;
     }
 }

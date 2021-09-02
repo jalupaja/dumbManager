@@ -9,7 +9,7 @@
       <Value Profile="(Default)">exepath</Value>
     </Setting>
     <Setting Name="LogoutAfter" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">900000</Value>
     </Setting>
     <Setting Name="CloseToTray" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Startup" Type="System.String" Scope="User">
-      <Value Profile="(Default)">tray</Value>
+      <Value Profile="(Default)">off</Value>
     </Setting>
   </Settings>
 </SettingsFile>

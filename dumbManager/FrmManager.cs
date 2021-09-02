@@ -28,6 +28,7 @@ namespace dumbManager
             public string Username { get; set; }
             public string Password { get; set; }
             public string Url { get; set; }
+            public string TwoFA { get; set; }
             public string Note { get; set; }
         }
 
@@ -57,9 +58,6 @@ namespace dumbManager
         public void newConnection(SQLiteConnection c)
         {
             con = c;
-        }
-        public void newFile()
-        {
             con.CreateTable<dumbManager>();
         }
         public void loadMax()
@@ -97,10 +95,10 @@ namespace dumbManager
             this.PnlViewEditLoader.Controls.Clear();
             EditItem_Vrb.FormBorderStyle = FormBorderStyle.None;
             this.PnlViewEditLoader.Controls.Add(EditItem_Vrb);
-            EditItem_Vrb.Clear("", "", "", "", "");
+            EditItem_Vrb.Clear("", "", "", "", "", "");
             EditItem_Vrb.Show();
         }
-        public void Add(string name, string username, string password, string url, string note)
+        public void Add(string name, string username, string password, string url, string twoFA, string note)
         {//!!! update SQL file
             var n = new dumbManager
             {
@@ -108,6 +106,7 @@ namespace dumbManager
                 Username = username,
                 Password = password,
                 Url = url,
+                TwoFA = twoFA,
                 Note = note
             };
             con.Insert(n);
@@ -115,11 +114,12 @@ namespace dumbManager
             n.Username = "";
             n.Password = "";
             n.Url = "";
+            n.TwoFA = "";
             n.Note = "";
             Clear();
             TxtSearch_TextChanged(null, null);
         }
-        public void Change(int id, string name, string username, string password, string url, string note)
+        public void Change(int id, string name, string username, string password, string url, string twoFA,string note)
         {//!!! update SQL file
             var n = new dumbManager();
             n.Id = id;
@@ -127,6 +127,7 @@ namespace dumbManager
             n.Username = username;
             n.Password = password;
             n.Url = url;
+            n.TwoFA = twoFA;
             n.Note = note;
             con.Update(n);
             Clear();
@@ -146,8 +147,8 @@ namespace dumbManager
             this.PnlViewEditLoader.Controls.Clear();
             if (selectedId == -1)
             {
-                ViewItem_Vrb.Clear("", "", "", "", "");
-                EditItem_Vrb.Clear("", "", "", "", "");
+                ViewItem_Vrb.Clear("", "", "", "", "", "");
+                EditItem_Vrb.Clear("", "", "", "", "", "");
             }
             else
             {
@@ -158,7 +159,7 @@ namespace dumbManager
                 { 
                     if(item.Id == selectedId)
                     {
-                        ViewItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.Note);//!!! Insert selected Items
+                        ViewItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.TwoFA, item.Note);
                     }
                 }
                 ViewItem_Vrb.Show();
@@ -169,8 +170,8 @@ namespace dumbManager
             this.PnlViewEditLoader.Controls.Clear();
             if (selectedId == -1)
             {
-                ViewItem_Vrb.Clear("", "", "", "", "");
-                EditItem_Vrb.Clear("", "", "", "", "");
+                ViewItem_Vrb.Clear("", "", "", "","" , "");
+                EditItem_Vrb.Clear("", "", "","" , "", "");
             }
             else
             {
@@ -181,7 +182,7 @@ namespace dumbManager
                 {
                     if (item.Id == selectedId)
                     {
-                        EditItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.Note);
+                        EditItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.TwoFA, item.Note);
                     }
                 }
                 EditItem_Vrb.Show();

@@ -13,22 +13,22 @@ A dumb Password Manager using Windows Forms and C#
 
 Password Manager:
 - add higher res icon
+- fix TOTP Implementation
 - create Updater exe
 - add Password Gen Button to EditItem
 - add search by (Dropdown menu/button)
 - export, import file
 - add file encryption/upload(enc link to local/online file)
-- online sync to e.g. personal Dropbox account
-- Failsafe if too much deleted
+- online sync to e.g. personal Dropbox/ Mega account
+- Encrypt Settings file
 - change password (https://github.com/sqlcipher/sqlcipher)
-- enter TOTP codes (https://gist.github.com/BravoTango86/9ebb578fa4df3a0ffed28bd634f8f3c0)
 - encrypted files attachments
 - PGP messaging + automatic Singning
 
 Online: 
 - first sync function
 - download file, use local update file to update the downloaded one
-
+- Failsafe if too much deleted
 
 
 

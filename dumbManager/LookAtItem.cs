@@ -28,26 +28,42 @@ namespace dumbManager
             TxtUsername.BackColor = Properties.Settings.Default.AccentColor;
             TxtPassword.BackColor = Properties.Settings.Default.AccentColor;
             TxtUrl.BackColor = Properties.Settings.Default.AccentColor;
+            Txt2FA.BackColor = Properties.Settings.Default.AccentColor;
             TxtNotes.BackColor = Properties.Settings.Default.AccentColor;
         }
 
-        public void Clear(string name, string username, string password, string url, string notes)
+        public void Clear(string name, string username, string password, string url, string twoFA, string notes)
         {
             //Write all items to textbox
             TxtName.Text = name;
             TxtUsername.Text = username;
             TxtPassword.Text = password;
             TxtUrl.Text = url;
+
+            if (twoFA != "")
+            {
+                try
+                {   //credits: https://github.com/selway/totp/tree/master/src/TOTP/TOTP.Core //!!! Not Working
+                    Txt2FA.Text = "" + TOTP.GenerateTOTP(Encoding.ASCII.GetBytes(twoFA)) + " : " + TOTP.GenerateTOTP(DateTime.UtcNow, Encoding.ASCII.GetBytes(twoFA)) + " : " + TOTP.GenerateTOTP(DateTime.Now, Encoding.ASCII.GetBytes(twoFA));
+                }
+                catch (Exception)
+                {
+                    Txt2FA.Text = "";
+                }
+            }
+            else
+                Txt2FA.Text = "";
+
             TxtNotes.Text = notes;
 
             //set TxtHeader
             if (name == "")
             {
-                TxtHeader.Text = "EDIT " + name;
+                TxtHeader.Text = "VIEW " + name;
             }
             else
             {
-                TxtHeader.Text = "EDIT ITEM";
+                TxtHeader.Text = "VIEW ITEM";
             }
             TxtHeader.ForeColor = Color.White;
         }
@@ -88,6 +104,25 @@ namespace dumbManager
         private void BtnCopyNotes_Click(object sender, EventArgs e)
         {
             try { Clipboard.SetText(TxtNotes.Text); } catch (Exception) { }
+        }
+
+        private void BtnCopy2FA_Click(object sender, EventArgs e)
+        {
+            try { Clipboard.SetText(Txt2FA.Text); } catch (Exception) { }
+        }
+
+        private void BtnSee2FA_Click(object sender, EventArgs e)
+        {
+            if (Txt2FA.UseSystemPasswordChar)
+            {
+                Txt2FA.UseSystemPasswordChar = false;
+                BtnSee2FA.Text = "hide";
+            }
+            else
+            {
+                Txt2FA.UseSystemPasswordChar = true;
+                BtnSee2FA.Text = "see";
+            }
         }
     }
 }

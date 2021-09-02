@@ -41,7 +41,6 @@ namespace dumbManager
             }
             #endregion Close to tray
 
-            
             #region Logout after inactivity
             if (Properties.Settings.Default.LogoutAfter == 0)
             {

@@ -29,18 +29,20 @@ namespace dumbManager
             TxtUsername.BackColor = Properties.Settings.Default.AccentColor;
             TxtPassword.BackColor = Properties.Settings.Default.AccentColor;
             TxtUrl.BackColor = Properties.Settings.Default.AccentColor;
+            Txt2FA.BackColor = Properties.Settings.Default.AccentColor;
             TxtNotes.BackColor = Properties.Settings.Default.AccentColor;
             BtnCancel.BackColor = Properties.Settings.Default.AccentColor;
             BtnSafe.BackColor = Properties.Settings.Default.AccentColor;
         }
 
-        public void Clear(string name, string username, string password, string url, string notes)
+        public void Clear(string name, string username, string password, string url, string twoFA, string notes)
         {
             //Write all items to textbox
             TxtName.Text = name;
             TxtUsername.Text = username;
             TxtPassword.Text = password;
             TxtUrl.Text = url;
+            Txt2FA.Text = twoFA;
             TxtNotes.Text = notes;
 
             //set TxtHeader
@@ -70,11 +72,11 @@ namespace dumbManager
             {
                 parent.maxId++;
                 parent.selectedId = parent.maxId;
-                parent.Add(TxtName.Text, TxtUsername.Text, TxtPassword.Text, TxtUrl.Text, TxtNotes.Text);
+                parent.Add(TxtName.Text, TxtUsername.Text, TxtPassword.Text, TxtUrl.Text, Txt2FA.Text, TxtNotes.Text);
             }
             else
             {
-                parent.Change(parent.selectedId, TxtName.Text, TxtUsername.Text, TxtPassword.Text, TxtUrl.Text, TxtNotes.Text);
+                parent.Change(parent.selectedId, TxtName.Text, TxtUsername.Text, TxtPassword.Text, TxtUrl.Text, Txt2FA.Text, TxtNotes.Text);
             }
         }
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -102,6 +104,20 @@ namespace dumbManager
         {
             //!!! Ask if really want to delete
             parent.Del(parent.selectedId);
+        }
+
+        private void BtnSee2FA_Click(object sender, EventArgs e)
+        {
+            if (Txt2FA.UseSystemPasswordChar)
+            {
+                Txt2FA.UseSystemPasswordChar = false;
+                BtnSee2FA.Text = "hide";
+            }
+            else
+            {
+                Txt2FA.UseSystemPasswordChar = true;
+                BtnSee2FA.Text = "see";
+            }
         }
     }
 }

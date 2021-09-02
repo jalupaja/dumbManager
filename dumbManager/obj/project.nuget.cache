@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Kqo/CPVNMFCnTMztcpTC/O5ncPRHLbjHhbvMewIoGmoFYAoWUHwTeoLktBmAyeY6qSSk0O/kC20WIgaGWoRjkQ==",
+  "dgSpecHash": "7x6pj/nE8O48kBNYaKX6lt0CfyRodOS2q0WY4tEwl6CI90LXykR1dYOQOKHv5hMPtdcns4CBwj4piOZ5+7mLPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jakob\\source\\repos\\dumbManager\\dumbManager Win\\dumbManager\\dumbManager.csproj",
+  "projectFilePath": "C:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jakob\\.nuget\\packages\\sqlite-net-sqlcipher\\1.7.335\\sqlite-net-sqlcipher.1.7.335.nupkg.sha512",
-    "C:\\Users\\Jakob\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlcipher\\2.0.3\\sqlitepclraw.bundle_e_sqlcipher.2.0.3.nupkg.sha512",
-    "C:\\Users\\Jakob\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",
-    "C:\\Users\\Jakob\\.nuget\\packages\\sqlitepclraw.lib.e_sqlcipher\\2.0.3\\sqlitepclraw.lib.e_sqlcipher.2.0.3.nupkg.sha512",
-    "C:\\Users\\Jakob\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.3\\sqlitepclraw.provider.dynamic_cdecl.2.0.3.nupkg.sha512",
-    "C:\\Users\\Jakob\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\jalupa\\.nuget\\packages\\sqlite-net-sqlcipher\\1.7.335\\sqlite-net-sqlcipher.1.7.335.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlcipher\\2.0.3\\sqlitepclraw.bundle_e_sqlcipher.2.0.3.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.lib.e_sqlcipher\\2.0.3\\sqlitepclraw.lib.e_sqlcipher.2.0.3.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.3\\sqlitepclraw.provider.dynamic_cdecl.2.0.3.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
   ],
   "logs": []
 }

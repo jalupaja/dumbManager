@@ -48,6 +48,11 @@ namespace dumbManager
             this.BtnCopyName = new System.Windows.Forms.Button();
             this.BtnSeePass = new System.Windows.Forms.Button();
             this.BtnOpenUrl = new System.Windows.Forms.Button();
+            this.BtnDel = new System.Windows.Forms.Button();
+            this.BtnSee2FA = new System.Windows.Forms.Button();
+            this.BtnCopy2FA = new System.Windows.Forms.Button();
+            this.Txt2FA = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TxtHeader
@@ -72,7 +77,7 @@ namespace dumbManager
             this.BtnCopyNotes.FlatAppearance.BorderSize = 0;
             this.BtnCopyNotes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopyNotes.ForeColor = System.Drawing.Color.White;
-            this.BtnCopyNotes.Location = new System.Drawing.Point(248, 269);
+            this.BtnCopyNotes.Location = new System.Drawing.Point(248, 280);
             this.BtnCopyNotes.Name = "BtnCopyNotes";
             this.BtnCopyNotes.Size = new System.Drawing.Size(44, 24);
             this.BtnCopyNotes.TabIndex = 37;
@@ -86,7 +91,7 @@ namespace dumbManager
             this.BtnCopyUrl.FlatAppearance.BorderSize = 0;
             this.BtnCopyUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopyUrl.ForeColor = System.Drawing.Color.White;
-            this.BtnCopyUrl.Location = new System.Drawing.Point(248, 212);
+            this.BtnCopyUrl.Location = new System.Drawing.Point(248, 175);
             this.BtnCopyUrl.Name = "BtnCopyUrl";
             this.BtnCopyUrl.Size = new System.Drawing.Size(44, 24);
             this.BtnCopyUrl.TabIndex = 36;
@@ -101,7 +106,7 @@ namespace dumbManager
             this.BtnCopyPass.FlatAppearance.BorderSize = 0;
             this.BtnCopyPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopyPass.ForeColor = System.Drawing.Color.White;
-            this.BtnCopyPass.Location = new System.Drawing.Point(248, 153);
+            this.BtnCopyPass.Location = new System.Drawing.Point(248, 124);
             this.BtnCopyPass.Name = "BtnCopyPass";
             this.BtnCopyPass.Size = new System.Drawing.Size(44, 24);
             this.BtnCopyPass.TabIndex = 35;
@@ -115,7 +120,7 @@ namespace dumbManager
             this.BtnCopyUsername.FlatAppearance.BorderSize = 0;
             this.BtnCopyUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopyUsername.ForeColor = System.Drawing.Color.White;
-            this.BtnCopyUsername.Location = new System.Drawing.Point(248, 96);
+            this.BtnCopyUsername.Location = new System.Drawing.Point(248, 77);
             this.BtnCopyUsername.Name = "BtnCopyUsername";
             this.BtnCopyUsername.Size = new System.Drawing.Size(44, 24);
             this.BtnCopyUsername.TabIndex = 34;
@@ -129,11 +134,11 @@ namespace dumbManager
             this.TxtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtNotes.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtNotes.ForeColor = System.Drawing.Color.Black;
-            this.TxtNotes.Location = new System.Drawing.Point(42, 269);
+            this.TxtNotes.Location = new System.Drawing.Point(42, 281);
             this.TxtNotes.Multiline = true;
             this.TxtNotes.Name = "TxtNotes";
             this.TxtNotes.ReadOnly = true;
-            this.TxtNotes.Size = new System.Drawing.Size(250, 55);
+            this.TxtNotes.Size = new System.Drawing.Size(250, 57);
             this.TxtNotes.TabIndex = 31;
             // 
             // LblNotes
@@ -142,7 +147,7 @@ namespace dumbManager
             this.LblNotes.BackColor = System.Drawing.Color.Transparent;
             this.LblNotes.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblNotes.ForeColor = System.Drawing.Color.White;
-            this.LblNotes.Location = new System.Drawing.Point(29, 247);
+            this.LblNotes.Location = new System.Drawing.Point(30, 259);
             this.LblNotes.Name = "LblNotes";
             this.LblNotes.Size = new System.Drawing.Size(40, 15);
             this.LblNotes.TabIndex = 32;
@@ -154,10 +159,10 @@ namespace dumbManager
             this.TxtUrl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUrl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtUrl.ForeColor = System.Drawing.Color.Black;
-            this.TxtUrl.Location = new System.Drawing.Point(42, 216);
+            this.TxtUrl.Location = new System.Drawing.Point(43, 176);
             this.TxtUrl.Name = "TxtUrl";
             this.TxtUrl.ReadOnly = true;
-            this.TxtUrl.Size = new System.Drawing.Size(163, 20);
+            this.TxtUrl.Size = new System.Drawing.Size(158, 20);
             this.TxtUrl.TabIndex = 29;
             this.TxtUrl.DoubleClick += new System.EventHandler(this.TxtUrl_OPEN);
             // 
@@ -167,7 +172,7 @@ namespace dumbManager
             this.LblUrl.BackColor = System.Drawing.Color.Transparent;
             this.LblUrl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblUrl.ForeColor = System.Drawing.Color.White;
-            this.LblUrl.Location = new System.Drawing.Point(30, 192);
+            this.LblUrl.Location = new System.Drawing.Point(30, 153);
             this.LblUrl.Name = "LblUrl";
             this.LblUrl.Size = new System.Drawing.Size(23, 15);
             this.LblUrl.TabIndex = 30;
@@ -180,10 +185,10 @@ namespace dumbManager
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtPassword.ForeColor = System.Drawing.Color.Black;
-            this.TxtPassword.Location = new System.Drawing.Point(42, 154);
+            this.TxtPassword.Location = new System.Drawing.Point(42, 126);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.ReadOnly = true;
-            this.TxtPassword.Size = new System.Drawing.Size(163, 20);
+            this.TxtPassword.Size = new System.Drawing.Size(159, 20);
             this.TxtPassword.TabIndex = 27;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
@@ -193,7 +198,7 @@ namespace dumbManager
             this.LblPass.BackColor = System.Drawing.Color.Transparent;
             this.LblPass.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblPass.ForeColor = System.Drawing.Color.White;
-            this.LblPass.Location = new System.Drawing.Point(30, 133);
+            this.LblPass.Location = new System.Drawing.Point(30, 105);
             this.LblPass.Name = "LblPass";
             this.LblPass.Size = new System.Drawing.Size(63, 15);
             this.LblPass.TabIndex = 28;
@@ -205,7 +210,7 @@ namespace dumbManager
             this.TxtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsername.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtUsername.ForeColor = System.Drawing.Color.Black;
-            this.TxtUsername.Location = new System.Drawing.Point(42, 97);
+            this.TxtUsername.Location = new System.Drawing.Point(42, 79);
             this.TxtUsername.Name = "TxtUsername";
             this.TxtUsername.ReadOnly = true;
             this.TxtUsername.Size = new System.Drawing.Size(204, 20);
@@ -217,7 +222,7 @@ namespace dumbManager
             this.LblUsername.BackColor = System.Drawing.Color.Transparent;
             this.LblUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblUsername.ForeColor = System.Drawing.Color.White;
-            this.LblUsername.Location = new System.Drawing.Point(30, 75);
+            this.LblUsername.Location = new System.Drawing.Point(30, 57);
             this.LblUsername.Name = "LblUsername";
             this.LblUsername.Size = new System.Drawing.Size(66, 15);
             this.LblUsername.TabIndex = 26;
@@ -229,7 +234,7 @@ namespace dumbManager
             this.TxtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtName.ForeColor = System.Drawing.Color.Black;
-            this.TxtName.Location = new System.Drawing.Point(42, 39);
+            this.TxtName.Location = new System.Drawing.Point(42, 34);
             this.TxtName.Name = "TxtName";
             this.TxtName.ReadOnly = true;
             this.TxtName.Size = new System.Drawing.Size(204, 20);
@@ -241,7 +246,7 @@ namespace dumbManager
             this.LblName.BackColor = System.Drawing.Color.Transparent;
             this.LblName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblName.ForeColor = System.Drawing.Color.White;
-            this.LblName.Location = new System.Drawing.Point(30, 18);
+            this.LblName.Location = new System.Drawing.Point(30, 13);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(41, 15);
             this.LblName.TabIndex = 24;
@@ -269,7 +274,7 @@ namespace dumbManager
             this.BtnCopyName.FlatAppearance.BorderSize = 0;
             this.BtnCopyName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopyName.ForeColor = System.Drawing.Color.White;
-            this.BtnCopyName.Location = new System.Drawing.Point(248, 37);
+            this.BtnCopyName.Location = new System.Drawing.Point(248, 32);
             this.BtnCopyName.Name = "BtnCopyName";
             this.BtnCopyName.Size = new System.Drawing.Size(44, 24);
             this.BtnCopyName.TabIndex = 33;
@@ -283,7 +288,7 @@ namespace dumbManager
             this.BtnSeePass.FlatAppearance.BorderSize = 0;
             this.BtnSeePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSeePass.ForeColor = System.Drawing.Color.White;
-            this.BtnSeePass.Location = new System.Drawing.Point(207, 153);
+            this.BtnSeePass.Location = new System.Drawing.Point(202, 124);
             this.BtnSeePass.Name = "BtnSeePass";
             this.BtnSeePass.Size = new System.Drawing.Size(44, 24);
             this.BtnSeePass.TabIndex = 39;
@@ -298,7 +303,7 @@ namespace dumbManager
             this.BtnOpenUrl.FlatAppearance.BorderSize = 0;
             this.BtnOpenUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnOpenUrl.ForeColor = System.Drawing.Color.White;
-            this.BtnOpenUrl.Location = new System.Drawing.Point(207, 212);
+            this.BtnOpenUrl.Location = new System.Drawing.Point(202, 175);
             this.BtnOpenUrl.Name = "BtnOpenUrl";
             this.BtnOpenUrl.Size = new System.Drawing.Size(44, 24);
             this.BtnOpenUrl.TabIndex = 38;
@@ -306,6 +311,77 @@ namespace dumbManager
             this.BtnOpenUrl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnOpenUrl.UseVisualStyleBackColor = false;
             this.BtnOpenUrl.Click += new System.EventHandler(this.TxtUrl_OPEN);
+            // 
+            // BtnDel
+            // 
+            this.BtnDel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnDel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnDel.BackColor = System.Drawing.Color.Maroon;
+            this.BtnDel.FlatAppearance.BorderSize = 0;
+            this.BtnDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnDel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnDel.Location = new System.Drawing.Point(550, -1);
+            this.BtnDel.Name = "BtnDel";
+            this.BtnDel.Size = new System.Drawing.Size(39, 29);
+            this.BtnDel.TabIndex = 56;
+            this.BtnDel.Text = "Del";
+            this.BtnDel.UseVisualStyleBackColor = false;
+            // 
+            // BtnSee2FA
+            // 
+            this.BtnSee2FA.BackColor = System.Drawing.Color.Transparent;
+            this.BtnSee2FA.FlatAppearance.BorderSize = 0;
+            this.BtnSee2FA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSee2FA.ForeColor = System.Drawing.Color.White;
+            this.BtnSee2FA.Location = new System.Drawing.Point(202, 225);
+            this.BtnSee2FA.Name = "BtnSee2FA";
+            this.BtnSee2FA.Size = new System.Drawing.Size(44, 24);
+            this.BtnSee2FA.TabIndex = 63;
+            this.BtnSee2FA.Text = "see";
+            this.BtnSee2FA.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnSee2FA.UseVisualStyleBackColor = false;
+            this.BtnSee2FA.Click += new System.EventHandler(this.BtnSee2FA_Click);
+            // 
+            // BtnCopy2FA
+            // 
+            this.BtnCopy2FA.BackColor = System.Drawing.Color.Transparent;
+            this.BtnCopy2FA.FlatAppearance.BorderSize = 0;
+            this.BtnCopy2FA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCopy2FA.ForeColor = System.Drawing.Color.White;
+            this.BtnCopy2FA.Location = new System.Drawing.Point(248, 225);
+            this.BtnCopy2FA.Name = "BtnCopy2FA";
+            this.BtnCopy2FA.Size = new System.Drawing.Size(44, 24);
+            this.BtnCopy2FA.TabIndex = 62;
+            this.BtnCopy2FA.Text = "Copy";
+            this.BtnCopy2FA.UseVisualStyleBackColor = false;
+            this.BtnCopy2FA.Click += new System.EventHandler(this.BtnCopy2FA_Click);
+            // 
+            // Txt2FA
+            // 
+            this.Txt2FA.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.Txt2FA.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Txt2FA.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Txt2FA.ForeColor = System.Drawing.Color.Black;
+            this.Txt2FA.Location = new System.Drawing.Point(42, 227);
+            this.Txt2FA.Name = "Txt2FA";
+            this.Txt2FA.ReadOnly = true;
+            this.Txt2FA.Size = new System.Drawing.Size(159, 20);
+            this.Txt2FA.TabIndex = 60;
+            this.Txt2FA.UseSystemPasswordChar = true;
+            this.Txt2FA.DoubleClick += new System.EventHandler(this.BtnCopy2FA_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(30, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 15);
+            this.label7.TabIndex = 61;
+            this.label7.Text = "2FA Code";
+            this.label7.DoubleClick += new System.EventHandler(this.BtnCopy2FA_Click);
             // 
             // LookAtItem
             // 
@@ -316,6 +392,11 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(335, 400);
+            this.Controls.Add(this.BtnSee2FA);
+            this.Controls.Add(this.BtnCopy2FA);
+            this.Controls.Add(this.Txt2FA);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.BtnDel);
             this.Controls.Add(this.BtnSeePass);
             this.Controls.Add(this.BtnOpenUrl);
             this.Controls.Add(this.BtnCopyNotes);
@@ -364,5 +445,10 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnCopyName;
         private System.Windows.Forms.Button BtnSeePass;
         private System.Windows.Forms.Button BtnOpenUrl;
+        private System.Windows.Forms.Button BtnDel;
+        private System.Windows.Forms.Button BtnSee2FA;
+        private System.Windows.Forms.Button BtnCopy2FA;
+        private System.Windows.Forms.TextBox Txt2FA;
+        private System.Windows.Forms.Label label7;
     }
 }

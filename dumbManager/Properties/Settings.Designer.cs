@@ -49,7 +49,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("900000")]
         public int LogoutAfter {
             get {
                 return ((int)(this["LogoutAfter"]));
@@ -85,7 +85,7 @@ namespace dumbManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tray")]
+        [global::System.Configuration.DefaultSettingValueAttribute("off")]
         public string Startup {
             get {
                 return ((string)(this["Startup"]));
