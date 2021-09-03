@@ -12,9 +12,13 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 
 Password Manager:
-- add higher res icon
+- add local update file
+- add updates to downloaded file
+- delete and update server file
+
 - fix TOTP Implementation
 - create Updater exe
+- Add Password options when clicking new Password in Password Manager
 - add Password Gen Button to EditItem
 - add search by (Dropdown menu/button)
 - export, import file
@@ -22,8 +26,8 @@ Password Manager:
 - online sync to e.g. personal Dropbox/ Mega account
 - Encrypt Settings file
 - change password (https://github.com/sqlcipher/sqlcipher)
-- encrypted files attachments
-- PGP messaging + automatic Singning
+- encrypted files attachments (Sync: what to overwrite?)
+- add 2FA for Mega Login
 
 Online: 
 - first sync function

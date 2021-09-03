@@ -45,3 +45,5 @@ c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\Interop.IWshRuntimeLibrary.dll
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.ResolveComReference.cache
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.AssemblyReference.cache
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\MegaApiClient.dll
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Newtonsoft.Json.dll

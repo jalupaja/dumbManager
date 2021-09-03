@@ -48,6 +48,7 @@ namespace dumbManager
             this.BtnSee2FA = new System.Windows.Forms.Button();
             this.Txt2FA = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnNewPwd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtHeader
@@ -155,7 +156,7 @@ namespace dumbManager
             this.TxtPassword.Location = new System.Drawing.Point(41, 129);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PlaceholderText = " enter a Password";
-            this.TxtPassword.Size = new System.Drawing.Size(204, 20);
+            this.TxtPassword.Size = new System.Drawing.Size(159, 20);
             this.TxtPassword.TabIndex = 9;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
@@ -305,12 +306,28 @@ namespace dumbManager
             this.label1.TabIndex = 42;
             this.label1.Text = "2FA Seed";
             // 
+            // BtnNewPwd
+            // 
+            this.BtnNewPwd.BackColor = System.Drawing.Color.Transparent;
+            this.BtnNewPwd.FlatAppearance.BorderSize = 0;
+            this.BtnNewPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNewPwd.ForeColor = System.Drawing.Color.White;
+            this.BtnNewPwd.Location = new System.Drawing.Point(201, 127);
+            this.BtnNewPwd.Name = "BtnNewPwd";
+            this.BtnNewPwd.Size = new System.Drawing.Size(44, 24);
+            this.BtnNewPwd.TabIndex = 44;
+            this.BtnNewPwd.Text = "new";
+            this.BtnNewPwd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnNewPwd.UseVisualStyleBackColor = false;
+            this.BtnNewPwd.Click += new System.EventHandler(this.BtnNewPwd_Click);
+            // 
             // EditItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(335, 400);
+            this.Controls.Add(this.BtnNewPwd);
             this.Controls.Add(this.BtnSee2FA);
             this.Controls.Add(this.Txt2FA);
             this.Controls.Add(this.label1);
@@ -359,5 +376,6 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnSee2FA;
         private System.Windows.Forms.TextBox Txt2FA;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnNewPwd;
     }
 }

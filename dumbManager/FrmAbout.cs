@@ -17,14 +17,17 @@ namespace dumbManager
     {
         public FrmSettings parent { get; set; }
 
+        string baseTxt = "";
+
         public FrmAbout()
         {
             this.ActiveControl = BtnClose;
             InitializeComponent();
             ColorReload();
-            this.
             TxtAbout.Multiline = true;
-            TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion;
+            
+            baseTxt = "dumbManager" + Environment.NewLine + "https://github.com/jalupaja/dumbManager/" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion;
+            TxtAbout.Text = baseTxt;
         }
 
         public void ColorReload()
@@ -45,7 +48,7 @@ namespace dumbManager
 
             if (offlineVersion < onlineVersion)
             {
-                TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "There is a new update available!";
+                TxtAbout.Text = baseTxt + Environment.NewLine + Environment.NewLine + Environment.NewLine + "There is a new update available!";
                 try
                 {
                     Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip") { CreateNoWindow = true });
@@ -54,11 +57,11 @@ namespace dumbManager
             }
             else if (Int16.Parse(System.Windows.Forms.Application.ProductVersion.Replace(".", "")) == onlineVersion)
             {
-                TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You are up to date!";
+                TxtAbout.Text = baseTxt + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You are up to date!";
             }
             else
             {
-                TxtAbout.Text = "dumbManager" + Environment.NewLine + "Copyright © jalupa 2021" + Environment.NewLine + "Version: " + System.Windows.Forms.Application.ProductVersion + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You have a newer Version then I!";
+                TxtAbout.Text = baseTxt + Environment.NewLine + Environment.NewLine + Environment.NewLine + "You have a newer Version then I!";
             }
         }
     }

@@ -56,7 +56,6 @@ namespace dumbManager
 
         static private void TimeDone(object sender, EventArgs e)
         {
-            MessageBox.Show(DateTime.Now.ToString());
             app.TrayLogout(null, null);
         }
 

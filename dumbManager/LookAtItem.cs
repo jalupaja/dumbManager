@@ -34,6 +34,8 @@ namespace dumbManager
 
         public void Clear(string name, string username, string password, string url, string twoFA, string notes)
         {
+            TxtPassword.UseSystemPasswordChar = true;
+            Txt2FA.UseSystemPasswordChar = true;
             //Write all items to textbox
             TxtName.Text = name;
             TxtUsername.Text = username;

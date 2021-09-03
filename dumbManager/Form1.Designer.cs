@@ -31,6 +31,8 @@ namespace dumbManager
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.PnlSide = new System.Windows.Forms.Panel();
+            this.TxtSyncResponse = new System.Windows.Forms.TextBox();
+            this.BtnSync = new System.Windows.Forms.Button();
             this.BtnSettings = new System.Windows.Forms.Button();
             this.BtnPwdGen = new System.Windows.Forms.Button();
             this.BtnManager = new System.Windows.Forms.Button();
@@ -48,6 +50,8 @@ namespace dumbManager
             this.PnlSide.AutoSize = true;
             this.PnlSide.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnlSide.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlSide.Controls.Add(this.TxtSyncResponse);
+            this.PnlSide.Controls.Add(this.BtnSync);
             this.PnlSide.Controls.Add(this.BtnSettings);
             this.PnlSide.Controls.Add(this.BtnPwdGen);
             this.PnlSide.Controls.Add(this.BtnManager);
@@ -58,6 +62,33 @@ namespace dumbManager
             this.PnlSide.Name = "PnlSide";
             this.PnlSide.Size = new System.Drawing.Size(178, 450);
             this.PnlSide.TabIndex = 0;
+            // 
+            // TxtSyncResponse
+            // 
+            this.TxtSyncResponse.BackColor = System.Drawing.Color.Black;
+            this.TxtSyncResponse.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtSyncResponse.Enabled = false;
+            this.TxtSyncResponse.ForeColor = System.Drawing.Color.White;
+            this.TxtSyncResponse.Location = new System.Drawing.Point(7, 342);
+            this.TxtSyncResponse.Multiline = true;
+            this.TxtSyncResponse.Name = "TxtSyncResponse";
+            this.TxtSyncResponse.Size = new System.Drawing.Size(164, 65);
+            this.TxtSyncResponse.TabIndex = 5;
+            this.TxtSyncResponse.TabStop = false;
+            this.TxtSyncResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // BtnSync
+            // 
+            this.BtnSync.BackColor = System.Drawing.Color.DimGray;
+            this.BtnSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSync.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnSync.Location = new System.Drawing.Point(22, 308);
+            this.BtnSync.Name = "BtnSync";
+            this.BtnSync.Size = new System.Drawing.Size(134, 28);
+            this.BtnSync.TabIndex = 4;
+            this.BtnSync.Text = "Sync";
+            this.BtnSync.UseVisualStyleBackColor = false;
+            this.BtnSync.Click += new System.EventHandler(this.BtnSync_Click);
             // 
             // BtnSettings
             // 
@@ -153,6 +184,7 @@ namespace dumbManager
             this.Name = "Form1";
             this.Text = "dumbManager";
             this.PnlSide.ResumeLayout(false);
+            this.PnlSide.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +201,8 @@ namespace dumbManager
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label LblMain;
         private System.Windows.Forms.Panel PnlFormLoader;
+        private System.Windows.Forms.TextBox TxtSyncResponse;
+        private System.Windows.Forms.Button BtnSync;
     }
 }
 

@@ -23,8 +23,6 @@ namespace dumbManager
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            //
-
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
                 if (loggedin)
@@ -83,6 +81,7 @@ namespace dumbManager
             MenuItemLock.Size = new Size(153, 22);
             MenuItemLock.Text = "Logout";
             MenuItemLock.ForeColor = Color.White;
+            MenuItemLock.Enabled = false;
             MenuItemLock.Click += new EventHandler(TrayLogout);
 
             MenuItemShow.Name = "Show";
@@ -127,6 +126,7 @@ namespace dumbManager
             LblMain.ForeColor = Properties.Settings.Default.AccentColor;
             BtnManager.BackColor = Properties.Settings.Default.AccentColor;
             BtnPwdGen.BackColor = Properties.Settings.Default.AccentColor;
+            BtnSync.BackColor = Properties.Settings.Default.AccentColor;
             BtnSettings.BackColor = Properties.Settings.Default.AccentColor;
 
             if (loggedin)
@@ -152,6 +152,7 @@ namespace dumbManager
             LblMain.ForeColor = Properties.Settings.Default.AccentColor;
             BtnManager.BackColor = Properties.Settings.Default.AccentColor;
             BtnPwdGen.BackColor = Properties.Settings.Default.AccentColor;
+            BtnSync.BackColor = Properties.Settings.Default.AccentColor;
             BtnSettings.BackColor = Properties.Settings.Default.AccentColor;
 
             FrmPwdGen_Vrb.ColorReload();
@@ -205,12 +206,14 @@ namespace dumbManager
 
         public void Logout()
         {
+            MenuItemLock.Enabled = false;
             FrmLoginPage_Vrb.Logout();
             loggedin = false;
             BtnManager_Click(null, null);
         }
         public void newManager(SQLite.SQLiteConnection c)
         {
+            MenuItemLock.Enabled = true;
             FrmManager_Vrb.newConnection(c);
             FrmManager_Vrb.loadMax();
         }
@@ -236,7 +239,7 @@ namespace dumbManager
             }
         }
 
-        private void BtnPwdGen_Click(object sender, EventArgs e)
+        public void BtnPwdGen_Click(object sender, EventArgs e)
         {
             LblMain.Text = "Password Generator";
             this.PnlFormLoader.Controls.Clear();
@@ -245,7 +248,7 @@ namespace dumbManager
             FrmPwdGen_Vrb.Show();
         }
 
-        private void BtnSettings_Click(object sender, EventArgs e)
+        public void BtnSettings_Click(object sender, EventArgs e)
         {
             LblMain.Text = "Settings";
             this.PnlFormLoader.Controls.Clear();
@@ -263,6 +266,53 @@ namespace dumbManager
             {
                 this.Enabled = true;
                 this.Activate();
+            }
+        }
+
+        public string pwdCreate(string length, bool lower, bool upper, bool numbers, bool spec)
+        {
+            return FrmPwdGen_Vrb.pwdCreate(length, lower, upper, numbers, spec);
+        }
+
+        private void BtnSync_Click(object sender, EventArgs e)
+        {
+             FrmLoginPage_Vrb.Sync();
+        }
+
+        public void setSyncResponse(string response)
+        {
+            if (response.Contains("ERROR"))
+                TxtSyncResponse.ForeColor = Color.Red;
+            else if (response.Contains("SUCCESS"))
+            {
+                TxtSyncResponse.ForeColor = Color.Green;
+                FrmManager_Vrb.TxtSearch_TextChanged(null, null);
+            }
+            else
+                TxtSyncResponse.ForeColor = Color.White;
+            TxtSyncResponse.Text = response;
+        }
+
+        public void addSyncResponse(string response)
+        {
+            if (response.Contains("ERROR"))
+                TxtSyncResponse.ForeColor = Color.Red;
+            else if (response.Contains("SUCCESS"))
+                TxtSyncResponse.ForeColor = Color.Green;
+            else
+                TxtSyncResponse.ForeColor = Color.White;
+            TxtSyncResponse.AppendText(Environment.NewLine + response);
+        }
+
+        public string GetMegaStuff(string input)
+        {
+            return FrmManager_Vrb.getMegaStuff(input);
+        }
+        public void CreateMega()
+        {
+            if (GetMegaStuff("url") == string.Empty && GetMegaStuff("username") == string.Empty && GetMegaStuff("password") == string.Empty)
+            {
+                FrmManager_Vrb.Add("Mega(Sync)", "", "", "https://mega.nz/register", "", "");
             }
         }
     }

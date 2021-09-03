@@ -37,6 +37,8 @@ namespace dumbManager
 
         public void Clear(string name, string username, string password, string url, string twoFA, string notes)
         {
+            TxtPassword.UseSystemPasswordChar = true;
+            Txt2FA.UseSystemPasswordChar = true;
             //Write all items to textbox
             TxtName.Text = name;
             TxtUsername.Text = username;
@@ -118,6 +120,12 @@ namespace dumbManager
                 Txt2FA.UseSystemPasswordChar = true;
                 BtnSee2FA.Text = "see";
             }
+        }
+
+        private void BtnNewPwd_Click(object sender, EventArgs e)
+        {
+            if (TxtPassword.Text == "" || MessageBox.Show("Do you really want to overwrite the password?", "Overwrite Password", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                TxtPassword.Text = parent.parent.pwdCreate("20", true, true, true, true);
         }
     }
 }

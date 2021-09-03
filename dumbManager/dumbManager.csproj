@@ -62,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MegaApiClient" Version="1.9.0" />
     <PackageReference Include="sqlite-net-sqlcipher" Version="1.7.335" />
   </ItemGroup>
 

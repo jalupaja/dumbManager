@@ -55,13 +55,15 @@ namespace dumbManager
             this.TxtAbout.Name = "TxtAbout";
             this.TxtAbout.Size = new System.Drawing.Size(291, 135);
             this.TxtAbout.TabIndex = 1;
+            this.TxtAbout.Text = "dumbManager\r\nhttps://github.com/jalupaja/dumbManager\r\nCopyright © jalupa 2021\r\nVe" +
+    "rsion ...\r\n\r\n\r\nupdate?";
             this.TxtAbout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // BtnCheckUpdate
             // 
             this.BtnCheckUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCheckUpdate.ForeColor = System.Drawing.Color.White;
-            this.BtnCheckUpdate.Location = new System.Drawing.Point(73, 108);
+            this.BtnCheckUpdate.Location = new System.Drawing.Point(74, 112);
             this.BtnCheckUpdate.Name = "BtnCheckUpdate";
             this.BtnCheckUpdate.Size = new System.Drawing.Size(211, 25);
             this.BtnCheckUpdate.TabIndex = 2;

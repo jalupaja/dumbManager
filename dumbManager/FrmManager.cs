@@ -5,9 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using SQLite;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SQLite;
+using CG.Web.MegaApiClient;
 
 namespace dumbManager
 {
@@ -98,6 +99,71 @@ namespace dumbManager
             EditItem_Vrb.Clear("", "", "", "", "", "");
             EditItem_Vrb.Show();
         }
+        
+        private void BtnEditItem_Click(object sender, EventArgs e)
+        {
+            this.PnlViewEditLoader.Controls.Clear();
+            if (selectedId == -1)
+            {
+                ViewItem_Vrb.Clear("", "", "", "","" , "");
+                EditItem_Vrb.Clear("", "", "","" , "", "");
+            }
+            else
+            {
+                EditItem_Vrb.FormBorderStyle = FormBorderStyle.None;
+                this.PnlViewEditLoader.Controls.Add(EditItem_Vrb);
+                var result = con.Table<dumbManager>().ToList();
+                foreach (var item in result)
+                {
+                    if (item.Id == selectedId)
+                    {
+                        EditItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.TwoFA, item.Note);
+                    }
+                }
+                EditItem_Vrb.Show();
+            }           
+        }
+        public void BtnLogout_Click(object sender, EventArgs e)
+        {
+            selectedId = -1;
+            Clear();
+            con.Close();
+            parent.Logout();
+        }
+
+        public string getMegaStuff(string what)
+        {
+            string ret = string.Empty;
+            var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains("Mega(Sync)".ToLower())).ToList();
+            foreach (var item in result)
+            {
+                switch(what)
+                {
+                    case "id":
+                        ret = item.Id.ToString();
+                        break;
+                    case "username":
+                        ret = item.Name;
+                        break;
+                    case "password":
+                        ret = item.Password;
+                        break;
+                    case "url":
+                        ret = item.Url;
+                        break;
+                    case "2FA":
+                        ret = item.TwoFA;
+                        break;
+                    case "2FACodes":
+                        //ret = item.TwoFA; //!!! Get Code not Seed !!!
+                        break;
+                    case "notes":
+                        ret = item.Note;
+                        break;
+                }
+            }
+            return ret;
+        }
         public void Add(string name, string username, string password, string url, string twoFA, string note)
         {//!!! update SQL file
             var n = new dumbManager
@@ -119,7 +185,7 @@ namespace dumbManager
             Clear();
             TxtSearch_TextChanged(null, null);
         }
-        public void Change(int id, string name, string username, string password, string url, string twoFA,string note)
+        public void Change(int id, string name, string username, string password, string url, string twoFA, string note)
         {//!!! update SQL file
             var n = new dumbManager();
             n.Id = id;
@@ -156,44 +222,14 @@ namespace dumbManager
                 this.PnlViewEditLoader.Controls.Add(ViewItem_Vrb);
                 var result = con.Table<dumbManager>().ToList();
                 foreach (var item in result)
-                { 
-                    if(item.Id == selectedId)
+                {
+                    if (item.Id == selectedId)
                     {
                         ViewItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.TwoFA, item.Note);
                     }
                 }
                 ViewItem_Vrb.Show();
             }
-        }
-        private void BtnEditItem_Click(object sender, EventArgs e)
-        {
-            this.PnlViewEditLoader.Controls.Clear();
-            if (selectedId == -1)
-            {
-                ViewItem_Vrb.Clear("", "", "", "","" , "");
-                EditItem_Vrb.Clear("", "", "","" , "", "");
-            }
-            else
-            {
-                EditItem_Vrb.FormBorderStyle = FormBorderStyle.None;
-                this.PnlViewEditLoader.Controls.Add(EditItem_Vrb);
-                var result = con.Table<dumbManager>().ToList();
-                foreach (var item in result)
-                {
-                    if (item.Id == selectedId)
-                    {
-                        EditItem_Vrb.Clear(item.Name, item.Username, item.Password, item.Url, item.TwoFA, item.Note);
-                    }
-                }
-                EditItem_Vrb.Show();
-            }           
-        }
-        public void BtnLogout_Click(object sender, EventArgs e)
-        {
-            selectedId = -1;
-            Clear();
-            con.Close();
-            parent.Logout();
         }
     }
 }
