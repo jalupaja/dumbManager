@@ -47,3 +47,7 @@ C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.AssemblyReference.cache
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\MegaApiClient.dll
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\runtimes\linux-mips64\native\libe_sqlcipher.so
+c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Open.IO.dll
+c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Open.Mega.dll
+c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Open.Net.Http.dll

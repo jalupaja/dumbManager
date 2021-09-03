@@ -51,7 +51,7 @@ namespace dumbManager
                 TxtAbout.Text = baseTxt + Environment.NewLine + Environment.NewLine + Environment.NewLine + "There is a new update available!";
                 try
                 {
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip") { CreateNoWindow = true });
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip") { CreateNoWindow = false });
                 }
                 catch(Exception){}
             }

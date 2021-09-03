@@ -194,7 +194,7 @@ namespace dumbManager
             }
         }
 
-        private void TrayExit(object sender, EventArgs e)
+        public void TrayExit(object sender, EventArgs e)
         {
             TrayLogout(null, null);
             TrayIconContextMenu.Visible = false;
@@ -274,34 +274,55 @@ namespace dumbManager
             return FrmPwdGen_Vrb.pwdCreate(length, lower, upper, numbers, spec);
         }
 
+        public FrmManager.dumbManager getTable()
+        {
+            return new FrmManager.dumbManager();
+        }
+        public void AddToFile(string line)
+        {
+            FrmLoginPage_Vrb.AddToFile(line);
+        }
         private void BtnSync_Click(object sender, EventArgs e)
         {
-             FrmLoginPage_Vrb.Sync();
+            BtnSync.Text = "Syncing ...";
+            FrmLoginPage_Vrb.Sync();
         }
-
         public void setSyncResponse(string response)
         {
-            if (response.Contains("ERROR"))
-                TxtSyncResponse.ForeColor = Color.Red;
-            else if (response.Contains("SUCCESS"))
-            {
-                TxtSyncResponse.ForeColor = Color.Green;
-                FrmManager_Vrb.TxtSearch_TextChanged(null, null);
-            }
+            if (response == string.Empty)
+                TxtSyncResponse.Clear();
             else
-                TxtSyncResponse.ForeColor = Color.White;
-            TxtSyncResponse.Text = response;
+            {
+                if (response.Contains("ERROR"))
+                    TxtSyncResponse.ForeColor = Color.Red;
+                else if (response.Contains("SUCCESS"))
+                {
+                    TxtSyncResponse.ForeColor = Color.Green;
+                    FrmManager_Vrb.TxtSearch_TextChanged(null, null);
+                }
+                TxtSyncResponse.Text = response + Environment.NewLine;
+            }
         }
-
         public void addSyncResponse(string response)
         {
             if (response.Contains("ERROR"))
                 TxtSyncResponse.ForeColor = Color.Red;
             else if (response.Contains("SUCCESS"))
                 TxtSyncResponse.ForeColor = Color.Green;
-            else
-                TxtSyncResponse.ForeColor = Color.White;
-            TxtSyncResponse.AppendText(Environment.NewLine + response);
+            TxtSyncResponse.AppendText(response + Environment.NewLine);
+        }
+
+        public void finishedSyncing()
+        {
+            BtnSync.Text = "Sync";
+        }
+        public void SafeSyncFile(string path)
+        {
+            File.Delete(path);
+            for (int i = 0; i < TxtSyncResponse.Lines.Length; i++)
+            {
+                File.AppendAllText(path, TxtSyncResponse.Lines[i]);
+            }
         }
 
         public string GetMegaStuff(string input)

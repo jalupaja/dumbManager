@@ -71,7 +71,7 @@ namespace dumbManager
         }
         private void TxtUrl_OPEN(object sender, EventArgs e)
         {
-            Process.Start(TxtUrl.Text);
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {TxtUrl.Text}") { CreateNoWindow = false });
         }
 
         private void BtnCopyName_Click(object sender, EventArgs e)

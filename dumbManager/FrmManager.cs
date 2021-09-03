@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using SQLite;
 using CG.Web.MegaApiClient;
 
+using System.IO;
+
 namespace dumbManager
 {
     public partial class FrmManager : Form
@@ -139,9 +141,6 @@ namespace dumbManager
             {
                 switch(what)
                 {
-                    case "id":
-                        ret = item.Id.ToString();
-                        break;
                     case "username":
                         ret = item.Name;
                         break;
@@ -152,20 +151,14 @@ namespace dumbManager
                         ret = item.Url;
                         break;
                     case "2FA":
-                        ret = item.TwoFA;
-                        break;
-                    case "2FACodes":
                         //ret = item.TwoFA; //!!! Get Code not Seed !!!
-                        break;
-                    case "notes":
-                        ret = item.Note;
                         break;
                 }
             }
             return ret;
         }
         public void Add(string name, string username, string password, string url, string twoFA, string note)
-        {//!!! update SQL file
+        {
             var n = new dumbManager
             {
                 Name = name,
@@ -176,6 +169,7 @@ namespace dumbManager
                 Note = note
             };
             con.Insert(n);
+            parent.AddToFile($"INSERT,{name},{username},{password},{url},{twoFA},{note}");
             n.Name = "";
             n.Username = "";
             n.Password = "";
@@ -186,24 +180,36 @@ namespace dumbManager
             TxtSearch_TextChanged(null, null);
         }
         public void Change(int id, string name, string username, string password, string url, string twoFA, string note)
-        {//!!! update SQL file
-            var n = new dumbManager();
-            n.Id = id;
-            n.Name = name;
-            n.Username = username;
-            n.Password = password;
-            n.Url = url;
-            n.TwoFA = twoFA;
-            n.Note = note;
+        {
+            var n = new dumbManager
+            {
+                Id = id,
+                Name = name,
+                Username = username,
+                Password = password,
+                Url = url,
+                TwoFA = twoFA,
+                Note = note
+            };
             con.Update(n);
+            parent.AddToFile($"UPDATE,{id},{name},{username},{password},{url},{twoFA},{note}");
+            n.Id = -1;
+            n.Name = "";
+            n.Username = "";
+            n.Password = "";
+            n.Url = "";
+            n.TwoFA = "";
+            n.Note = "";
             Clear();
             TxtSearch_TextChanged(null, null);
         }
-        public void Del(int id)
-        {//!!! update SQL file
+        public void Del(int id, string name, string username, string url)
+        {
             var n = new dumbManager();
             n.Id = id;
             con.Delete(n);
+            parent.AddToFile($"DELETE,{id},{name},{username},{url}");
+            n.Id = -1;
             Clear();
             TxtSearch_TextChanged(null, null);
 

@@ -5,8 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>dumbManager.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <PackageIcon>dumbManager.jpg</PackageIcon>
     <PackageIconUrl />
     <Authors>jalupa</Authors>
@@ -14,7 +14,7 @@
     <Copyright>Copyright © jalupa 2021</Copyright>
     <PackageProjectUrl>https://github.com/jalupaja/dumbManager</PackageProjectUrl>
     <SignAssembly>false</SignAssembly>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -63,7 +63,8 @@
 
   <ItemGroup>
     <PackageReference Include="MegaApiClient" Version="1.9.0" />
-    <PackageReference Include="sqlite-net-sqlcipher" Version="1.7.335" />
+    <PackageReference Include="Open.Mega" Version="1.0.0" />
+    <PackageReference Include="sqlite-net-sqlcipher" Version="1.8.116" />
   </ItemGroup>
 
 </Project>

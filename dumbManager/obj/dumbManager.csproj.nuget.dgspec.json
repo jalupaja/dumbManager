@@ -5,7 +5,7 @@
   },
   "projects": {
     "c:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "restore": {
         "projectUniqueName": "c:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj",
         "projectName": "dumbManager",
@@ -50,9 +50,13 @@
               "target": "Package",
               "version": "[1.9.0, )"
             },
+            "Open.Mega": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "sqlite-net-sqlcipher": {
               "target": "Package",
-              "version": "[1.7.335, )"
+              "version": "[1.8.116, )"
             }
           },
           "imports": [

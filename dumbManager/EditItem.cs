@@ -100,12 +100,12 @@ namespace dumbManager
         }
         private void BtnOpenUrl_Click(object sender, EventArgs e)
         {
-            Process.Start(TxtUrl.Text);
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {TxtUrl.Text}") { CreateNoWindow = false });
         }
         private void BtnDel_Click(object sender, EventArgs e)
         {
             //!!! Ask if really want to delete
-            parent.Del(parent.selectedId);
+            parent.Del(parent.selectedId, TxtName.Text, TxtUsername.Text, TxtUrl.Text);
         }
 
         private void BtnSee2FA_Click(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace dumbManager
 
         private void BtnNewPwd_Click(object sender, EventArgs e)
         {
-            if (TxtPassword.Text == "" || MessageBox.Show("Do you really want to overwrite the password?", "Overwrite Password", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (TxtPassword.Text == "" || MessageBox.Show("Do you really want to overwrite the password?", "Overwrite Password", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 TxtPassword.Text = parent.parent.pwdCreate("20", true, true, true, true);
         }
     }
