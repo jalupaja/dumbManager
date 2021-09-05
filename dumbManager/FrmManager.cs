@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SQLite;
-using CG.Web.MegaApiClient;
-
 using System.IO;
 
 namespace dumbManager
@@ -133,32 +131,19 @@ namespace dumbManager
             parent.Logout();
         }
 
-        public string getMegaStuff(string what)
+        public string getDropStuff()
         {
             string ret = string.Empty;
-            var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains("Mega(Sync)".ToLower())).ToList();
+            var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains("Dropbox(Sync)".ToLower())).ToList();
             foreach (var item in result)
             {
-                switch(what)
-                {
-                    case "username":
-                        ret = item.Name;
-                        break;
-                    case "password":
-                        ret = item.Password;
-                        break;
-                    case "url":
-                        ret = item.Url;
-                        break;
-                    case "2FA":
-                        //ret = item.TwoFA; //!!! Get Code not Seed !!!
-                        break;
-                }
+                ret = item.Note;
             }
             return ret;
         }
         public void Add(string name, string username, string password, string url, string twoFA, string note)
         {
+            
             var n = new dumbManager
             {
                 Name = name,
@@ -169,7 +154,10 @@ namespace dumbManager
                 Note = note
             };
             con.Insert(n);
-            parent.AddToFile($"INSERT,{name},{username},{password},{url},{twoFA},{note}");
+            if (name != "Dropbox(Sync)")
+            {
+                parent.AddToFile($"INSERT,,,{name},,,{username},,,{password},,,{url},,,{twoFA},,,{note}");
+            }
             n.Name = "";
             n.Username = "";
             n.Password = "";
@@ -189,10 +177,10 @@ namespace dumbManager
                 Password = password,
                 Url = url,
                 TwoFA = twoFA,
-                Note = note
+                Note = note             
             };
             con.Update(n);
-            parent.AddToFile($"UPDATE,{id},{name},{username},{password},{url},{twoFA},{note}");
+            parent.AddToFile($"UPDATE,,,{id},,,{name},,,{username},,,{password},,,{url},,,{twoFA},,,{note}");
             n.Id = -1;
             n.Name = "";
             n.Username = "";
@@ -208,7 +196,7 @@ namespace dumbManager
             var n = new dumbManager();
             n.Id = id;
             con.Delete(n);
-            parent.AddToFile($"DELETE,{id},{name},{username},{url}");
+            parent.AddToFile($"DELETE,,,{id},,,{name},,,{username},,,{url}");
             n.Id = -1;
             Clear();
             TxtSearch_TextChanged(null, null);

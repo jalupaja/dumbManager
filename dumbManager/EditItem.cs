@@ -16,6 +16,7 @@ namespace dumbManager
         public FrmManager parent = null;
 
         private bool newAcc = false;
+
         public EditItem()
         {
             InitializeComponent();

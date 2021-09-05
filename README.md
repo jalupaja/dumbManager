@@ -12,8 +12,8 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 
 Password Manager:
-- Change to Dropbox?
-
+- add second Password box when creating a new account
+- use bigger Shortcut Icon
 - fix TOTP Implementation
 - create Updater exe
 - Add Password options when clicking new Password in Password Manager
@@ -24,7 +24,8 @@ Password Manager:
 - online sync to e.g. personal Dropbox/ Mega account
 - Encrypt Settings file
 - change password (https://github.com/sqlcipher/sqlcipher)
-- encrypted files attachments (Sync: what to overwrite?)
+- encrypted files attachments
+- encrypted Notes
 
 Online: 
 - first sync function

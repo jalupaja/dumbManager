@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
-//using CG.Web.MegaApiClient;
-using Open.Mega;
+using Dropbox.Api;
+using Dropbox.Api.Files;
 using System.Reflection;
 using System.Diagnostics;
 using System.Threading;
@@ -33,6 +33,7 @@ namespace dumbManager
         public LoginPage()
         {
             InitializeComponent();
+            
             this.ActiveControl = TxtFileIn;
             if (Properties.Settings.Default.path == "exepath")
             {
@@ -95,6 +96,9 @@ namespace dumbManager
                 //Check for updated file
                 if (File.Exists(filepath + ".tmp"))
                 {
+                    //Delete leftovers from last sync
+                    Directory.Delete(Path.Combine(Path.GetTempPath(), "dumbManagerSync"), true);
+
                     bool cont = true;
                     try
                     {
@@ -127,12 +131,12 @@ namespace dumbManager
                         catch (Exception)
                         {
                             cont = false;
-                            parent.setSyncResponse("ERROR:" + Environment.NewLine + "An updated file has been detected but there has been a problem replacing the old file!");
+                            parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been an error updating your file!");
                         }
                     }
                     if (cont)
                     {
-                        parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "An updated file has been detected and successfully replaced!");
+                        parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "Your file has been successfully updated!");
                     }
                 }
 
@@ -241,11 +245,11 @@ namespace dumbManager
 
         public void AddToFile(string line)
         {
-            byte[] bytes = Encoding.ASCII.GetBytes(line);
+            byte[] bytes = Encoding.Unicode.GetBytes(line);
             SymmetricAlgorithm crypt = Aes.Create();
             HashAlgorithm hash = SHA256.Create();
             crypt.BlockSize = 128;
-            crypt.Key = hash.ComputeHash(Encoding.ASCII.GetBytes(pw));
+            crypt.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(pw));
             crypt.IV = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
 
             using (MemoryStream memoryStream = new MemoryStream())
@@ -260,6 +264,7 @@ namespace dumbManager
         }
         public void Sync()
         {
+            int failCount = 0;
             parent.setSyncResponse(string.Empty);
             if (parent.loggedin)
             {
@@ -667,10 +672,18 @@ namespace dumbManager
                     return;
                     */
                 #endregion retry
-                
-                #region first OpenMega
-                /*
-                if (parent.GetMegaStuff("username") != "" && parent.GetMegaStuff("username") != string.Empty)
+
+                #region first DropNet
+                bool pass = true;
+                try
+                {
+                    _ = new DropboxClient(parent.GetDropStuff().Split('|')[1]);
+                }
+                catch(Exception)
+                {
+                    pass = false;
+                }
+                if (pass)
                 {
                     //check internet Connection
                     parent.addSyncResponse("Checking Internet Connection");
@@ -685,72 +698,45 @@ namespace dumbManager
                         parent.finishedSyncing();
                         return;
                     }
-
-                    //login to the Mega.nz account
-                    parent.addSyncResponse("Logging into Mega.nz");
-                    var mega = new MegaClient();
                     try
                     {
-                        mega.Login(parent.GetMegaStuff("username"), parent.GetMegaStuff("password"), CancellationToken.None);
+                        _ = new DropboxClient(parent.GetDropStuff().Split('|')[1]);
                     }
                     catch (Exception)
                     {
-                        parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been a problem logging into your mega account!" + Environment.NewLine + "Please review your password of 'Mega(Sync)'.");
+                        parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been a problem logging into Dropbox!" + Environment.NewLine + "If this keeps happening, please delete the notes of Dropbox(Sync)!");
                         parent.finishedSyncing();
                         return;
                     }
-                    var wait4node = mega.GetNodes(CancellationToken.None);
-                    //wait4node.Wait();
-                    var nodes = wait4node.Result;
 
-                    //Test if this is the first Sync of this account
-                    Node syncFolder = null;
-                    Node syncFile = null;
-                    parent.addSyncResponse("Checking if folder exists");
-                    try //Create "dumbManager" folder if it doesn't exist
-                    {
-                        syncFolder = nodes.Single(x => x.Name == "dumbManager");
-                    }
-                    catch (Exception)
-                    {
-                        Node root = nodes.Single(x => x.Type == NodeType.Root);
-                        try
-                        {
-                            var wait4syncFolder = mega.CreateFolder("dumbManager", root, CancellationToken.None);
-                            //wait4syncFolder.Start();
-                            //wait4syncFolder.Wait();
-                            syncFolder = wait4syncFolder.Result;
-                            using (Stream uplStream = new FileStream(fpath + ".db", FileMode.Open))
-                            {
-                                var wait4uploadFile = mega.Upload(uplStream, HashIt(TxtFileIn.Text), syncFolder, null, CancellationToken.None);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been a problem uploading your file!");
-                            parent.finishedSyncing();
-                            return;
-                        }
-                        parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "Uploaded local file.");
-                        parent.finishedSyncing();
-                        return;
-                    }
+                    var _client = new DropboxClient(parent.GetDropStuff().Split('|')[1]);
+
+                    string tmpFolder = Path.Combine(Path.GetTempPath(), "dumbManagerSync");
+                    while (Directory.Exists(tmpFolder))
+                        tmpFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                    Directory.CreateDirectory(tmpFolder);
+
                     parent.addSyncResponse("Checking if file exists");
                     try
                     {
-                        syncFile = nodes.Single(x => x.Name == Path.GetFileName(fpath));
+                        //Download file into temp Folder
+                        var response = _client.Files.DownloadAsync("/" + HashIt(TxtFileIn.Text) + ".db");
+                        var result = response.Result.GetContentAsStreamAsync();
+                        using (var dwl = File.Create(Path.Combine(tmpFolder, HashIt(TxtFileIn.Text) + ".db")))
+                        {
+                            result.Result.CopyTo(dwl);
+                        }
                     }
                     catch (Exception)
                     {
+                        parent.addSyncResponse("Uploading local file");
                         try
                         {
-                            using (Stream uplStream = new FileStream(fpath + ".db", FileMode.Open))
-                            {
-                                var wait4uploadFile = mega.Upload(uplStream, HashIt(TxtFileIn.Text), syncFolder, null, CancellationToken.None);
-                                //wait4uploadFile.Start();
-                                //wait4uploadFile.Wait();
-                                //!!! wait4uploadFile.Dispose();
-                            }
+                        using (var upl = new FileStream(fpath + ".db", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            var response = _client.Files.UploadAsync("/" + HashIt(TxtFileIn.Text) + ".db", WriteMode.Overwrite.Instance, body: upl);
+                            var rest = response.Result;
+                        }
                         }
                         catch (Exception)
                         {
@@ -758,140 +744,157 @@ namespace dumbManager
                             parent.finishedSyncing();
                             return;
                         }
+                        
+                        parent.addSyncResponse($"Deleting {Path.GetFileName(fpath)}");
+                        File.Delete(fpath);
                         parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "Uploaded local file.");
                         parent.finishedSyncing();
                         return;
                     }
+                
+                    
 
-                    //Download files into temp Folder
-                    string tmpFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                    try
+                    /*!!! download possible other files, starting with same name(e.g encrypted files)
+                    var onlineFiles = _client.Search(HashIt(TxtFileIn.Text) + "*");
+
+                    foreach (var onlineFile in onlineFiles)
                     {
-                        while (Directory.Exists(tmpFolder))
-                            tmpFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                        Directory.CreateDirectory(tmpFolder);
-
-                        foreach (Node node in nodes.Where(x => x.Type == NodeType.File))
+                        parent.addSyncResponse($"Downloading {onlineFile.Name}");
+                        try
                         {
-                            parent.addSyncResponse($"Downloading {node.Name}");
-                            var wait4downloadFile = mega.Download(node, CancellationToken.None); //Path.Combine(tmpFolder, node.Name)
-                            //wait4downloadFile.Start();
-                            wait4downloadFile.Wait();
-                            //!!! wait4downloadFile.Dispose();
+                            var fileBytes = _client.GetFile(onlineFile.Path);
+                            using (var fs = new FileStream(Path.Combine(tmpFolder, onlineFile.Name), FileMode.Create, FileAccess.Write))
+                            {
+                                fs.Write(fileBytes, 0, fileBytes.Length);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            Cleanup(tmpFolder);
+                            parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been problem downloading the files!");
+                            parent.finishedSyncing();
+                            return;
                         }
                     }
-                    catch (Exception)
-                    {
-                        Cleanup(tmpFolder);
-                        parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been problem downloading the files!");
-                        parent.finishedSyncing();
-                        return;
-                    }
+                    */
 
                     //Read local update file and update the downloaded File
                     if (File.Exists(fpath))
                     {
                         parent.addSyncResponse("Updating Password Manager");
-
-                        con = new SQLiteConnection(new SQLiteConnectionString(fpath, Flags, true, key: pw));
+                        try
+                        {
+                            con = new SQLiteConnection(new SQLiteConnectionString(Path.Combine(tmpFolder, HashIt(TxtFileIn.Text) + ".db"), Flags, true, key: pw));
+                            con.CreateTable<FrmManager.dumbManager>();
+                        }
+                        catch(Exception)
+                        {
+                            parent.setSyncResponse("ERROR: Your local and online password dont seem to match!");
+                            Cleanup(tmpFolder);
+                            parent.finishedSyncing();
+                            return;
+                        }
                         con.BeginTransaction();
 
-                        int failCount = 0;
                         try
                         {
                             string line;
-                            var n = parent.getTable();
+                            var n = new FrmManager.dumbManager();
                             SymmetricAlgorithm crypt = Aes.Create();
                             HashAlgorithm hash = SHA256.Create();
-                            crypt.Key = hash.ComputeHash(Encoding.ASCII.GetBytes(pw));
+                            crypt.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(pw));
                             crypt.IV = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-                            using (StreamReader file = new StreamReader(fpath))
+                            using (var str = new FileStream(fpath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                             {
-                                while ((line = file.ReadLine()) != null)
+                                using (StreamReader file = new StreamReader(str))
                                 {
-                                    byte[] bytes = Convert.FromBase64String(line);
-                                    using (MemoryStream memoryStream = new MemoryStream(bytes))
+                                    while ((line = file.ReadLine()) != null)
                                     {
-                                        using (CryptoStream cryptoStream =
-                                           new CryptoStream(memoryStream, crypt.CreateDecryptor(), CryptoStreamMode.Read))
+                                        byte[] bytes = Convert.FromBase64String(line);
+                                        using (MemoryStream memoryStream = new MemoryStream(bytes))
                                         {
-                                            byte[] decryptedBytes = new byte[bytes.Length];
-                                            cryptoStream.Read(decryptedBytes, 0, decryptedBytes.Length);
-                                            string decLine = Encoding.Unicode.GetString(decryptedBytes);
-                                            //!!! apply lines to downloaded file
-                                            string[] linePart = decLine.Split(',');
-                                            switch (linePart[0])
+                                            using (CryptoStream cryptoStream =
+                                            new CryptoStream(memoryStream, crypt.CreateDecryptor(), CryptoStreamMode.Read))
                                             {
-                                                case "INSERT":
-                                                    n = parent.getTable();
-                                                    n.Name = linePart[1];
-                                                    n.Username = linePart[2];
-                                                    n.Password = linePart[3];
-                                                    n.Url = linePart[4];
-                                                    n.TwoFA = linePart[5];
-                                                    n.Note = linePart[6];
-                                                    parent.addSyncResponse($"Adding {linePart[1]}");
-                                                    try
-                                                    {
-                                                        con.Insert(n);
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        parent.addSyncResponse("ERROR:" + Environment.NewLine + $"{linePart[1]} could not be added");
+                                                byte[] decryptedBytes = new byte[bytes.Length];
+                                                cryptoStream.Read(decryptedBytes, 0, decryptedBytes.Length);
+                                                string decLine = Encoding.Unicode.GetString(decryptedBytes);
+                                                //!!! apply lines to downloaded file
+                                                string[] linePart = decLine.Split(",,,");
+                                                switch (linePart[0])
+                                                {
+                                                    case "INSERT":
+                                                        n = new FrmManager.dumbManager();
+                                                        n.Name = linePart[1];
+                                                        n.Username = linePart[2];
+                                                        n.Password = linePart[3];
+                                                        n.Url = linePart[4];
+                                                        n.TwoFA = linePart[5];
+                                                        n.Note = linePart[6];
+                                                        parent.addSyncResponse($"Adding {linePart[1]}");
+                                                        try
+                                                        {
+                                                            con.Insert(n);
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            parent.addSyncResponse("ERROR:" + Environment.NewLine + $"{linePart[1]} could not be added");
+                                                            failCount++;
+                                                        }
+                                                        n = null;
+                                                        break;
+                                                    case "UPDATE":
+                                                        n = new FrmManager.dumbManager();
+                                                        n.Id = Convert.ToInt32(linePart[1]);
+                                                        n.Name = linePart[2];
+                                                        n.Username = linePart[3];
+                                                        n.Password = linePart[4];
+                                                        n.Url = linePart[5];
+                                                        n.TwoFA = linePart[6];
+                                                        n.Note = linePart[7];
+                                                        parent.addSyncResponse($"Updating {linePart[2]}");
+                                                        try
+                                                        {
+                                                            con.Update(n);
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            parent.addSyncResponse($"ERROR: {linePart[2]} could not be updated");
+                                                            failCount++;
+                                                        }
+                                                        n = null;
+                                                        break;
+                                                    case "DELETE":
+                                                        n = new FrmManager.dumbManager();
+                                                        n.Id = Convert.ToInt32(linePart[1]);
+                                                        n.Name = linePart[2];
+                                                        n.Username = linePart[3];
+                                                        n.Url = linePart[4];
+                                                        parent.addSyncResponse($"Deleting {linePart[2]}");
+                                                        try
+                                                        {
+                                                            con.Delete(n);
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            parent.addSyncResponse($"ERROR: {linePart[2]} could not be Deleted");
+                                                            failCount++;
+                                                        }
+                                                        n = null;
+                                                        break;
+                                                    default:
+                                                        parent.addSyncResponse($"ERROR: Could not Resolve Command");
                                                         failCount++;
-                                                    }
-                                                    n = null;
-                                                    break;
-                                                case "UPDATE":
-                                                    n = parent.getTable();
-                                                    n.Id = Convert.ToInt32(linePart[1]);
-                                                    n.Name = linePart[2];
-                                                    n.Username = linePart[3];
-                                                    n.Password = linePart[4];
-                                                    n.Url = linePart[5];
-                                                    n.TwoFA = linePart[6];
-                                                    n.Note = linePart[7];
-                                                    parent.addSyncResponse($"Updating {linePart[2]}");
-                                                    try
-                                                    {
-                                                        con.Update(n);
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        parent.addSyncResponse($"ERROR: {linePart[2]} could not be updated");
-                                                        failCount++;
-                                                    }
-                                                    n = null;
-                                                    break;
-                                                case "DELETE":
-                                                    n = parent.getTable();
-                                                    n.Id = Convert.ToInt32(linePart[1]);
-                                                    n.Name = linePart[2];
-                                                    n.Username = linePart[3];
-                                                    n.Url = linePart[4];
-                                                    parent.addSyncResponse($"Deleting {linePart[2]}");
-                                                    try
-                                                    {
-                                                        con.Delete(n);
-                                                    }
-                                                    catch (Exception)
-                                                    {
-                                                        parent.addSyncResponse($"ERROR: {linePart[2]} could not be Deleted");
-                                                        failCount++;
-                                                    }
-                                                    n = null;
-                                                    break;
-                                                default:
-                                                    parent.addSyncResponse($"ERROR: Could not Resolve Command");
-                                                    failCount++;
-                                                    break;
-                                            }
+                                                        break;
+                                                }
                                         }
                                     }
                                 }
                                 con.Commit();
                                 con.Close();
                             }
+                        }
+                            
                         }
                         catch (Exception)
                         {
@@ -902,24 +905,46 @@ namespace dumbManager
                             return;
                         }
                         parent.addSyncResponse("Error:" + Environment.NewLine + $"There have been {failCount} Errors while Syncing!");
-                        if (MessageBox.Show($"There have been {failCount} Errors while Syncing!" + Environment.NewLine + "Are you sure that you want to continue?", $"Encountered {failCount} Errors", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        if (failCount > 0)
                         {
-                            Cleanup(tmpFolder);
-                            parent.SafeSyncFile(fpath + ".log");
-                            parent.setSyncResponse("You can find the log file at" + Environment.NewLine + fpath + ".log");
-                            parent.finishedSyncing();
-                            return;
+                            new FrmLittleBox($"There have been {failCount} Errors while Syncing!", parent.getSyncResponse()).Show();
+                            if (MessageBox.Show($"There have been {failCount} Errors while Syncing!" + Environment.NewLine + "Are you sure that you want to continue?", $"Encountered {failCount} Errors", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                            {
+                                Cleanup(tmpFolder);
+                                parent.SafeSyncFile(fpath + ".log");
+                                parent.setSyncResponse("You can find the log file at" + Environment.NewLine + fpath + ".log");
+                                parent.finishedSyncing();
+                                return;
+                            }
                         }
                     }
 
-                    //delete online File
+                    //delete online file
                     try
                     {
-                        mega.Delete(syncFile, CancellationToken.None);
+                        var folders = _client.Files.DeleteV2Async("/" + HashIt(TxtFileIn.Text) + ".db");
+                        var result = folders.Result;
                     }
                     catch (Exception)
                     {
-                        parent.setSyncResponse("Error:" + Environment.NewLine + "There has been a problem deleting the online file!");
+                        parent.setSyncResponse($"ERROR: Failed to delete online file");
+                        Cleanup(tmpFolder);
+                        parent.finishedSyncing();
+                        return;
+                    }
+
+                    //upload local file
+                    try
+                    {
+                        using (var upl = new FileStream(fpath + ".db", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            var response = _client.Files.UploadAsync("/" + HashIt(TxtFileIn.Text) + ".db", WriteMode.Overwrite.Instance, body: upl);
+                            var rest = response.Result;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        parent.setSyncResponse("Error:" + Environment.NewLine + "There has been a problem updating the online file!" + e.Message);//!!!
                         Cleanup(tmpFolder);
                         parent.finishedSyncing();
                         return;
@@ -932,25 +957,8 @@ namespace dumbManager
                     foreach (string file in files)
                     {
                         parent.addSyncResponse($"Moving {Path.GetFileName(file)} to local Folder");
-                        if (Path.Combine(localFolder, Path.GetFileName(file)) == fpath + ".db")
+                        if (Path.Combine(localFolder, Path.GetFileName(file)) == fpath + ".db") //!!!
                         {
-                            try
-                            {
-                                using (Stream uplStream = new FileStream(Path.Combine(localFolder, Path.GetFileName(file)), FileMode.Open))
-                                {
-                                    var wait4uploadFile = mega.Upload(uplStream, HashIt(TxtFileIn.Text), syncFolder, null, CancellationToken.None);
-                                    //wait4uploadFile.Start();
-                                    //wait4uploadFile.Wait();
-                                    //!!! wait4uploadFile.Dispose();
-                                }
-                            }
-                            catch (Exception)
-                            {
-                                parent.setSyncResponse("Error:" + Environment.NewLine + "There has been a problem uploading the new file!");
-                                Cleanup(tmpFolder);
-                                parent.finishedSyncing();
-                                return;
-                            }
                             try
                             {
                                 File.Copy(file, Path.Combine(localFolder, Path.GetFileName(file) + ".tmp"), false);
@@ -978,22 +986,56 @@ namespace dumbManager
                         parent.addSyncResponse($"ERROR: Failed to delete " + Environment.NewLine + Path.GetFileName(fpath));
                     }
 
-                    parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "" + Environment.NewLine + "The Program will now restart!");
-                    ProcessStartInfo psi = new ProcessStartInfo();
-                    Process.Start(new ProcessStartInfo("cmd", $" /c 'timeout /t 3 && start \"{System.Reflection.Assembly.GetEntryAssembly().Location}") { CreateNoWindow = false });
+                    parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "" + Environment.NewLine + "You have to restart in Order for the changes to take affect!");
+
+                    //!!! restart
+                    Process.Start(Application.ExecutablePath);
                     parent.TrayExit(null, null);
                     parent.finishedSyncing();
                     return;
                 }
                 else
                 {
-                    parent.CreateMega();
-                    parent.setSyncResponse("You have to create an Account on mega.nz and update the usename and password in the Password Manager: 'Mega(Sync)'!");
+                    parent.setSyncResponse("You have to create an Account on dropbox.com authorize the App!");
+                    Uri Url = DropboxOAuth2Helper.GetAuthorizeUri("qy5zl04iap7sbhn"); //!!!
+                    var tmp = new FrmLittleBox("Please open this Link in your browser and paste the Access Code below!", Url.AbsoluteUri, "Paste Access Code here");
+                    tmp.ShowDialog();
+                    if (tmp.ret == "")
+                    {
+                        parent.setSyncResponse("ERROR:" + Environment.NewLine + "You have to enter an Access Code!");
+                        parent.finishedSyncing();
+                        return;
+                    }
+                    parent.CreateDropStuff(tmp.ret);
+
+                    Sync();
+                    /* //!!!
+                    var _client = new DropboxClient(tmp.ret);
+                    tmp.Dispose();
+                    try
+                    {
+                        using (var upl = new FileStream(fpath + ".db", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            var response = _client.Files.UploadAsync("/" + HashIt(TxtFileIn.Text) + ".db", WriteMode.Overwrite.Instance, body: upl);
+                            var rest = response.Result;
+                        }
+                        
+                    }
+                    catch (Exception)
+                    {
+                        _client.Dispose();
+                        parent.setSyncResponse("ERROR:" + Environment.NewLine + "There has been a problem uploading your file!");
+                        parent.finishedSyncing();
+                        return;
+                    }
+
+                    File.Delete(fpath);
+                    _client.Dispose();
                     parent.finishedSyncing();
                     return;
+                    */
                 }
-                */
-                #endregion first OpenMega
+                #endregion first DropNet
 
             }
             else
@@ -1012,22 +1054,16 @@ namespace dumbManager
             {
                 try
                 {
-                    parent.addSyncResponse($"Deleting {Path.GetFileName(file)}");
-                    File.Delete(file);
+                    if (Path.GetFileName(file) != HashIt(TxtFileIn.Text))
+                    {
+                        parent.addSyncResponse($"Deleting {Path.GetFileName(file)}");
+                        File.Delete(file);
+                    }
                 }
                 catch (Exception)
                 {
                     parent.addSyncResponse("ERROR: Failed to delete" + Environment.NewLine + Path.GetFileName(file));
                 }
-            }
-            try
-            {
-                parent.addSyncResponse("Deleting temporary folder");
-                Directory.Delete(folderpath, true);
-            }
-            catch (Exception)
-            {
-                parent.addSyncResponse("ERROR: Failed to delete temporary folder");
             }
         }
     }

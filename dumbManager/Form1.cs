@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -161,6 +162,13 @@ namespace dumbManager
             FrmSettings_Vrb.ColorReload();
         }
 
+        private void TrayIcon_Click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                TrayShow(null, null);
+            }
+        }
         private void TrayShow(object sender, EventArgs e)
         {
             if (onlyTray)
@@ -177,7 +185,6 @@ namespace dumbManager
                 OnFormClosing(new FormClosingEventArgs(CloseReason.None, true));
             }  
         }
-
         public void TrayLogout(object sender, EventArgs e)
         {
             if (loggedin)
@@ -185,15 +192,6 @@ namespace dumbManager
                 FrmManager_Vrb.BtnLogout_Click(null, null);
             }
         }
-
-        private void TrayIcon_Click(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                TrayShow(null, null);
-            }
-        }
-
         public void TrayExit(object sender, EventArgs e)
         {
             TrayLogout(null, null);
@@ -274,10 +272,6 @@ namespace dumbManager
             return FrmPwdGen_Vrb.pwdCreate(length, lower, upper, numbers, spec);
         }
 
-        public FrmManager.dumbManager getTable()
-        {
-            return new FrmManager.dumbManager();
-        }
         public void AddToFile(string line)
         {
             FrmLoginPage_Vrb.AddToFile(line);
@@ -286,6 +280,11 @@ namespace dumbManager
         {
             BtnSync.Text = "Syncing ...";
             FrmLoginPage_Vrb.Sync();
+        }
+
+        public string getSyncResponse()
+        {
+            return TxtSyncResponse.Text;
         }
         public void setSyncResponse(string response)
         {
@@ -298,9 +297,10 @@ namespace dumbManager
                 else if (response.Contains("SUCCESS"))
                 {
                     TxtSyncResponse.ForeColor = Color.Green;
-                    FrmManager_Vrb.TxtSearch_TextChanged(null, null);
                 }
-                TxtSyncResponse.Text = response + Environment.NewLine;
+                else
+                    TxtSyncResponse.ForeColor = Color.White;
+                TxtSyncResponse.AppendText(Environment.NewLine + Environment.NewLine + Environment.NewLine + response + Environment.NewLine);
             }
         }
         public void addSyncResponse(string response)
@@ -309,9 +309,14 @@ namespace dumbManager
                 TxtSyncResponse.ForeColor = Color.Red;
             else if (response.Contains("SUCCESS"))
                 TxtSyncResponse.ForeColor = Color.Green;
+            else
+                TxtSyncResponse.ForeColor = Color.White;
             TxtSyncResponse.AppendText(response + Environment.NewLine);
         }
-
+        public void TxtSyncResponse_DoubleClick(object sender, EventArgs e)
+        {
+            new FrmLittleBox("Sync response conent:", TxtSyncResponse.Text).Show();
+        }
         public void finishedSyncing()
         {
             BtnSync.Text = "Sync";
@@ -321,20 +326,17 @@ namespace dumbManager
             File.Delete(path);
             for (int i = 0; i < TxtSyncResponse.Lines.Length; i++)
             {
-                File.AppendAllText(path, TxtSyncResponse.Lines[i]);
+                File.AppendAllText(path, TxtSyncResponse.Lines[i] + Environment.NewLine);
             }
         }
 
-        public string GetMegaStuff(string input)
+        public string GetDropStuff()
         {
-            return FrmManager_Vrb.getMegaStuff(input);
+            return FrmManager_Vrb.getDropStuff();
         }
-        public void CreateMega()
+        public void CreateDropStuff(string dropToken)
         {
-            if (GetMegaStuff("url") == string.Empty && GetMegaStuff("username") == string.Empty && GetMegaStuff("password") == string.Empty)
-            {
-                FrmManager_Vrb.Add("Mega(Sync)", "", "", "https://mega.nz/register", "", "");
-            }
+            FrmManager_Vrb.Add("Dropbox(Sync)", "", "", "https://www.dropbox.com", "", $"|{dropToken}|");
         }
     }
 }

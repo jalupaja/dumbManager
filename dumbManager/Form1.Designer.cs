@@ -67,7 +67,7 @@ namespace dumbManager
             // 
             this.TxtSyncResponse.BackColor = System.Drawing.Color.Black;
             this.TxtSyncResponse.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtSyncResponse.Enabled = false;
+            this.TxtSyncResponse.Enabled = true;
             this.TxtSyncResponse.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtSyncResponse.ForeColor = System.Drawing.Color.White;
             this.TxtSyncResponse.Location = new System.Drawing.Point(7, 342);
@@ -77,6 +77,7 @@ namespace dumbManager
             this.TxtSyncResponse.TabIndex = 5;
             this.TxtSyncResponse.TabStop = false;
             this.TxtSyncResponse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtSyncResponse.DoubleClick += new System.EventHandler(this.TxtSyncResponse_DoubleClick);
             // 
             // BtnSync
             // 
