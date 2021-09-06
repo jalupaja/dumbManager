@@ -146,6 +146,15 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "TwoStepsAuthenticator/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/TwoStepsAuthenticator.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TwoStepsAuthenticator.dll": {}
+        }
       }
     }
   },
@@ -301,11 +310,29 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "TwoStepsAuthenticator/1.4.1": {
+      "sha512": "bkDEFWLibbJ5b0b7zgr3Uc1brYa5hFunZ36WmG+yvfwMCgu978NqEPVu1P120Qbrt65TYEcimsxTzICe6XfAig==",
+      "type": "package",
+      "path": "twostepsauthenticator/1.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/TwoStepsAuthenticator.dll",
+        "lib/net45/TwoStepsAuthenticator.pdb",
+        "lib/netstandard1.6/TwoStepsAuthenticator.dll",
+        "lib/netstandard1.6/TwoStepsAuthenticator.pdb",
+        "lib/netstandard2.0/TwoStepsAuthenticator.dll",
+        "lib/netstandard2.0/TwoStepsAuthenticator.pdb",
+        "twostepsauthenticator.1.4.1.nupkg.sha512",
+        "twostepsauthenticator.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
       "Dropbox.Api >= 6.13.0",
+      "TwoStepsAuthenticator >= 1.4.1",
       "sqlite-net-sqlcipher >= 1.8.116"
     ]
   },
@@ -359,6 +386,10 @@
           "Dropbox.Api": {
             "target": "Package",
             "version": "[6.13.0, )"
+          },
+          "TwoStepsAuthenticator": {
+            "target": "Package",
+            "version": "[1.4.1, )"
           },
           "sqlite-net-sqlcipher": {
             "target": "Package",

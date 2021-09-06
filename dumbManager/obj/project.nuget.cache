@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7leBvWhYUoWiViUiYxxYmOskr6Ls/ckzbcdIEBl7yH4ecr7aJePSImIP1jsMPvM8R7bCzULyHfcfMEWSog4/Jg==",
+  "dgSpecHash": "Kx+AHD9NzCZ4Ialn/VhVkeAfBKQlFGhScR2Kp9O0+lZoqIhjZJY3iH/txN6VrI9ZLW6NcOhFhJpGcvjHQu0PLg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jalupa\\source\\repos\\dumbManager\\dumbManagerWin\\dumbManager\\dumbManager\\dumbManager.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,8 @@
     "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.lib.e_sqlcipher\\2.0.4\\sqlitepclraw.lib.e_sqlcipher.2.0.4.nupkg.sha512",
     "C:\\Users\\jalupa\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
-    "C:\\Users\\jalupa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\jalupa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\jalupa\\.nuget\\packages\\twostepsauthenticator\\1.4.1\\twostepsauthenticator.1.4.1.nupkg.sha512"
   ],
   "logs": []
 }

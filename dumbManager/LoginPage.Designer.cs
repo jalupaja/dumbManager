@@ -35,6 +35,7 @@ namespace dumbManager
             this.TxtPwd = new System.Windows.Forms.TextBox();
             this.TxtResponse = new System.Windows.Forms.TextBox();
             this.TxtFilePath = new System.Windows.Forms.TextBox();
+            this.TxtPwdConfirm = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnLogin
@@ -42,10 +43,10 @@ namespace dumbManager
             this.BtnLogin.BackColor = System.Drawing.Color.DimGray;
             this.BtnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnLogin.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BtnLogin.Location = new System.Drawing.Point(137, 246);
+            this.BtnLogin.Location = new System.Drawing.Point(137, 245);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(350, 60);
-            this.BtnLogin.TabIndex = 3;
+            this.BtnLogin.TabIndex = 4;
             this.BtnLogin.Text = "create new user";
             this.BtnLogin.UseVisualStyleBackColor = false;
             this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
@@ -81,6 +82,7 @@ namespace dumbManager
             this.TxtPwd.Size = new System.Drawing.Size(350, 20);
             this.TxtPwd.TabIndex = 2;
             this.TxtPwd.UseSystemPasswordChar = true;
+            this.TxtPwd.TextChanged += new System.EventHandler(this.TxtPwd_TextChanged);
             this.TxtPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
             // 
             // TxtResponse
@@ -118,6 +120,19 @@ namespace dumbManager
             this.TxtFilePath.Click += new System.EventHandler(this.TxtFilePath_Click);
             this.TxtFilePath.DoubleClick += new System.EventHandler(this.TxtFilePath_Click);
             // 
+            // TxtPwdConfirm
+            // 
+            this.TxtPwdConfirm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtPwdConfirm.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtPwdConfirm.Location = new System.Drawing.Point(137, 215);
+            this.TxtPwdConfirm.Name = "TxtPwdConfirm";
+            this.TxtPwdConfirm.PlaceholderText = " confirm your password";
+            this.TxtPwdConfirm.Size = new System.Drawing.Size(350, 20);
+            this.TxtPwdConfirm.TabIndex = 3;
+            this.TxtPwdConfirm.UseSystemPasswordChar = true;
+            this.TxtPwdConfirm.TextChanged += new System.EventHandler(this.TxtPwdConfirm_TextChanged);
+            this.TxtPwdConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginPage_KeyDown);
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -126,6 +141,7 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(624, 400);
+            this.Controls.Add(this.TxtPwdConfirm);
             this.Controls.Add(this.TxtFilePath);
             this.Controls.Add(this.TxtResponse);
             this.Controls.Add(this.TxtPwd);
@@ -149,5 +165,6 @@ namespace dumbManager
         private System.Windows.Forms.TextBox TxtPwd;
         private System.Windows.Forms.TextBox TxtResponse;
         private System.Windows.Forms.TextBox TxtFilePath;
+        private System.Windows.Forms.TextBox TxtPwdConfirm;
     }
 }

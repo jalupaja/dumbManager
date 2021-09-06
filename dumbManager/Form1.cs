@@ -271,6 +271,10 @@ namespace dumbManager
         {
             return FrmPwdGen_Vrb.pwdCreate(length, lower, upper, numbers, spec);
         }
+        public string HashIt(string input)
+        {
+            return FrmLoginPage_Vrb.HashIt(input);
+        }
 
         public void AddToFile(string line)
         {

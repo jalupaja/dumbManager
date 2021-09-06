@@ -48,3 +48,6 @@ c:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Dropbox.Api.dll
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
 C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.FrmLittleBox.resources
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.AssemblyReference.cache
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\bin\Debug\net5.0-windows\TwoStepsAuthenticator.dll
+C:\Users\jalupa\source\repos\dumbManager\dumbManagerWin\dumbManager\dumbManager\obj\Debug\net5.0-windows\dumbManager.FrmExport.resources

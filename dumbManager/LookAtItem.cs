@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TwoStepsAuthenticator;
 
 namespace dumbManager
 {
@@ -35,7 +36,9 @@ namespace dumbManager
         public void Clear(string name, string username, string password, string url, string twoFA, string notes)
         {
             TxtPassword.UseSystemPasswordChar = true;
+            BtnSeePass.Text = "see";
             Txt2FA.UseSystemPasswordChar = true;
+            BtnSee2FA.Text = "see";
             //Write all items to textbox
             TxtName.Text = name;
             TxtUsername.Text = username;
@@ -45,8 +48,8 @@ namespace dumbManager
             if (twoFA != "")
             {
                 try
-                {   //credits: https://github.com/selway/totp/tree/master/src/TOTP/TOTP.Core //!!! Not Working
-                    Txt2FA.Text = "" + TOTP.GenerateTOTP(Encoding.ASCII.GetBytes(twoFA)) + " : " + TOTP.GenerateTOTP(DateTime.UtcNow, Encoding.ASCII.GetBytes(twoFA)) + " : " + TOTP.GenerateTOTP(DateTime.Now, Encoding.ASCII.GetBytes(twoFA));
+                {
+                    Txt2FA.Text = "" + new TimeAuthenticator().GetCode(twoFA); //https://github.com/glacasa/TwoStepsAuthenticator
                 }
                 catch (Exception)
                 {

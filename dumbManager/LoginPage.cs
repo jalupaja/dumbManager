@@ -21,7 +21,8 @@ namespace dumbManager
 {
     public partial class LoginPage : Form
     {
-
+        private static readonly string APIKEY = "tl57hqmxxg0qjxs"; //CHANGE DROPBOX APP KEY HERE!
+        //Full Access  Team App: qy5zl04iap7sbhn
         public Form1 parent = null;
 
         SQLite.SQLiteOpenFlags Flags = SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite;
@@ -51,6 +52,7 @@ namespace dumbManager
             TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
             TxtResponse.ForeColor = Color.White;
             ColorReload();
+            TxtFileIn_TextChanged(null, null);
         }
 
         public void ColorReload()
@@ -58,6 +60,7 @@ namespace dumbManager
             BtnLogin.BackColor = Properties.Settings.Default.AccentColor;
             TxtFileIn.BackColor = Properties.Settings.Default.AccentColor;
             TxtPwd.BackColor = Properties.Settings.Default.AccentColor;
+            TxtPwdConfirm.BackColor = Properties.Settings.Default.AccentColor;
         }
 
         public void Logout()
@@ -67,7 +70,7 @@ namespace dumbManager
             fpath = "";
         }
 
-        private string HashIt(String input)
+        public string HashIt(String input)
         {
             if (input == null)
                 return ".";
@@ -183,6 +186,7 @@ namespace dumbManager
                 pw = TxtPwd.Text;
             }
             TxtPwd.Text = "";
+            TxtPwdConfirm.Text = "";
         }
         private void TxtFileIn_TextChanged(object sender, EventArgs e)
         {
@@ -190,16 +194,36 @@ namespace dumbManager
 
             if (File.Exists(filepath))
             {
+                TxtPwdConfirm.Visible = false;
+                TxtPwdConfirm.Enabled = false;
                 BtnLogin.Text = $"login to {TxtFileIn.Text}";
                 TxtResponse.Text = "Please input the password to your account!";
                 TxtResponse.ForeColor = Color.White;
             }
             else
             {
+                TxtPwdConfirm.Visible = true;
+                TxtPwdConfirm.Enabled = true;
                 BtnLogin.Text = "create new user";
                 TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
                 TxtResponse.ForeColor = Color.White;
             }
+        }
+        private void TxtPwdConfirm_TextChanged(object sender, EventArgs e)
+        {
+            string filepath = Path.Combine(Properties.Settings.Default.path, HashIt(TxtFileIn.Text) + ".db");
+            if (TxtPwd.Text == TxtPwdConfirm.Text || File.Exists(filepath))
+                BtnLogin.Enabled = true;
+            else
+                BtnLogin.Enabled = false;
+        }
+
+        private void TxtPwd_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtPwd.Text == TxtPwdConfirm.Text)
+                BtnLogin.Enabled = true;
+            else
+                BtnLogin.Enabled = false;
         }
 
         private void TxtFilePath_Click(object sender, EventArgs e)
@@ -224,21 +248,67 @@ namespace dumbManager
                 if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
                 {
                     this.ActiveControl = TxtPwd;
+                    e.Handled = e.SuppressKeyPress = true;
                 }
             }
             else if (this.ActiveControl == TxtPwd)
             {
-                if (e.KeyCode == Keys.Enter)
+                if (File.Exists(Path.Combine(Properties.Settings.Default.path, HashIt(TxtFileIn.Text) + ".db")))
                 {
-                    BtnLogin_Click(null, null);
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        BtnLogin_Click(null, null);
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                    else if (e.KeyCode == Keys.Down)
+                    {
+                        this.ActiveControl = BtnLogin;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                    else if (e.KeyCode == Keys.Up)
+                    {
+                        this.ActiveControl = TxtFileIn;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
                 }
-                else if (e.KeyCode == Keys.Down)
+                else
                 {
-                    this.ActiveControl = BtnLogin;
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        this.ActiveControl = TxtPwdConfirm;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                    else if (e.KeyCode == Keys.Down)
+                    {
+                        this.ActiveControl = TxtPwdConfirm;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                    else if (e.KeyCode == Keys.Up)
+                    {
+                        this.ActiveControl = TxtFileIn;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
                 }
-                else if (e.KeyCode == Keys.Up)
+            }
+            else if (this.ActiveControl == TxtPwdConfirm)
+            {
+                if (TxtPwd.Text == TxtPwdConfirm.Text)
                 {
-                    this.ActiveControl = TxtFileIn;
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        BtnLogin_Click(null, null);
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                    else if (e.KeyCode == Keys.Down)
+                    {
+                        this.ActiveControl = BtnLogin;
+                        e.Handled = e.SuppressKeyPress = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Up)
+                {
+                    this.ActiveControl = TxtPwd;
+                    e.Handled = e.SuppressKeyPress = true;
                 }
             }
         }
@@ -989,18 +1059,18 @@ namespace dumbManager
                     parent.setSyncResponse("SUCCESS:" + Environment.NewLine + "" + Environment.NewLine + "You have to restart in Order for the changes to take affect!");
 
                     //!!! restart
-                    Process.Start(Application.ExecutablePath);
-                    parent.TrayExit(null, null);
+                    //!!! Process.Start(Application.ExecutablePath);
+                    //!!! parent.TrayExit(null, null);
                     parent.finishedSyncing();
                     return;
                 }
                 else
                 {
                     parent.setSyncResponse("You have to create an Account on dropbox.com authorize the App!");
-                    Uri Url = DropboxOAuth2Helper.GetAuthorizeUri("qy5zl04iap7sbhn"); //!!!
+                    Uri Url = DropboxOAuth2Helper.GetAuthorizeUri(APIKEY);
                     var tmp = new FrmLittleBox("Please open this Link in your browser and paste the Access Code below!", Url.AbsoluteUri, "Paste Access Code here");
                     tmp.ShowDialog();
-                    if (tmp.ret == "")
+                    if (tmp.ret == "" || tmp.DialogResult != DialogResult.OK)
                     {
                         parent.setSyncResponse("ERROR:" + Environment.NewLine + "You have to enter an Access Code!");
                         parent.finishedSyncing();

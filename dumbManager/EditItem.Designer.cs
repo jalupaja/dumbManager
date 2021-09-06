@@ -289,7 +289,7 @@ namespace dumbManager
             this.Txt2FA.ForeColor = System.Drawing.Color.Black;
             this.Txt2FA.Location = new System.Drawing.Point(41, 230);
             this.Txt2FA.Name = "Txt2FA";
-            this.Txt2FA.PlaceholderText = " enter TOTP Seed";
+            this.Txt2FA.PlaceholderText = " enter TOTP Secret";
             this.Txt2FA.Size = new System.Drawing.Size(204, 20);
             this.Txt2FA.TabIndex = 41;
             this.Txt2FA.UseSystemPasswordChar = true;

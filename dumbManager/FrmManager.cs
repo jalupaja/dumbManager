@@ -134,7 +134,7 @@ namespace dumbManager
         public string getDropStuff()
         {
             string ret = string.Empty;
-            var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Contains("Dropbox(Sync)".ToLower())).ToList();
+            var result = con.Table<dumbManager>().Where(x => x.Name.ToLower().Equals("Dropbox(Sync)".ToLower())).ToList();
             foreach (var item in result)
             {
                 ret = item.Note;
@@ -198,9 +198,9 @@ namespace dumbManager
             con.Delete(n);
             parent.AddToFile($"DELETE,,,{id},,,{name},,,{username},,,{url}");
             n.Id = -1;
+            selectedId--;
             Clear();
             TxtSearch_TextChanged(null, null);
-
         }
         public void Clear()
         {

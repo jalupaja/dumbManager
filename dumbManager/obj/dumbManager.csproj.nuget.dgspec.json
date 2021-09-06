@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[6.13.0, )"
             },
+            "TwoStepsAuthenticator": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
             "sqlite-net-sqlcipher": {
               "target": "Package",
               "version": "[1.8.116, )"

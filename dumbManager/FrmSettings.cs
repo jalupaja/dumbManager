@@ -103,15 +103,6 @@ namespace dumbManager
             }
             else
             {
-                if (System.IO.File.Exists(shortcutLocation))
-                {
-                    try
-                    {
-                        System.IO.File.Delete(shortcutLocation);
-                    }
-                    catch (Exception)
-                    { }
-                }
                 BtnStartMenu.Text = "Create Start Menu";
             }
             #endregion Start Menu
@@ -171,6 +162,8 @@ namespace dumbManager
             BtnStartup.BackColor = Properties.Settings.Default.AccentColor;
 
             BtnLogoutAfter.BackColor = Properties.Settings.Default.AccentColor;
+            BtnImport.BackColor = Properties.Settings.Default.AccentColor;
+            BtnExport.BackColor = Properties.Settings.Default.AccentColor;
 
             FrmAbout_Vrb.ColorReload();
         }
@@ -320,7 +313,7 @@ namespace dumbManager
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Insufficient Permissions!");
+                    MessageBox.Show("Insufficient Permissions!", "Insufficient Permissions!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BtnStartMenu.Text = "Create Start Menu";
                     Properties.Settings.Default.StartMenu = false;
                 }
@@ -373,6 +366,24 @@ namespace dumbManager
             }
             Properties.Settings.Default.Save();
             BtnStartup.Text = "Startup: " + Properties.Settings.Default.Startup;
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog browseFile = new OpenFileDialog();
+            browseFile.Title = "Select a file to import";
+            browseFile.Filter = "(*.db)|*.db";
+            browseFile.Multiselect = true;
+            if (browseFile.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string thisFile in browseFile.FileNames)
+                    System.IO.File.Copy(thisFile, Path.Combine(Properties.Settings.Default.path, Path.GetFileName(thisFile)));
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            new FrmExport(parent).ShowDialog();
         }
     }
 }

@@ -38,6 +38,8 @@ namespace dumbManager
             this.BtnCloseToTray = new System.Windows.Forms.Button();
             this.BtnStartMenu = new System.Windows.Forms.Button();
             this.BtnStartup = new System.Windows.Forms.Button();
+            this.BtnImport = new System.Windows.Forms.Button();
+            this.BtnExport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnColor
@@ -135,6 +137,28 @@ namespace dumbManager
             this.BtnStartup.UseVisualStyleBackColor = true;
             this.BtnStartup.Click += new System.EventHandler(this.BtnStartup_Click);
             // 
+            // BtnImport
+            // 
+            this.BtnImport.ForeColor = System.Drawing.Color.Black;
+            this.BtnImport.Location = new System.Drawing.Point(364, 84);
+            this.BtnImport.Name = "BtnImport";
+            this.BtnImport.Size = new System.Drawing.Size(94, 25);
+            this.BtnImport.TabIndex = 9;
+            this.BtnImport.Text = "Import";
+            this.BtnImport.UseVisualStyleBackColor = true;
+            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
+            // 
+            // BtnExport
+            // 
+            this.BtnExport.ForeColor = System.Drawing.Color.Black;
+            this.BtnExport.Location = new System.Drawing.Point(483, 84);
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(94, 25);
+            this.BtnExport.TabIndex = 10;
+            this.BtnExport.Text = "Export";
+            this.BtnExport.UseVisualStyleBackColor = true;
+            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -143,6 +167,8 @@ namespace dumbManager
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(622, 400);
+            this.Controls.Add(this.BtnExport);
+            this.Controls.Add(this.BtnImport);
             this.Controls.Add(this.BtnStartup);
             this.Controls.Add(this.BtnStartMenu);
             this.Controls.Add(this.BtnCloseToTray);
@@ -171,5 +197,7 @@ namespace dumbManager
         private System.Windows.Forms.Button BtnCloseToTray;
         private System.Windows.Forms.Button BtnStartMenu;
         private System.Windows.Forms.Button BtnStartup;
+        private System.Windows.Forms.Button BtnImport;
+        private System.Windows.Forms.Button BtnExport;
     }
 }
