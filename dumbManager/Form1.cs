@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -145,6 +147,17 @@ namespace dumbManager
                 FrmLoginPage_Vrb.FormBorderStyle = FormBorderStyle.None;
                 this.PnlFormLoader.Controls.Add(FrmLoginPage_Vrb);
                 FrmLoginPage_Vrb.Show();
+            }
+
+            int offlineVersion = Int16.Parse(System.Windows.Forms.Application.ProductVersion.Replace(".", "").Replace("v", ""));
+            int onlineVersion = Int16.Parse(new WebClient().DownloadString("https://raw.githubusercontent.com/jalupaja/dumbManager/main/dumbManager/VersionNumber.txt"));
+            if (offlineVersion < onlineVersion)
+            {
+                try
+                {
+                    Process.Start("Updater.exe", "\"https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip\" question");
+                }
+                catch (Exception) { }
             }
         }
 

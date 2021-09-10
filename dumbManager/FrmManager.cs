@@ -71,14 +71,22 @@ namespace dumbManager
         }
         public void TxtSearch_TextChanged(object sender, EventArgs e)//List stuff
         {
+            if (selectedId == -1)
+            {
+                BtnAddItem_Click(null, null);
+            }
             if (TxtSearch.Text == "")
             {
+                int c = 0;
                 PnlList.Controls.Clear();
                 var result = con.Table<dumbManager>().ToList();
                 foreach (var item in result)
                 {
                     PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
+                    c++;
                 }
+                if (c == 0)
+                    BtnAddItem_Click(null, null);
             }
             else
             {

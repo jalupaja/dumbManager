@@ -13,14 +13,11 @@ A dumb Password Manager using Windows Forms and C#
 Password Manager:
 - implement real Dropbox App!!!
 
+- Sync to BackgroundWorker?
 - use bigger Shortcut Icon
-- create Updater exe
-- automatic search for updates (on startup)
 - Add Password options when clicking new Password in Password Manager
 - add search by (Dropdown menu/button)
-- export, import file
 - add encrypted file attachments/upload(enc link to local/online file)
-- Encrypt Settings file
 - change password (https://github.com/sqlcipher/sqlcipher)
 - encrypted Notes
 - add failsafe for Sync

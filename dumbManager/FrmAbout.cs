@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Net;
+using System.IO;
 
 namespace dumbManager
 {
@@ -45,15 +46,14 @@ namespace dumbManager
         {
             int offlineVersion = Int16.Parse(System.Windows.Forms.Application.ProductVersion.Replace(".", "").Replace("v",""));
             int onlineVersion = Int16.Parse(new WebClient().DownloadString("https://raw.githubusercontent.com/jalupaja/dumbManager/main/dumbManager/VersionNumber.txt"));
-
             if (offlineVersion < onlineVersion)
             {
                 TxtAbout.Text = baseTxt + Environment.NewLine + Environment.NewLine + Environment.NewLine + "There is a new update available!";
                 try
                 {
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip") { CreateNoWindow = false });
+                    Process.Start("Updater.exe", "\"https://github.com/jalupaja/dumbManager/releases/latest/download/dumbManager.zip\"");
                 }
-                catch(Exception){}
+                catch (Exception){}
             }
             else if (Int16.Parse(System.Windows.Forms.Application.ProductVersion.Replace(".", "")) == onlineVersion)
             {

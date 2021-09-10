@@ -18,6 +18,7 @@ namespace dumbManager
         {
             this.parent = parent;
             InitializeComponent();
+            ShowInTaskbar = false;
             TxtFile.BackColor = Properties.Settings.Default.AccentColor;
             BtnCANCEL.BackColor = Properties.Settings.Default.AccentColor;
             BtnOK.BackColor = Properties.Settings.Default.AccentColor;

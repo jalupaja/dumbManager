@@ -196,17 +196,34 @@ namespace dumbManager
             {
                 TxtPwdConfirm.Visible = false;
                 TxtPwdConfirm.Enabled = false;
+                BtnLogin.Enabled = true;
                 BtnLogin.Text = $"login to {TxtFileIn.Text}";
                 TxtResponse.Text = "Please input the password to your account!";
                 TxtResponse.ForeColor = Color.White;
             }
             else
             {
+                if (TxtPwd.Text != TxtPwdConfirm.Text)
+                    BtnLogin.Enabled = false;
                 TxtPwdConfirm.Visible = true;
                 TxtPwdConfirm.Enabled = true;
                 BtnLogin.Text = "create new user";
                 TxtResponse.Text = "Please create a secure password \nThe password can not be recovered!";
                 TxtResponse.ForeColor = Color.White;
+            }
+        }
+        private void TxtPwd_TextChanged(object sender, EventArgs e)
+        {
+            if (File.Exists(Path.Combine(Properties.Settings.Default.path, HashIt(TxtFileIn.Text) + ".db")))
+            {
+                BtnLogin.Enabled = true;
+            }
+            else
+            {
+                if (TxtPwd.Text == TxtPwdConfirm.Text)
+                    BtnLogin.Enabled = true;
+                else
+                    BtnLogin.Enabled = false;
             }
         }
         private void TxtPwdConfirm_TextChanged(object sender, EventArgs e)
@@ -218,13 +235,6 @@ namespace dumbManager
                 BtnLogin.Enabled = false;
         }
 
-        private void TxtPwd_TextChanged(object sender, EventArgs e)
-        {
-            if (TxtPwd.Text == TxtPwdConfirm.Text)
-                BtnLogin.Enabled = true;
-            else
-                BtnLogin.Enabled = false;
-        }
 
         private void TxtFilePath_Click(object sender, EventArgs e)
         {
@@ -782,9 +792,7 @@ namespace dumbManager
                     var _client = new DropboxClient(parent.GetDropStuff().Split('|')[1]);
 
                     string tmpFolder = Path.Combine(Path.GetTempPath(), "dumbManagerSync");
-                    while (Directory.Exists(tmpFolder))
-                        tmpFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                    Directory.CreateDirectory(tmpFolder);
+                    try { Directory.CreateDirectory(tmpFolder); } catch (Exception) { }
 
                     parent.addSyncResponse("Checking if file exists");
                     try
@@ -802,11 +810,11 @@ namespace dumbManager
                         parent.addSyncResponse("Uploading local file");
                         try
                         {
-                        using (var upl = new FileStream(fpath + ".db", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                        {
-                            var response = _client.Files.UploadAsync("/" + HashIt(TxtFileIn.Text) + ".db", WriteMode.Overwrite.Instance, body: upl);
-                            var rest = response.Result;
-                        }
+                            using (var upl = new FileStream(fpath + ".db", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                            {
+                                var response = _client.Files.UploadAsync("/" + HashIt(TxtFileIn.Text) + ".db", WriteMode.Overwrite.Instance, body: upl);
+                                var rest = response.Result;
+                            }
                         }
                         catch (Exception)
                         {
@@ -974,9 +982,9 @@ namespace dumbManager
                             parent.finishedSyncing();
                             return;
                         }
-                        parent.addSyncResponse("Error:" + Environment.NewLine + $"There have been {failCount} Errors while Syncing!");
                         if (failCount > 0)
                         {
+                            parent.addSyncResponse("Error:" + Environment.NewLine + $"There have been {failCount} Errors while Syncing!");
                             new FrmLittleBox($"There have been {failCount} Errors while Syncing!", parent.getSyncResponse()).Show();
                             if (MessageBox.Show($"There have been {failCount} Errors while Syncing!" + Environment.NewLine + "Are you sure that you want to continue?", $"Encountered {failCount} Errors", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                             {
