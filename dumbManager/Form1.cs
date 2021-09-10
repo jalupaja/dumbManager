@@ -149,7 +149,7 @@ namespace dumbManager
                 FrmLoginPage_Vrb.Show();
             }
 
-            int offlineVersion = Int16.Parse(System.Windows.Forms.Application.ProductVersion.Replace(".", "").Replace("v", ""));
+            int offlineVersion = Int16.Parse(Application.ProductVersion.Replace(".", "").Replace("v", ""));
             int onlineVersion = Int16.Parse(new WebClient().DownloadString("https://raw.githubusercontent.com/jalupaja/dumbManager/main/dumbManager/VersionNumber.txt"));
             if (offlineVersion < onlineVersion)
             {

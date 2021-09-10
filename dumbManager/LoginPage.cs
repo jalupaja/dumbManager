@@ -21,7 +21,7 @@ namespace dumbManager
 {
     public partial class LoginPage : Form
     {
-        private static readonly string APIKEY = "tl57hqmxxg0qjxs"; //CHANGE DROPBOX APP KEY HERE!
+        private static readonly string APIKEY = "qy5zl04iap7sbhn"; //CHANGE DROPBOX APP KEY HERE!
         //Full Access  Team App: qy5zl04iap7sbhn
         public Form1 parent = null;
 
