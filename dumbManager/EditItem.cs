@@ -15,12 +15,15 @@ namespace dumbManager
     {
         public FrmManager parent = null;
 
+        FrmPwdGenBox FrmPwdGenBox_Vrb = new FrmPwdGenBox() { TopLevel = true, TopMost = true };
+
         private bool newAcc = false;
 
         public EditItem()
         {
             InitializeComponent();
             this.ActiveControl = TxtName;
+            FrmPwdGenBox_Vrb.parent = this;
             ColorReload();
         }
 
@@ -126,7 +129,21 @@ namespace dumbManager
         private void BtnNewPwd_Click(object sender, EventArgs e)
         {
             if (TxtPassword.Text == "" || MessageBox.Show("Do you really want to overwrite the password?", "Overwrite Password", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                TxtPassword.Text = parent.parent.pwdCreate("20", true, true, true, true);
+            {
+                FrmPwdGenBox_Vrb.ShowDialog();
+                parent.parent.Lock();
+            }
+        }
+        public void ClosePwd()
+        {
+            FrmPwdGenBox_Vrb.Hide();
+            parent.parent.Lock();
+        }
+        public void SavePwd(string inp)
+        {
+            if (inp != "")
+                TxtPassword.Text = inp;
+            ClosePwd();
         }
     }
 }
