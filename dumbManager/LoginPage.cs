@@ -874,6 +874,17 @@ namespace dumbManager
                         }
                         con.BeginTransaction();
 
+                        if(con.Table<FrmManager.dumbManager>().ToList().Count < 1)
+                        {
+                            parent.setSyncResponse("ERROR: The downloaded file is empty!");
+                            if (MessageBox.Show("ERROR: The downloaded file is empty!" + Environment.NewLine + "Are you sure that you want to continue?", "The downloaded file is empty!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                            {
+                                Cleanup(tmpFolder);
+                                parent.finishedSyncing();
+                                return;
+                            }
+                        }
+
                         try
                         {
                             string line;
