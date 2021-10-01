@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YbtPhNKLEUvaleZcAZRUOsVHtigDKgDB2L+1vr9ZO6PsGwLT4/B0qUXhdJPWd8wzVgAcKTH691blPGYN/Tdh1w==",
+  "dgSpecHash": "AAL3o16V1Kc4WBt6sk6CqRgdC+ECNM66rCVYdtKqNjW7SoeWr/7gPT3WVqw+09QGpXyIgZKflxdgTAs3Ns7kPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
+  "projectFilePath": "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jalupa\\.nuget\\packages\\dropbox.api\\6.13.0\\dropbox.api.6.13.0.nupkg.sha512",
     "C:\\Users\\jalupa\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",

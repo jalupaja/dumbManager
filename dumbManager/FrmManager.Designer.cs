@@ -31,7 +31,7 @@ namespace dumbManager
         {
             this.PnlViewEditLoader = new System.Windows.Forms.Panel();
             this.TxtSearch = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSearch = new System.Windows.Forms.Button();
             this.BtnAddItem = new System.Windows.Forms.Button();
             this.BtnEditItem = new System.Windows.Forms.Button();
             this.PnlList = new System.Windows.Forms.FlowLayoutPanel();
@@ -59,17 +59,18 @@ namespace dumbManager
             this.TxtSearch.TabIndex = 0;
             this.TxtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
             // 
-            // button1
+            // BtnSearch
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(166, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 20);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "🔎︎";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnSearch.ForeColor = System.Drawing.Color.White;
+            this.BtnSearch.Location = new System.Drawing.Point(166, 12);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(21, 20);
+            this.BtnSearch.TabIndex = 4;
+            this.BtnSearch.Text = "˅";
+            this.BtnSearch.UseVisualStyleBackColor = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // BtnAddItem
             // 
@@ -140,7 +141,7 @@ namespace dumbManager
             this.Controls.Add(this.PnlList);
             this.Controls.Add(this.BtnEditItem);
             this.Controls.Add(this.BtnAddItem);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnSearch);
             this.Controls.Add(this.TxtSearch);
             this.Controls.Add(this.PnlViewEditLoader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -154,7 +155,7 @@ namespace dumbManager
         #endregion
         private System.Windows.Forms.Panel PnlViewEditLoader;
         private System.Windows.Forms.TextBox TxtSearch;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnSearch;
         private System.Windows.Forms.Button BtnAddItem;
         private System.Windows.Forms.Button BtnEditItem;
         private System.Windows.Forms.FlowLayoutPanel PnlList;

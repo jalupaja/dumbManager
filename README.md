@@ -13,7 +13,6 @@ A dumb Password Manager using Windows Forms and C#
 Password Manager:
 - fix Dropbox App/ change Dropbox App to low access
 - use bigger Shortcut Icon
-- add search by (Dropdown menu/button)
 - add encrypted file attachments/upload(enc link to local/online file)
 - change password (https://github.com/sqlcipher/sqlcipher)
 - encrypted Notes

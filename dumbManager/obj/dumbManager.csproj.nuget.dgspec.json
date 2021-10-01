@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj": {}
+    "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj": {
+    "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj": {
       "version": "1.0.4",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
+        "projectUniqueName": "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
         "projectName": "dumbManager",
-        "projectPath": "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
+        "projectPath": "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
         "packagesPath": "C:\\Users\\jalupa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\obj\\",
+        "outputPath": "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
