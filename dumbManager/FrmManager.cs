@@ -119,6 +119,9 @@ namespace dumbManager
             TxtSearch.BackColor = Properties.Settings.Default.AccentColor;
             BtnAddItem.BackColor = Properties.Settings.Default.AccentColor;
             BtnEditItem.BackColor = Properties.Settings.Default.AccentColor;
+
+            for(int i = 0; i < PnlList.Controls.Count; i++)
+                PnlList.Controls[i].BackColor = Properties.Settings.Default.AccentColor;
         }
 
         public int selectedId { get; set; }
@@ -131,11 +134,16 @@ namespace dumbManager
         }
         public void loadMax()
         {
+            PnlList.Controls.Clear();
             var result = con.Table<dumbManager>().ToList();
-            foreach (var item in result)
+            var sortedResult = result.OrderBy(x => x.Name).ToList();
+            foreach (var item in sortedResult)
             {
                 maxId = item.Id;
+                PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
             }
+            if (PnlList.Controls.Count == 0)
+                BtnAddItem_Click(null, null);
         }
         public void TxtSearch_TextChanged(object sender, EventArgs e)//List stuff
         {
@@ -145,20 +153,18 @@ namespace dumbManager
             }
             if (TxtSearch.Text == "")
             {
-                int c = 0;
-                PnlList.Controls.Clear();
+                //!!! sort output
                 var result = con.Table<dumbManager>().ToList();
                 foreach (var item in result)
                 {
-                    PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
-                    c++;
-                }
-                if (c == 0)
-                    BtnAddItem_Click(null, null);
+                    PnlList.Controls.Find(item.Id.ToString(), false).First().Show();
+                } 
             }
             else
             {
-                PnlList.Controls.Clear();
+                for (int i = 0; i < PnlList.Controls.Count; i++)
+                    PnlList.Controls[i].Hide();
+
                 List<dumbManager> result = null;
                 switch (sBy)
                 {
@@ -175,9 +181,10 @@ namespace dumbManager
                         result = con.Table<dumbManager>().Where(x => x.Url.ToLower().Contains(TxtSearch.Text.ToLower())).ToList();
                         break;
                 }
+                //!!! sort result
                 foreach (var item in result)
                 {
-                    PnlList.Controls.Add(new ListItem(item.Name, item.Username, item.Url, item.Id, this));
+                    PnlList.Controls.Find(item.Id.ToString(), false).First().Show();
                 }
             }
         }
@@ -249,6 +256,13 @@ namespace dumbManager
             {
                 parent.AddToFile($"INSERT,,,{name},,,{username},,,{password},,,{url},,,{twoFA},,,{note}");
             }
+            int nId = 0;
+            var result = con.Table<dumbManager>().ToList();
+            foreach (var item in result)
+            {
+                nId = item.Id;
+            }
+            PnlList.Controls.Add(new ListItem(name, username, url, nId, this));
             n.Name = "";
             n.Username = "";
             n.Password = "";
@@ -272,6 +286,7 @@ namespace dumbManager
             };
             con.Update(n);
             parent.AddToFile($"UPDATE,,,{id},,,{name},,,{username},,,{password},,,{url},,,{twoFA},,,{note}");
+            ((ListItem)PnlList.Controls.Find(id.ToString(), false).First()).Init(name, username, url);
             n.Id = -1;
             n.Name = "";
             n.Username = "";
@@ -291,6 +306,7 @@ namespace dumbManager
             n.Id = -1;
             selectedId--;
             Clear();
+            PnlList.Controls.Remove(PnlList.Controls.Find(id.ToString(), false).First());
             TxtSearch_TextChanged(null, null);
         }
         public void Clear()

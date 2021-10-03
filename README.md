@@ -16,7 +16,6 @@ Password Manager:
 - add encrypted file attachments/upload(enc link to local/online file)
 - change password (https://github.com/sqlcipher/sqlcipher)
 - encrypted Notes
-- add failsafe for Sync
 - safe settings encrypted per Account
 
 

@@ -107,3 +107,4 @@ c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\ref\dumbManager.dll
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.pdb
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.genruntimeconfig.cache
+c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\bin\Debug\net5.0-windows\MegaApiClient.dll

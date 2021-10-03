@@ -753,7 +753,12 @@ namespace dumbManager
                     */
                 #endregion retry
 
+                #region third try
+                
+                #endregion
+
                 #region first DropNet
+
                 bool pass = true;
                 try
                 {

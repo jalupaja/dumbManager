@@ -238,7 +238,6 @@ namespace dumbManager
                 FrmManager_Vrb.FormBorderStyle = FormBorderStyle.None;
                 this.PnlFormLoader.Controls.Add(FrmManager_Vrb);
                 FrmManager_Vrb.Show();
-                FrmManager_Vrb.TxtSearch_TextChanged(null,null);
             }
             else
             {
