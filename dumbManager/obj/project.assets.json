@@ -3192,7 +3192,7 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "restore": {
       "projectUniqueName": "c:\\Users\\jalupa\\source\\repos\\dumbManagerWin\\dumbManager\\dumbManager.csproj",
       "projectName": "dumbManager",

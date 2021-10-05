@@ -22,4 +22,5 @@ Password Manager:
 
 
 firefox addon: (in the far future if everything else goes right)
+	(Bitwarden, KeypassXC)
 
