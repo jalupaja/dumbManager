@@ -102,7 +102,6 @@ c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.AssemblyInfoInputs.cache
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.AssemblyInfo.cs
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.CoreCompileInputs.cache
-c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.csproj.CopyComplete
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.dll
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\ref\dumbManager.dll
 c:\Users\jalupa\source\repos\dumbManagerWin\dumbManager\obj\Debug\net5.0-windows\dumbManager.pdb

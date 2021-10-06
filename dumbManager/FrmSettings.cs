@@ -331,7 +331,7 @@ namespace dumbManager
                 try
                 {
                     Properties.Settings.Default.Startup = "tray";
-                    rk.SetValue("dumbManager", Application.ExecutablePath + " silent");
+                    rk.SetValue("dumbManager", Application.ExecutablePath + " -s");
                 }
                 catch (Exception)
                 {

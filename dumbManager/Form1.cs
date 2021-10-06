@@ -150,7 +150,8 @@ namespace dumbManager
             }
 
             int offlineVersion = Int16.Parse(Application.ProductVersion.Replace(".", "").Replace("v", ""));
-            int onlineVersion = Int16.Parse(new WebClient().DownloadString("https://raw.githubusercontent.com/jalupaja/dumbManager/main/dumbManager/VersionNumber.txt"));
+            int onlineVersion = 0;
+            try { onlineVersion = Int16.Parse(new WebClient().DownloadString("https://raw.githubusercontent.com/jalupaja/dumbManager/main/dumbManager/VersionNumber.txt")); } catch (Exception) { }
             if (offlineVersion < onlineVersion)
             {
                 try

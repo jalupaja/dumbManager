@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "dumbManager/1.0.4": {
+      "dumbManager/1.0.6": {
         "dependencies": {
           "Dropbox.Api": "6.15.0",
           "MegaApiClient": "1.9.0",
@@ -571,7 +571,7 @@
     }
   },
   "libraries": {
-    "dumbManager/1.0.4": {
+    "dumbManager/1.0.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

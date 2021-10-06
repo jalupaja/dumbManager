@@ -5,7 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>dumbManager.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <FileVersion>1.0.5.0</FileVersion>
     <PackageIcon>dumbManager.jpg</PackageIcon>
     <PackageIconUrl />
@@ -14,7 +14,7 @@
     <Copyright>Copyright © jalupa 2021</Copyright>
     <PackageProjectUrl>https://github.com/jalupaja/dumbManager</PackageProjectUrl>
     <SignAssembly>false</SignAssembly>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

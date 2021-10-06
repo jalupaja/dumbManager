@@ -11,6 +11,8 @@ A dumb Password Manager using Windows Forms and C#
 # ToDo:
 
 Password Manager:
+- fix tray reg
+
 - fix Dropbox App/ change Dropbox App to low access
 - use bigger Shortcut Icon
 - add encrypted file attachments/upload(enc link to local/online file)

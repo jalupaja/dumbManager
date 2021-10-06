@@ -24,7 +24,7 @@ namespace dumbManager
             Application.SetCompatibleTextRenderingDefault(false);
             app = new Form1();
             string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1 && args[1] == " silent")
+            if (args.Length > 1 && args[1] == "-s")
             {
                 app.onlyTray = true;
             }

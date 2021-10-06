@@ -2,7 +2,7 @@
   "profiles": {
     "dumbManager": {
       "commandName": "Project",
-      "commandLineArgs": "silent"
+      "commandLineArgs": "-s"
     }
   }
 }
